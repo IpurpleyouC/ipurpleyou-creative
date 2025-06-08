@@ -14,20 +14,19 @@
     .carrossel {
       width: 100%;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 0;
+      position: relative;
+      margin: 0 auto 20px;
+      max-height: 400px;
     }
     .slides {
       display: flex;
-      width: 700%;
+      width: calc(100vw * 7);
       animation: slide 21s infinite;
     }
     .slides img {
       width: 100vw;
-      height: auto;
-      object-fit: contain;
+      height: 400px;
+      object-fit: cover;
     }
     @keyframes slide {
       0% { margin-left: 0; }
@@ -142,6 +141,7 @@
   </script>
 </body>
 </html>
+
 
 
 
