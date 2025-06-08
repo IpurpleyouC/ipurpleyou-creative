@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>I Purple You Creative</title>       
+  <title>I Purple You Creative</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fdf6ff; }
     header { background-color: #bb86fc; color: white; padding: 20px; text-align: center; }
@@ -16,7 +16,6 @@
     .produto p { margin: 5px 0; }
     footer { background-color: #bb86fc; color: white; text-align: center; padding: 10px; margin-top: 40px; }
     .btn { background-color: #6200ee; color: white; border: none; padding: 10px 15px; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 10px; cursor: pointer; }
-    section { padding: 20px; }
     #carrinho { position: fixed; top: 20px; right: 20px; background: white; border: 1px solid #ccc; padding: 10px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
     #carrinho h3 { margin-top: 0; }
   </style>
@@ -29,19 +28,16 @@
 
   <nav>
     <a href="#">Home</a>
-    <a href="#camisetas">Coleções: Camisetas</a>
-    <a href="#ofertas">Ofertas</a>
+    <a href="#camisetas">Coleção: Camisetas</a>
     <a href="#contato">Contato</a>
   </nav>
 
   <section id="camisetas" class="produtos">
     <div class="produto">
-      <img src="camiseta-bts.jpg" alt="Camiseta BTS I Purple You">
-      <h3>Camiseta BTS - I Purple You</h3>
+      <img src="camiseta-bts.jpg" alt="Camiseta BTS">
+      <h3>Camiseta BTS</h3>
       <p>R$ 59,90</p>
-      <p>Tamanhos: P, M, G, GG</p>
-      <p>Cores: Branca, Preta</p>
-      <button class="btn" onclick="adicionarAoCarrinho('Camiseta BTS - I Purple You', 59.90)">Adicionar ao carrinho</button>
+      <button class="btn" onclick="adicionarAoCarrinho('Camiseta BTS', 59.90)">Adicionar ao carrinho</button>
     </div>
     <!-- Adicione mais produtos aqui -->
   </section>
@@ -54,7 +50,7 @@
   </div>
 
   <footer>
-    <p>&copy; 2025 I Purple You Creative - Todos os direitos reservados</p>
+    <p>&copy; 2025 I Purple You Creative</p>
   </footer>
 
   <script>
@@ -72,7 +68,7 @@
       let total = 0;
       carrinho.forEach(item => {
         const li = document.createElement('li');
-        li.textContent = ${item.produto} - R$ ${item.preco.toFixed(2)};
+        li.textContent = `${item.produto} - R$ ${item.preco.toFixed(2)}`;
         lista.appendChild(li);
         total += item.preco;
       });
@@ -84,8 +80,9 @@
         alert('Seu carrinho está vazio!');
         return;
       }
-      const resumo = carrinho.map(item => • ${item.produto} - R$ ${item.preco.toFixed(2)}).join('\n');
-      alert(Resumo da compra:\n${resumo}\n\nPagamento será adicionado em breve.);
+      const itens = carrinho.map(i => `• ${i.produto} - R$ ${i.preco.toFixed(2)}`).join('\n');
+      const url = `https://wa.me/5541995081726?text=Olá!%20Gostaria%20de%20comprar:%0A${encodeURIComponent(itens)}%0ATotal:%20R$%20${carrinho.reduce((s,a)=>s+a.preco,0).toFixed(2)}`;
+      window.open(url);
     }
   </script>
 </body>
