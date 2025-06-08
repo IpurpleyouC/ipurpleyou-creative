@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-Br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,86 +7,59 @@
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fdf6ff; }
     header { background-color: #bb86fc; color: white; padding: 20px; text-align: center; }
+    header img { max-height: 80px; margin-bottom: 10px; }
     nav { background: #f3e5f5; padding: 10px; text-align: center; }
     nav a { margin: 10px; text-decoration: none; color: #6200ee; font-weight: bold; }
-    .produtos { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; gap: 20px; }
-    .produto { background: white; border-radius: 10px; box-shadow: 0 0 10px #ccc; width: 250px; text-align: center; padding: 15px; }
+    .banner { text-align: center; padding: 30px; background-color: #ede7f6; color: #4a148c; }
+    .produtos-preview { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; gap: 20px; }
+    .produto { background: white; border-radius: 10px; box-shadow: 0 0 10px #ccc; width: 220px; text-align: center; padding: 15px; }
     .produto img { max-width: 100%; border-radius: 10px; }
     .produto h3 { margin: 10px 0 5px; }
     .produto p { margin: 5px 0; }
-    footer { background-color: #bb86fc; color: white; text-align: center; padding: 10px; margin-top: 40px; }
-    .btn { background-color: #6200ee; color: white; border: none; padding: 10px 15px; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 10px; cursor: pointer; }
-    #carrinho { position: fixed; top: 20px; right: 20px; background: white; border: 1px solid #ccc; padding: 10px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
-    #carrinho h3 { margin-top: 0; }
+    .btn { background-color: #6200ee; color: white; padding: 8px 12px; border: none; border-radius: 5px; text-decoration: none; cursor: pointer; }
+    footer { background-color: #bb86fc; color: white; text-align: center; padding: 15px; margin-top: 30px; }
   </style>
 </head>
 <body>
   <header>
+    <img src="logo-IPYC.png" alt="Logo I Purple You Creative">
     <h1>I Purple You Creative</h1>
-    <p>Produtos para dorameiras e kpopers com muito amor!</p>
   </header>
 
   <nav>
-    <a href="#">Home</a>
-    <a href="#camisetas">Coleção: Camisetas</a>
-    <a href="#contato">Contato</a>
+    <a href="index.html">Home</a>
+    <a href="camisetas.html">Camisetas</a>
+    <a href="ofertas.html">Ofertas</a>
+    <a href="contato.html">Contato</a>
   </nav>
 
-  <section id="camisetas" class="produtos">
-    <div class="produto">
-      <img src="camiseta-bts.jpg" alt="Camiseta BTS">
-      <h3>Camiseta BTS</h3>
-      <p>R$ 59,90</p>
-      <button class="btn" onclick="adicionarAoCarrinho('Camiseta BTS', 59.90)">Adicionar ao carrinho</button>
-    </div>
-    <!-- Adicione mais produtos aqui -->
-  </section>
-
-  <div id="carrinho">
-    <h3>Carrinho</h3>
-    <ul id="itens-carrinho"></ul>
-    <p>Total: R$ <span id="total-carrinho">0.00</span></p>
-    <button class="btn" onclick="finalizarCompra()">Finalizar Compra</button>
+  <div class="banner">
+    <h2>Seja bem-vindo(a) à nossa loja!</h2>
+    <p>Encontre produtos inspirados em doramas e K-pop com muito estilo!</p>
   </div>
 
+  <section class="produtos-preview">
+    <div class="produto">
+      <img src="camisa-jk.jpg" alt="Camiseta Jungkook">
+      <h3>Camiseta Jungkook</h3>
+      <p>R$ 59,90</p>
+      <a href="camisetas.html" class="btn">Ver mais</a>
+    </div>
+    <div class="produto">
+      <img src="camisa-jimin.jpg" alt="Camiseta Jimin">
+      <h3>Camiseta Jimin</h3>
+      <p>R$ 59,90</p>
+      <a href="camisetas.html" class="btn">Ver mais</a>
+    </div>
+    <!-- Mais produtos resumidos podem ser adicionados aqui -->
+  </section>
+
   <footer>
-    <p>&copy; 2025 I Purple You Creative</p>
+    <p>&copy; 2025 I Purple You Creative - Todos os direitos reservados</p>
   </footer>
-
-  <script>
-    let carrinho = [];
-
-    function adicionarAoCarrinho(produto, preco) {
-      carrinho.push({ produto, preco });
-      atualizarCarrinho();
-    }
-
-    function atualizarCarrinho() {
-      const lista = document.getElementById('itens-carrinho');
-      const totalSpan = document.getElementById('total-carrinho');
-      lista.innerHTML = '';
-      let total = 0;
-      carrinho.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.produto} - R$ ${item.preco.toFixed(2)}`;
-        lista.appendChild(li);
-        total += item.preco;
-      });
-      totalSpan.textContent = total.toFixed(2);
-    }
-
-    function finalizarCompra() {
-      if (carrinho.length === 0) {
-        alert('Seu carrinho está vazio!');
-        return;
-      }
-      const itens = carrinho.map(i => `• ${i.produto} - R$ ${i.preco.toFixed(2)}`).join('\n');
-      const url = `https://wa.me/5541995081726?text=Olá!%20Gostaria%20de%20comprar:%0A${encodeURIComponent(itens)}%0ATotal:%20R$%20${carrinho.reduce((s,a)=>s+a.preco,0).toFixed(2)}`;
-      window.open(url);
-    }
-  </script>
 </body>
 </html>
+
 
 
 
