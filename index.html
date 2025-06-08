@@ -7,17 +7,17 @@
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fdf6ff; }
     header { background-color: #bb86fc; color: white; padding: 20px; text-align: center; }
+    header img { height: 60px; vertical-align: middle; margin-right: 10px; }
     nav { background: #f3e5f5; padding: 10px; text-align: center; }
     nav a { margin: 10px; text-decoration: none; color: #6200ee; font-weight: bold; }
 
     .carrossel {
       width: 100%;
       overflow: hidden;
-      max-height: 500px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 30px;
+      margin-bottom: 0;
     }
     .slides {
       display: flex;
@@ -27,7 +27,6 @@
     .slides img {
       width: 100vw;
       height: auto;
-      max-height: 500px;
       object-fit: contain;
     }
     @keyframes slide {
@@ -64,7 +63,8 @@
 </head>
 <body>
   <header>
-    <h1>I Purple You Creative</h1>
+    <img src="logo-IPYC.png" alt="Logo da loja">
+    <span style="font-size: 24px; vertical-align: middle;">I Purple You Creative</span>
     <p>Produtos para dorameiras e kpopers com muito amor!</p>
   </header>
 
