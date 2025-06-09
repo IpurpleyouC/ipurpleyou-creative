@@ -47,7 +47,88 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
       padding: 20px;
     }
-    .car
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .carousel-item {
+      min-width: 600px;
+      margin: 0 10px;
+      padding: 10px;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border-radius: 8px;
+    }
+    .carousel-item img {
+      width: 100%;
+      display: block;
+      border-radius: 4px;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.8);
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 4px;
+      z-index: 10;
+    }
+    .carousel-btn.prev { left: 10px; }
+    .carousel-btn.next { right: 10px; }
+    @media (max-width: 640px) {
+      .carousel-item { min-width: 80vw; }
+      header nav { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div><strong>I Purple You Creative</strong></div>
+      <div>
+        <a href="#">Home</a>
+        <a href="#">Camisetas</a>
+        <a href="#">Canecas</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="carousel-container">
+    <button class="carousel-btn prev">&lt;</button>
+    <div class="carousel-track">
+      <div class="carousel-item"><img src="polaroid_camisa-bts.jpg" alt="BTS"></div>
+      <div class="carousel-item"><img src="polaroid_camisa-j-hope.jpg" alt="J-Hope"></div>
+      <div class="carousel-item"><img src="polaroid_camisa-jimin.jpg" alt="Jimin"></div>
+      <div class="carousel-item"><img src="polaroid_camisa-jk.jpg" alt="JK"></div>
+      <div class="carousel-item"><img src="polaroid_camisa-jungkook.png" alt="Jungkook"></div>
+      <div class="carousel-item"><img src="polaroid_canisa-echo.jpg" alt="Echo"></div>
+    </div>
+    <button class="carousel-btn next">&gt;</button>
+  </div>
+
+  <script>
+    const track = document.querySelector('.carousel-track');
+    const items = Array.from(track.children);
+    const prevButton = document.querySelector('.carousel-btn.prev');
+    const nextButton = document.querySelector('.carousel-btn.next');
+    const itemWidth = items[0].getBoundingClientRect().width + 20;
+    let currentIndex = 0;
+
+    function moveTo(index) {
+      track.style.transform = `translateX(-${itemWidth * index}px)`;
+      currentIndex = index;
+    }
+    prevButton.addEventListener('click', () => moveTo((currentIndex - 1 + items.length) % items.length));
+    nextButton.addEventListener('click', () => moveTo((currentIndex + 1) % items.length));
+  </script>
+</body>
+</html>
+
 
 
 
