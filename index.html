@@ -1,144 +1,82 @@
 <!DOCTYPE html>
-<html lang="pt-Br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>I Purple You Creative</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrossel Polaroid</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fdf6ff; }
-    header { background-color: #bb86fc; color: white; padding: 20px; text-align: center; }
-    header img { height: 60px; vertical-align: middle; margin-right: 10px; }
-    nav { background: #f3e5f5; padding: 10px; text-align: center; }
-    nav a { margin: 10px; text-decoration: none; color: #6200ee; font-weight: bold; }
+    body {
+      margin: 0;
+      background: url('https://images.unsplash.com/photo-1559582790-b5bceee9f67b') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+    }
 
     .carrossel {
-      width: 100%;
+      max-width: 100vw;
+      height: 350px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       overflow: hidden;
       position: relative;
-      margin: 0 auto 20px;
-      max-height: 400px;
+      margin-top: 30px;
     }
-    .slides {
+
+    .carrossel-track {
       display: flex;
-      width: calc(100vw * 7);
-      animation: slide 21s infinite;
-    }
-    .slides img {
-      width: 100vw;
-      height: 400px;
-      object-fit: cover;
-    }
-    @keyframes slide {
-      0% { margin-left: 0; }
-      12% { margin-left: 0; }
-      14% { margin-left: -100vw; }
-      26% { margin-left: -100vw; }
-      28% { margin-left: -200vw; }
-      40% { margin-left: -200vw; }
-      42% { margin-left: -300vw; }
-      54% { margin-left: -300vw; }
-      56% { margin-left: -400vw; }
-      68% { margin-left: -400vw; }
-      70% { margin-left: -500vw; }
-      82% { margin-left: -500vw; }
-      84% { margin-left: -600vw; }
-      96% { margin-left: -600vw; }
-      100% { margin-left: 0; }
+      animation: deslizar 30s infinite linear;
     }
 
-    .produtos { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; gap: 20px; }
-    .produto { background: white; border-radius: 10px; box-shadow: 0 0 10px #ccc; width: 250px; text-align: center; padding: 15px; }
-    .produto img { max-width: 100%; border-radius: 10px; }
-    .produto h3 { margin: 10px 0 5px; }
-    .produto p { margin: 5px 0; }
+    .carrossel-item {
+      flex: 0 0 auto;
+      width: 600px;
+      height: 300px;
+      margin: 0 10px;
+      background: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 10px solid white;
+    }
 
-    #carrinho { position: fixed; top: 20px; right: 20px; background: white; border: 1px solid #ccc; padding: 10px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
-    #carrinho h3 { margin-top: 0; }
+    .carrossel-item img {
+      max-width: 100%;
+      max-height: 100%;
+    }
 
-    .btn { background-color: #6200ee; color: white; border: none; padding: 10px 15px; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 10px; cursor: pointer; }
-
-    footer { background-color: #bb86fc; color: white; text-align: center; padding: 10px; margin-top: 40px; }
+    @keyframes deslizar {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-3700px); }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo-IPYC.png" alt="Logo da loja">
-    <span style="font-size: 24px; vertical-align: middle;">I Purple You Creative</span>
-    <p>Produtos para dorameiras e kpopers com muito amor!</p>
-  </header>
 
-  <nav>
-    <a href="#">Home</a>
-    <a href="#camisetas">Coleções: Camisetas</a>
-    <a href="#ofertas">Ofertas</a>
-    <a href="#contato">Contato</a>
-  </nav>
-
-  <section class="carrossel">
-    <div class="slides">
-      <img src="camisa-jk.jpg" alt="Camiseta Jungkook">
-      <img src="camisa-jimin.jpg" alt="Camiseta Jimin">
-      <img src="camisa-v.jpg" alt="Camiseta Taehyung">
-      <img src="camisa-suga.jpg" alt="Camiseta Yoongi">
-      <img src="camisa-rm.jpg" alt="Camiseta Namjoon">
-      <img src="banner-cerejeira.jpg" alt="Banner Army Style">
-      <img src="canisa-echo.jpg" alt="Camiseta Echo Style">
+  <div class="carrossel">
+    <div class="carrossel-track">
+      <div class="carrossel-item">
+        <img src="polaroid_camisa-bts.jpg" alt="Camisa BTS" />
+      </div>
+      <div class="carrossel-item">
+        <img src="polaroid_camisa-j-hope.jpg" alt="Camisa J-Hope" />
+      </div>
+      <div class="carrossel-item">
+        <img src="polaroid_camisa-jimin.jpg" alt="Camisa Jimin" />
+      </div>
+      <div class="carrossel-item">
+        <img src="polaroid_camisa-jk.jpg" alt="Camisa JK" />
+      </div>
+      <div class="carrossel-item">
+        <img src="polaroid_camisa-jungkook.png" alt="Camisa Jungkook" />
+      </div>
+      <div class="carrossel-item">
+        <img src="polaroid_canisa-echo.jpg" alt="Camisa Echo" />
+      </div>
     </div>
-  </section>
-
-  <section id="camisetas" class="produtos">
-    <div class="produto">
-      <img src="camisa-jk.jpg" alt="Camiseta Jungkook">
-      <h3>Camiseta Jungkook</h3>
-      <p>R$ 59,90</p>
-      <p>Tamanhos: P, M, G, GG</p>
-      <p>Cores: Branca, Preta</p>
-      <button class="btn" onclick="adicionarAoCarrinho('Camiseta Jungkook', 59.90)">Adicionar ao carrinho</button>
-    </div>
-  </section>
-
-  <div id="carrinho">
-    <h3>Carrinho</h3>
-    <ul id="itens-carrinho"></ul>
-    <p>Total: R$ <span id="total-carrinho">0.00</span></p>
-    <button class="btn" onclick="finalizarCompra()">Finalizar Compra</button>
   </div>
 
-  <footer>
-    <p>&copy; 2025 I Purple You Creative - Todos os direitos reservados</p>
-  </footer>
-
-  <script>
-    let carrinho = [];
-
-    function adicionarAoCarrinho(produto, preco) {
-      carrinho.push({ produto, preco });
-      atualizarCarrinho();
-    }
-
-    function atualizarCarrinho() {
-      const lista = document.getElementById('itens-carrinho');
-      const totalSpan = document.getElementById('total-carrinho');
-      lista.innerHTML = '';
-      let total = 0;
-      carrinho.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.produto} - R$ ${item.preco.toFixed(2)}`;
-        lista.appendChild(li);
-        total += item.preco;
-      });
-      totalSpan.textContent = total.toFixed(2);
-    }
-
-    function finalizarCompra() {
-      if (carrinho.length === 0) {
-        alert('Seu carrinho está vazio!');
-        return;
-      }
-      const resumo = carrinho.map(item => `• ${item.produto} - R$ ${item.preco.toFixed(2)}`).join('\n');
-      alert(`Resumo da compra:\n${resumo}\n\nPagamento será adicionado em breve.`);
-    }
-  </script>
 </body>
 </html>
 
