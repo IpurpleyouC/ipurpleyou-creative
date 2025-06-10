@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-image: url('https://ipurpleyouc.github.io/ipurpleyou-creative/imagem-fundo.jpg');
+      background-image: url('https://ipurpleyouc.github.io/ipurpleyou-creative/assets/imagem-fundo.jpg');
       background-size: cover;
       background-attachment: fixed;
       background-position: center;
@@ -31,24 +31,14 @@
       color: #6a1b9a;
       font-weight: bold;
     }
-    .carrossel {
+    .banner-topo {
       width: 100%;
-      height: 200px;
-      position: relative;
+      max-height: 400px;
       overflow: hidden;
     }
-    .carrossel img {
+    .banner-topo img {
       width: 100%;
-      height: 200px;
-      object-fit: contain;
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-    .carrossel img.active {
-      opacity: 1;
+      display: block;
     }
     .apresentacao {
       background: rgba(255, 255, 255, 0.9);
@@ -100,7 +90,7 @@
 </head>
 <body>
   <header>
-    <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/logo-IPYC.png" alt="Logo IPYC" class="logo">
+    <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
     <nav>
       <a href="#">Home</a>
       <a href="#">Produtos</a>
@@ -110,10 +100,8 @@
     </nav>
   </header>
 
-  <section class="carrossel">
-    <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/camisa-bts.jpg" class="active" alt="Slide 1">
-    <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/camisa-j-hope.jpg" alt="Slide 2">
-    <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/camisa-jimin.jpg" alt="Slide 3">
+  <section class="banner-topo">
+    <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/banner-bonequinhas-loja.jpg" alt="Banner de boas-vindas IPYC">
   </section>
 
   <section class="apresentacao">
@@ -125,13 +113,13 @@
 
   <section class="produtos-destaque">
     <div class="produto">
-      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/camisa-jimin.jpg" alt="Camiseta Jimin">
+      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jimin.jpg" alt="Camiseta Jimin">
       <h3>Camiseta Jimin</h3>
       <p>R$ 59,90</p>
       <button>Ver Produto</button>
     </div>
     <div class="produto">
-      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/camisa-jk.jpg" alt="Camiseta JK">
+      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jk.jpg" alt="Camiseta JK">
       <h3>Camiseta JK-BTS</h3>
       <p>R$ 59,90</p>
       <button>Ver Produto</button>
@@ -145,17 +133,6 @@
   <footer>
     © 2025 I Purple You Creative • Feito com amor por dorameiras 💜 | Instagram: @ipurpleyoucreative
   </footer>
-
-  <script>
-    const slides = document.querySelectorAll('.carrossel img');
-    let currentIndex = 0;
-
-    setInterval(() => {
-      slides[currentIndex].classList.remove('active');
-      currentIndex = (currentIndex + 1) % slides.length;
-      slides[currentIndex].classList.add('active');
-    }, 3000);
-  </script>
 </body>
 </html>
 
