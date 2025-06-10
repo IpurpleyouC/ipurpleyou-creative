@@ -1,121 +1,137 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Camiseta BTS - I Purple You Creative</title>
+  <title>I Purple You Creative</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fdf7ff;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('cerejeira.jpg'); /* Substitua com o caminho correto da imagem */
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
       color: #333;
     }
     header {
-      background-color: #fff;
-      padding: 20px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
-      color: #6a0dad;
-    }
-    .container {
-      max-width: 960px;
-      margin: 40px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-    .product {
+      background-color: rgba(255, 255, 255, 0.9);
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #6a1b9a;
+      font-weight: bold;
+    }
+    .carrossel {
+      width: 100%;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #6a1b9a;
+    }
+    .apresentacao {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 2rem auto;
+      border-radius: 12px;
+    }
+    .produtos-destaque {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
       flex-wrap: wrap;
-      gap: 20px;
+      margin: 2rem;
     }
-    .product img {
-      max-width: 100%;
+    .produto {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 1rem;
+      border-radius: 12px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .produto img {
+      width: 100%;
       border-radius: 8px;
-      flex: 1 1 300px;
     }
-    .details {
-      flex: 1 1 300px;
+    .banner-frase {
+      text-align: center;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: #4a148c;
+      margin: 3rem auto;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 1rem;
+      max-width: 600px;
+      border-radius: 12px;
     }
-    .details h1 {
-      margin-top: 0;
-      color: #4b0082;
-    }
-    .price {
-      font-size: 24px;
-      font-weight: bold;
-      margin: 10px 0;
-      color: #800080;
-    }
-    label {
-      font-weight: bold;
-      display: block;
-      margin-top: 15px;
-    }
-    select {
-      padding: 8px;
-      width: 100%;
-      margin-top: 5px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    button {
-      margin-top: 20px;
-      padding: 12px;
-      width: 100%;
-      font-size: 16px;
-      background: #6a0dad;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background: #5c0099;
+    footer {
+      background-color: rgba(255, 255, 255, 0.95);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #6a1b9a;
+      margin-top: 4rem;
     }
   </style>
 </head>
 <body>
-  <header>I Purple You Creative</header>
-  <div class="container">
-    <div class="product">
-      <img src="polaroid_camisa-bts.jpg" alt="Camiseta BTS">
-      <div class="details">
-        <h1>Camiseta BTS</h1>
-        <p class="price">R$ 59,90</p>
+  <header>
+    <h1>I Purple You Creative</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Produtos</a>
+      <a href="#">Sobre</a>
+      <a href="#">Contato</a>
+      <a href="#">🛒 Carrinho</a>
+    </nav>
+  </header>
 
-        <label for="size">Tamanho:</label>
-        <select id="size">
-          <option>P</option>
-          <option>M</option>
-          <option>G</option>
-          <option>GG</option>
-        </select>
+  <section class="carrossel">
+    [Carrossel de Imagens Aqui — implementar com JavaScript ou slider futuramente]
+  </section>
 
-        <label for="color">Cor:</label>
-        <select id="color">
-          <option>Branca</option>
-          <option>Preta</option>
-        </select>
+  <section class="apresentacao">
+    <p>
+      Bem-vinda à <strong>I Purple You Creative</strong> 💜<br>
+      Uma loja feita para quem respira doramas, ama K-pop e quer espalhar estilo com criatividade!
+    </p>
+  </section>
 
-        <button onclick="addToCart()">Adicionar ao Carrinho</button>
-      </div>
+  <section class="produtos-destaque">
+    <div class="produto">
+      <img src="camiseta1.jpg" alt="Camiseta 1">
+      <h3>Camiseta Dorameira</h3>
+      <p>R$ 59,90</p>
+      <button>Ver Produto</button>
     </div>
+    <div class="produto">
+      <img src="camiseta2.jpg" alt="Camiseta 2">
+      <h3>Camiseta K-pop</h3>
+      <p>R$ 59,90</p>
+      <button>Ver Produto</button>
+    </div>
+  </section>
+
+  <div class="banner-frase">
+    "Seu estilo fala coreano. A sua camiseta também."
   </div>
 
-  <script>
-    function addToCart() {
-      const size = document.getElementById('size').value;
-      const color = document.getElementById('color').value;
-      const url = `https://wa.me/SEUNUMERO?text=Oi!%20Quero%20comprar%20a%20Camiseta%20BTS%20(${color},%20tamanho%20${size})%20por%20R$59,90.`;
-      window.open(url, '_blank');
-    }
-  </script>
+  <footer>
+    © 2025 I Purple You Creative • Feito com amor por dorameiras 💜 | Instagram: @ipurpleyoucreative
+  </footer>
 </body>
 </html>
 
