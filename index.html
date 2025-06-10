@@ -120,7 +120,7 @@
       <a href="#">Produtos</a>
       <a href="#">Sobre</a>
       <a href="#">Contato</a>
-      <a href="#">🛒 Carrinho</a>
+      <a href="#">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
     </nav>
   </header>
 
@@ -149,7 +149,7 @@
       <h2 id="modal-title"></h2>
       <img id="modal-img" src="" alt="">
       <p id="modal-desc"></p>
-      <button>Adicionar ao Carrinho</button>
+      <button onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
     </div>
   </div>
 
@@ -162,26 +162,32 @@
   </footer>
 
   <script>
+    let carrinho = [];
+
     function abrirModal(titulo, imagem, descricao) {
       document.getElementById('modal-title').textContent = titulo;
       document.getElementById('modal-img').src = imagem;
       document.getElementById('modal-desc').textContent = descricao;
       document.getElementById('modal').style.display = 'flex';
+
+      // Salva o produto atual para adicionar ao carrinho depois
+      document.getElementById('modal').dataset.produtoAtual = JSON.stringify({ titulo, imagem, descricao });
     }
 
     function fecharModal() {
       document.getElementById('modal').style.display = 'none';
     }
+
+    function adicionarAoCarrinho() {
+      const produto = JSON.parse(document.getElementById('modal').dataset.produtoAtual);
+      carrinho.push(produto);
+      atualizarContadorCarrinho();
+      fecharModal();
+    }
+
+    function atualizarContadorCarrinho() {
+      document.getElementById('contador-carrinho').textContent = carrinho.length;
+    }
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
