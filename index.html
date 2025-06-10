@@ -82,34 +82,6 @@
       color: #6a1b9a;
       margin-top: 4rem;
     }
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
-    }
-    .modal-content img {
-      width: 100%;
-      border-radius: 8px;
-    }
-    .close-btn {
-      float: right;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
@@ -120,12 +92,12 @@
       <a href="#">Produtos</a>
       <a href="#">Sobre</a>
       <a href="#">Contato</a>
-      <a href="#">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
+      <a href="#">🛒 Carrinho</a>
     </nav>
   </header>
 
   <section class="banner-topo">
-    <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/banner-bonequinhas-loja.png" alt="Banner de boas-vindas IPYC">
+    <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/banner-bonequinha-oficial.png" alt="Banner de boas-vindas IPYC">
   </section>
 
   <section class="produtos-destaque">
@@ -133,25 +105,15 @@
       <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jimin.jpg" alt="Camiseta Jimin">
       <h3>Camiseta Jimin</h3>
       <p>R$ 59,90</p>
-      <button onclick="abrirModal('Camiseta Jimin', 'https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jimin.jpg', 'Camiseta unissex em algodão com estampa do Jimin. Disponível nos tamanhos P, M, G, GG.')">Ver Produto</button>
+      <button>Ver Produto</button>
     </div>
     <div class="produto">
       <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jk.jpg" alt="Camiseta JK">
       <h3>Camiseta JK-BTS</h3>
       <p>R$ 59,90</p>
-      <button onclick="abrirModal('Camiseta JK-BTS', 'https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jk.jpg', 'Camiseta unissex em algodão com estampa do Jungkook. Disponível nos tamanhos P, M, G, GG.')">Ver Produto</button>
+      <button>Ver Produto</button>
     </div>
   </section>
-
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="fecharModal()">&times;</span>
-      <h2 id="modal-title"></h2>
-      <img id="modal-img" src="" alt="">
-      <p id="modal-desc"></p>
-      <button onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
-    </div>
-  </div>
 
   <div class="banner-frase">
     "Seu estilo fala coreano. A sua camiseta também."
@@ -160,34 +122,5 @@
   <footer>
     © 2025 I Purple You Creative • Feito com amor por dorameiras 💜 | Instagram: @ipurpleyoucreative
   </footer>
-
-  <script>
-    let carrinho = [];
-
-    function abrirModal(titulo, imagem, descricao) {
-      document.getElementById('modal-title').textContent = titulo;
-      document.getElementById('modal-img').src = imagem;
-      document.getElementById('modal-desc').textContent = descricao;
-      document.getElementById('modal').style.display = 'flex';
-
-      // Salva o produto atual para adicionar ao carrinho depois
-      document.getElementById('modal').dataset.produtoAtual = JSON.stringify({ titulo, imagem, descricao });
-    }
-
-    function fecharModal() {
-      document.getElementById('modal').style.display = 'none';
-    }
-
-    function adicionarAoCarrinho() {
-      const produto = JSON.parse(document.getElementById('modal').dataset.produtoAtual);
-      carrinho.push(produto);
-      atualizarContadorCarrinho();
-      fecharModal();
-    }
-
-    function atualizarContadorCarrinho() {
-      document.getElementById('contador-carrinho').textContent = carrinho.length;
-    }
-  </script>
 </body>
 </html>
