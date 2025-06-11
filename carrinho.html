@@ -1,176 +1,89 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrinho - I Purple You Creative</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrinho de Compras</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-image: url('https://ipurpleyouc.github.io/ipurpleyou-creative/assets/imagem-fundo.jpg');
+      font-family: Arial, sans-serif;
+      background-image: url('cerejeiras.jpg'); /* Mantenha seu fundo lindo */
       background-size: cover;
       background-attachment: fixed;
-      background-position: center;
-      color: #333;
       margin: 0;
       padding: 0;
+      color: #333;
     }
-    header {
+
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
       background-color: rgba(255, 255, 255, 0.9);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
     }
-    header img.logo {
-      height: 60px;
-    }
-    nav a {
-      margin: 0 1rem;
-      text-decoration: none;
-      color: #6a1b9a;
-      font-weight: bold;
-    }
+
     h1 {
       text-align: center;
-      color: #6a1b9a;
-      margin-top: 2rem;
+      margin-bottom: 20px;
     }
-    .carrinho-container {
-      max-width: 800px;
-      margin: 2rem auto;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+    ul {
+      list-style-type: none;
+      padding: 0;
     }
-    .item-carrinho {
+
+    li {
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
       display: flex;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 1rem;
+      justify-content: space-between;
     }
-    .item-carrinho img {
-      width: 80px;
-      margin-right: 1rem;
-      border-radius: 8px;
-    }
-    .info-produto {
-      flex-grow: 1;
-    }
-    .info-produto p {
-      margin: 0.3rem 0;
-    }
-    .remover {
-      background-color: #e53935;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+
     .total {
+      font-weight: bold;
+      font-size: 20px;
       text-align: right;
-      font-size: 1.2rem;
-      margin: 1rem 2rem 2rem 0;
-      color: #4a148c;
+      margin-top: 20px;
     }
-    .mensagem-vazio {
-      text-align: center;
-      font-size: 1.1rem;
-      color: #6a1b9a;
-      padding: 2rem 0;
-    }
-    .finalizar {
+
+    .home-link {
       display: block;
-      margin: 0 auto 3rem auto;
-      padding: 0.8rem 2rem;
-      background-color: #6a1b9a;
-      color: #fff;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .finalizar:hover {
-      background-color: #4a148c;
+      text-align: center;
+      margin-top: 30px;
+      text-decoration: none;
+      color: #7b3e9f;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="#produtos">Produtos</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#contato">Contato</a>
-      <a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
-    </nav>
-  </header>
-
-  <h1>🛒 Seu Carrinho</h1>
-  <div class="carrinho-container" id="lista-carrinho">
-    <!-- Itens serão inseridos aqui -->
+  <div class="container">
+    <h1>Seu Carrinho</h1>
+    <ul id="cart-items"></ul>
+    <div class="total" id="total">Total: R$ 0,00</div>
+    <a href="index.html" class="home-link">Voltar para a loja</a>
   </div>
-  <div class="total" id="total-carrinho">Total: R$ 0,00</div>
-  <button class="finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
 
   <script>
-    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-    const lista = document.getElementById('lista-carrinho');
-    const total = document.getElementById('total-carrinho');
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const list = document.getElementById("cart-items");
+    const totalDisplay = document.getElementById("total");
 
-    function atualizarCarrinho() {
-      lista.innerHTML = '';
-      let totalValor = 0;
+    let total = 0;
 
-      if (carrinho.length === 0) {
-        lista.innerHTML = '<p class="mensagem-vazio">Seu carrinho está vazio 💜</p>';
-        document.querySelector('.finalizar').style.display = 'none';
-      } else {
-        document.querySelector('.finalizar').style.display = 'block';
-        carrinho.forEach((item, index) => {
-          const preco = parseFloat(item.preco || 59.90);
-          const quantidade = parseInt(item.quantidade || 1);
-          const subtotal = preco * quantidade;
+    cartItems.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = `${item.name} - R$ ${item.price.toFixed(2).replace('.', ',')}`;
+      list.appendChild(li);
+      total += item.price;
+    });
 
-          const div = document.createElement('div');
-          div.className = 'item-carrinho';
-          div.innerHTML = `
-            <img src="${item.imagem}" alt="${item.titulo}">
-            <div class="info-produto">
-              <p><strong>${item.titulo}</strong></p>
-              <p>Tamanho: ${item.tamanho}</p>
-              <p>Cor: ${item.cor}</p>
-              <p>Quantidade: ${quantidade}</p>
-              <p>Preço Unitário: R$ ${preco.toFixed(2)}</p>
-              <p><strong>Subtotal: R$ ${subtotal.toFixed(2)}</strong></p>
-            </div>
-            <button class="remover" onclick="removerItem(${index})">Remover</button>
-          `;
-          lista.appendChild(div);
-          totalValor += subtotal;
-        });
-      }
-      total.textContent = `Total: R$ ${totalValor.toFixed(2)}`;
-    }
-
-    function removerItem(index) {
-      carrinho.splice(index, 1);
-      localStorage.setItem('carrinho', JSON.stringify(carrinho));
-      atualizarCarrinho();
-    }
-
-    function finalizarCompra() {
-      alert("Compra finalizada com sucesso! 💜\nEm breve entraremos em contato por e-mail.");
-      localStorage.removeItem('carrinho');
-      window.location.href = 'index.html';
-    }
-
-    atualizarCarrinho();
+    totalDisplay.textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
   </script>
 </body>
 </html>
+
