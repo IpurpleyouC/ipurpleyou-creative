@@ -40,37 +40,8 @@
       margin-bottom: 10px;
       background-color: #eee;
       border-radius: 8px;
-      font-weight: bold;
-    }
+      display: flex;
+      justify-con
 
-    .home-link {
-      display: block;
-      margin-top: 30px;
-      text-align: center;
-      text-decoration: none;
-      color: #7b3e9f;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Seu Carrinho</h1>
-    <ul id="cart-items"></ul>
-    <a href="index.html" class="home-link">Voltar para a loja</a>
-  </div>
-
-  <script>
-    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-    const list = document.getElementById("cart-items");
-
-    cartItems.forEach(item => {
-      const li = document.createElement("li");
-      li.textContent = `${item.name} - R$ ${item.price.toFixed(2).replace('.', ',')}`;
-      list.appendChild(li);
-    });
-  </script>
-</body>
-</html>
 
 
