@@ -31,6 +31,32 @@
       color: #6a1b9a;
       font-weight: bold;
     }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: rgba(255,255,255,0.95);
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 8px;
+    }
+    .dropdown-content a {
+      color: #6a1b9a;
+      padding: 10px 14px;
+      text-decoration: none;
+      display: block;
+      font-weight: bold;
+    }
+    .dropdown-content a:hover {
+      background-color: #f3e5f5;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
     .banner-topo {
       width: 100%;
       max-height: 500px;
@@ -136,173 +162,29 @@
       border-radius: 6px;
     }
   </style>
-  .dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: rgba(255,255,255,0.95);
-  min-width: 160px;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-  z-index: 1;
-  border-radius: 8px;
-}
-
-.dropdown-content a {
-  color: #6a1b9a;
-  padding: 10px 14px;
-  text-decoration: none;
-  display: block;
-  font-weight: bold;
-}
-
-.dropdown-content a:hover {
-  background-color: #f3e5f5;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
 </head>
 <body onclick="fecharModalFora(event)">
   <header>
     <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
     <nav>
-      <a href="#">Home</a>
+      <a href="index.html">Home</a>
       <a href="#">Produtos</a>
-    <div class="dropdown">
-      <a href="#">Coleções ▾</a>
-    <div class="dropdown-content">
-      <a href="colecao-bts.html">BTS</a>
-      <a href="colecao-dorameiras.html">Dorameiras</a>
-      <a href="colecao-kpop.html">K-pop</a>
-      <a href="colecao-lancamentos.html">Lançamentos</a>
-    </div>
-  </div>
+      <div class="dropdown">
+        <a href="#">Coleções ▾</a>
+        <div class="dropdown-content">
+          <a href="colecao-bts.html">BTS</a>
+          <a href="colecao-dorameiras.html">Dorameiras</a>
+          <a href="colecao-kpop.html">K-pop</a>
+          <a href="colecao-lancamentos.html">Lançamentos</a>
+        </div>
+      </div>
       <a href="#">Sobre</a>
       <a href="#">Contato</a>
       <a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
     </nav>
   </header>
 
-  <section class="banner-topo">
-    <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/banner-bonequinha-oficial.png" alt="Banner de boas-vindas IPYC">
-  </section>
+<!-- Resto do seu HTML continua igual -->
 
-  <section class="produtos-destaque">
-    <div class="produto">
-      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jimin.jpg" alt="Camiseta Jimin">
-      <h3>Camiseta Jimin</h3>
-      <p>R$ 59,90</p>
-      <button onclick="abrirModal('Camiseta Jimin', 'https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jimin.jpg', 'Camiseta unissex 100% poliéster com estampa do Jimin. Disponível nas cores branca e preta, tamanhos P, M, G e GG.')">Ver Produto</button>
-    </div>
-    <div class="produto">
-      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jk.jpg" alt="Camiseta JK">
-      <h3>Camiseta JK-BTS</h3>
-      <p>R$ 59,90</p>
-      <button onclick="abrirModal('Camiseta JK-BTS', 'https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jk.jpg', 'Camiseta unissex 100% poliéster com estampa do Jungkook. Disponível nas cores branca e preta, tamanhos P, M, G e GG.')">Ver Produto</button>
-    </div>
-    <div class="produto">
-      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-v.jpg" alt="Camiseta V">
-      <h3>Camiseta V-BTS</h3>
-      <p>R$ 59,90</p>
-      <button onclick="abrirModal('Camiseta V-BTS', 'https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-v.jpg', 'Camiseta unissex 100% poliéster com estampa do V. Disponível nas cores branca e preta, tamanhos P, M, G e GG.')">Ver Produto</button>
-    </div>
-    <div class="produto">
-      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-suga.jpg" alt="Camiseta Suga">
-      <h3>Camiseta Suga-BTS</h3>
-      <p>R$ 59,90</p>
-      <button onclick="abrirModal('Camiseta Suga-BTS', 'https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-suga.jpg', 'Camiseta unissex 100% poliéster com estampa do Suga. Disponível nas cores branca e preta, tamanhos P, M, G e GG.')">Ver Produto</button>
-    </div>
-    <div class="produto">
-      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jungkook.png" alt="Camiseta Jeon Jung-Kook">
-      <h3>Camiseta Jeon Jung-Kook</h3>
-      <p>R$ 59,90</p>
-      <button onclick="abrirModal('Camiseta Jeon Jung-Kook', 'https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jungkook.png', 'Camiseta criativa e divertida para quem respira doramas! 100% poliéster, disponível nas cores branca e preta, tamanhos P, M, G e GG.')">Ver Produto</button>
-    </div>
-  </section>
-
-  <div class="modal" id="modal">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <span class="close-btn" onclick="fecharModal()">&times;</span>
-      <h2 id="modal-title"></h2>
-      <img id="modal-img" src="" alt="">
-      <p id="modal-desc"></p>
-      <div class="opcoes-produto">
-        <label for="tamanho">Tamanho:</label>
-        <select id="tamanho">
-          <option value="P">P</option>
-          <option value="M">M</option>
-          <option value="G">G</option>
-          <option value="GG">GG</option>
-        </select>
-        <label for="cor">Cor:</label>
-        <select id="cor">
-          <option value="Branca">Branca</option>
-          <option value="Preta">Preta</option>
-        </select>
-      </div>
-      <button onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
-    </div>
-  </div>
-
-  <div class="banner-frase">
-    "Seu estilo fala coreano. A sua camiseta também."
-  </div>
-
-  <footer>
-    © 2025 I Purple You Creative • Feito com amor por dorameiras 💜 | Instagram: @ipurpleyoucreative
-  </footer>
-
-  <script>
-    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-
-    function abrirModal(titulo, imagem, descricao) {
-      document.getElementById('modal-title').textContent = titulo;
-      document.getElementById('modal-img').src = imagem;
-      document.getElementById('modal-desc').textContent = descricao;
-      document.getElementById('modal').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      document.getElementById('modal').dataset.produtoAtual = JSON.stringify({ titulo, imagem, descricao });
-    }
-
-    function fecharModal() {
-      document.getElementById('modal').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-    function fecharModalFora(event) {
-      const modal = document.getElementById('modal');
-      if (event.target === modal) {
-        fecharModal();
-      }
-    }
-
-    function adicionarAoCarrinho() {
-      const produtoBase = JSON.parse(document.getElementById('modal').dataset.produtoAtual);
-      const tamanho = document.getElementById('tamanho').value;
-      const cor = document.getElementById('cor').value;
-      const produto = {
-        ...produtoBase,
-        tamanho,
-        cor
-      };
-      carrinho.push(produto);
-      localStorage.setItem('carrinho', JSON.stringify(carrinho));
-      atualizarContadorCarrinho();
-      fecharModal();
-    }
-
-    function atualizarContadorCarrinho() {
-      document.getElementById('contador-carrinho').textContent = carrinho.length;
-    }
-
-    atualizarContadorCarrinho();
-  </script>
-</body>
-</html>
 
 
