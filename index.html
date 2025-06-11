@@ -89,6 +89,7 @@
       background-color: rgba(0,0,0,0.5);
       justify-content: center;
       align-items: center;
+      z-index: 9999;
     }
     .modal-content {
       background: white;
@@ -97,14 +98,18 @@
       max-width: 400px;
       width: 90%;
       text-align: center;
+      position: relative;
     }
     .modal-content img {
       width: 100%;
       border-radius: 8px;
     }
     .close-btn {
-      float: right;
-      font-size: 1.2rem;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      font-weight: bold;
       cursor: pointer;
     }
     .opcoes-produto {
@@ -194,12 +199,13 @@
       document.getElementById('modal-img').src = imagem;
       document.getElementById('modal-desc').textContent = descricao;
       document.getElementById('modal').style.display = 'flex';
-
+      document.body.style.overflow = 'hidden';
       document.getElementById('modal').dataset.produtoAtual = JSON.stringify({ titulo, imagem, descricao });
     }
 
     function fecharModal() {
       document.getElementById('modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
     }
 
     function adicionarAoCarrinho() {
@@ -220,5 +226,3 @@
       document.getElementById('contador-carrinho').textContent = carrinho.length;
     }
   </script>
-</body>
-</html>
