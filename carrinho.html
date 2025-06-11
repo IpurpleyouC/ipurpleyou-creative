@@ -133,6 +133,10 @@
       } else {
         document.querySelector('.finalizar').style.display = 'block';
         carrinho.forEach((item, index) => {
+          const preco = parseFloat(item.preco || 59.90);
+          const quantidade = parseInt(item.quantidade || 1);
+          const subtotal = preco * quantidade;
+
           const div = document.createElement('div');
           div.className = 'item-carrinho';
           div.innerHTML = `
@@ -141,12 +145,14 @@
               <p><strong>${item.titulo}</strong></p>
               <p>Tamanho: ${item.tamanho}</p>
               <p>Cor: ${item.cor}</p>
-              <p>R$ 59,90</p>
+              <p>Quantidade: ${quantidade}</p>
+              <p>Preço Unitário: R$ ${preco.toFixed(2)}</p>
+              <p><strong>Subtotal: R$ ${subtotal.toFixed(2)}</strong></p>
             </div>
             <button class="remover" onclick="removerItem(${index})">Remover</button>
           `;
           lista.appendChild(div);
-          totalValor += 59.90;
+          totalValor += subtotal;
         });
       }
       total.textContent = `Total: R$ ${totalValor.toFixed(2)}`;
@@ -168,4 +174,3 @@
   </script>
 </body>
 </html>
-
