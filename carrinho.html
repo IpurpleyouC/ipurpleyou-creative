@@ -124,6 +124,58 @@
     const totalDisplay = document.getElementById("total");
 
     function renderizarCarrinho() {
+      list.innerHTML = "";
+      let total = 0;
+
+      carrinho.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <img src="${item.imagem}" alt="${item.titulo}">
+          <div class="info">
+            <div><strong>${item.titulo}</strong></div>
+            <div>Tamanho: ${item.tamanho}</div>
+            <div>Cor: ${item.cor}</div>
+            <div>Preço: R$ 59,90</div>
+          </div>
+          <button class="remove-btn" onclick="removerItem(${index})">Remover</button>
+        `;
+        list.appendChild(li);
+        total += 59.90;
+      });
+
+      totalDisplay.textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+    }
+
+    function removerItem(index) {
+      carrinho.splice(index, 1);
+      localStorage.setItem("carrinho", JSON.stringify(carrinho));
+      renderizarCarrinho();
+    }
+
+    function finalizarCompra() {
+      if (carrinho.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
+      }
+
+      let textoPedido = "Olá! Quero finalizar minha compra na loja I Purple You Creative:%0A%0A";
+      carrinho.forEach((item, index) => {
+        textoPedido += `${index + 1}. ${item.titulo} - Tamanho: ${item.tamanho}, Cor: ${item.cor}%0A`;
+      });
+      textoPedido += `%0ATotal: R$ ${(carrinho.length * 59.90).toFixed(2).replace('.', ',')}`;
+
+      const numeroWhatsApp = "5541995081726"; // Altere aqui para o número da loja
+      const url = `https://wa.me/${numeroWhatsApp}?text=${textoPedido}`;
+      window.open(url, '_blank');
+
+      localStorage.removeItem("carrinho");
+    }
+
+    renderizarCarrinho();
+  </script>
+</body>
+</html>
+
 
 
 
