@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carrinho</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seu Carrinho - IPYC</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -13,6 +13,7 @@
       background-repeat: no-repeat;
       margin: 0;
       padding: 0;
+      color: #333;
     }
 
     .container {
@@ -20,14 +21,14 @@
       margin: 50px auto;
       background-color: rgba(255, 255, 255, 0.95);
       padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
     }
 
     h1 {
       text-align: center;
       margin-bottom: 20px;
-      color: #333;
+      color: #6a1b9a;
     }
 
     ul {
@@ -36,14 +37,15 @@
     }
 
     li {
-      padding: 15px;
-      margin-bottom: 15px;
-      background-color: #eee;
-      border-radius: 8px;
       display: flex;
       align-items: center;
-      gap: 15px;
-      position: relative;
+      justify-content: space-between;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      padding: 15px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      flex-wrap: wrap;
     }
 
     li img {
@@ -51,44 +53,77 @@
       height: 80px;
       border-radius: 8px;
       object-fit: cover;
+      margin-right: 15px;
     }
 
     .info {
       flex-grow: 1;
+      min-width: 200px;
+    }
+
+    .info div {
+      margin-bottom: 4px;
     }
 
     .remove-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
       background-color: #ff5252;
       color: white;
       border: none;
-      padding: 6px 10px;
+      padding: 6px 12px;
       border-radius: 6px;
-      font-size: 12px;
       cursor: pointer;
+      font-size: 14px;
     }
 
     .total {
-      font-size: 18px;
-      font-weight: bold;
       text-align: right;
+      font-weight: bold;
+      font-size: 20px;
       margin-top: 20px;
-      color: #333;
+    }
+
+    .finalizar-btn {
+      background-color: #7b3e9f;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      display: block;
+      margin: 30px auto 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .finalizar-btn:hover {
+      background-color: #5e2e7d;
     }
 
     .home-link {
       display: block;
-      margin-top: 30px;
       text-align: center;
+      margin-top: 15px;
       text-decoration: none;
       color: #7b3e9f;
       font-weight: bold;
     }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Seu Carrinho</h1>
+    <ul id="cart-items"></ul>
+    <div class="total" id="total">Total: R$ 0,00</div>
+    <button class="finalizar-btn" onclick="finalizarCompra()">Finalizar Compra</button>
+    <a href="index.html" class="home-link">Voltar para a loja</a>
+  </div>
 
-    .finalizar-btn {
-      b
+  <script>
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    const list = document.getElementById("cart-items");
+    const totalDisplay = document.getElementById("total");
+
+    function renderizarCarrinho() {
 
 
 
