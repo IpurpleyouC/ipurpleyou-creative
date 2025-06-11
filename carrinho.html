@@ -41,7 +41,98 @@
       background-color: #eee;
       border-radius: 8px;
       display: flex;
-      justify-con
+      justify-content: space-between;
+      flex-direction: column;
+      font-weight: bold;
+    }
+
+    .total {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: right;
+      margin-top: 20px;
+      color: #333;
+    }
+
+    .home-link {
+      display: block;
+      margin-top: 30px;
+      text-align: center;
+      text-decoration: none;
+      color: #7b3e9f;
+      font-weight: bold;
+    }
+
+    .finalizar-btn {
+      background-color: #7b3e9f;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto 0;
+      transition: background-color 0.3s ease;
+    }
+
+    .finalizar-btn:hover {
+      background-color: #5e2e7d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Seu Carrinho</h1>
+    <ul id="cart-items"></ul>
+    <div class="total" id="total">Total: R$ 0,00</div>
+    <button class="finalizar-btn" onclick="finalizarCompra()">Finalizar Compra</button>
+    <a href="index.html" class="home-link">Voltar para a loja</a>
+  </div>
+
+  <script>
+    const cartItems = JSON.parse(localStorage.getItem("carrinho")) || [];
+    const list = document.getElementById("cart-items");
+    const totalDisplay = document.getElementById("total");
+    let total = 0;
+
+    cartItems.forEach(item => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <div>${item.titulo}</div>
+        <div>Tamanho: ${item.tamanho}</div>
+        <div>Cor: ${item.cor}</div>
+        <div>Preço: R$ 59,90</div>
+      `;
+      list.appendChild(li);
+      total += 59.90;
+    });
+
+    totalDisplay.textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+
+    function finalizarCompra() {
+      if (cartItems.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
+      }
+
+      let textoPedido = "Olá! Quero finalizar minha compra na loja I Purple You Creative:%0A%0A";
+      cartItems.forEach((item, index) => {
+        textoPedido += `${index + 1}. ${item.titulo} - Tamanho: ${item.tamanho}, Cor: ${item.cor}%0A`;
+      });
+      textoPedido += `%0ATotal: R$ ${total.toFixed(2).replace('.', ',')}`;
+
+      const numeroWhatsApp = "5599999999999"; // Substitua com o número da loja
+      const url = `https://wa.me/${numeroWhatsApp}?text=${textoPedido}`;
+
+      window.open(url, '_blank');
+
+      localStorage.removeItem("carrinho");
+    }
+  </script>
+</body>
+</html>
+
 
 
 
