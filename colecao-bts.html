@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coleção BTS - I Purple You Creative</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-image: url('https://tse4.mm.bing.net/th?id=OIP.hCONFpBzIc6syUuDX_-3UQHaNK&pid=Api');
+      background-image: url('https://ipurpleyouc.github.io/ipurpleyou-creative/assets/imagem-fundo.jpg');
       background-size: cover;
       background-attachment: fixed;
       background-position: center;
@@ -31,14 +31,41 @@
       color: #6a1b9a;
       font-weight: bold;
     }
-    h1 {
-      text-align: center;
-      margin: 2rem 0 1rem;
-      color: #6a1b9a;
-      background: rgba(255, 255, 255, 0.85);
+    .dropdown {
+      position: relative;
       display: inline-block;
-      padding: 0.5rem 2rem;
-      border-radius: 12px;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: rgba(255,255,255,0.95);
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 8px;
+    }
+    .dropdown-content a {
+      color: #6a1b9a;
+      padding: 10px 14px;
+      text-decoration: none;
+      display: block;
+      font-weight: bold;
+    }
+    .dropdown-content a:hover {
+      background-color: #f3e5f5;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .banner-topo {
+      width: 100%;
+      max-height: 500px;
+      overflow: hidden;
+    }
+    .banner-topo img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
     .produtos-destaque {
       display: flex;
@@ -59,61 +86,29 @@
       width: 100%;
       border-radius: 8px;
     }
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-    .modal-content {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
-      position: relative;
-    }
-    .modal-content img {
-      width: 100%;
+    .produto button {
+      margin-top: 0.5rem;
+      padding: 0.4rem 1rem;
+      background-color: #6a1b9a;
+      color: #fff;
+      border: none;
       border-radius: 8px;
-    }
-    .close-btn {
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      background-color: #fff;
-      border: 2px solid #ccc;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    .opcoes-produto {
-      margin: 1rem 0;
-      text-align: left;
-    }
-    .opcoes-produto label {
-      display: block;
-      margin: 0.5rem 0 0.2rem;
       font-weight: bold;
     }
-    .opcoes-produto select {
-      width: 100%;
-      padding: 0.4rem;
-      border-radius: 6px;
+    .produto button:hover {
+      background-color: #4a148c;
+    }
+    .banner-frase {
+      text-align: center;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: #4a148c;
+      margin: 3rem auto;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 1rem;
+      max-width: 600px;
+      border-radius: 12px;
     }
     footer {
       background-color: rgba(255, 255, 255, 0.95);
@@ -125,96 +120,70 @@
     }
   </style>
 </head>
-<body onclick="fecharModalFora(event)">
+<body>
   <header>
     <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
     <nav>
       <a href="index.html">Home</a>
-      <a href="colecao-bts.html">BTS</a>
-      <a href="colecao-dorameiras.html">Dorameiras</a>
-      <a href="colecao-kpop.html">K-pop</a>
-      <a href="colecao-lancamentos.html">Novidades</a>
+      <a href="#">Produtos</a>
+      <div class="dropdown">
+        <a href="#">Coleções ▾</a>
+        <div class="dropdown-content">
+          <a href="colecao-bts.html">BTS</a>
+          <a href="colecao-dorameiras.html">Dorameiras</a>
+          <a href="colecao-kpop.html">K-pop</a>
+          <a href="colecao-lancamentos.html">Lançamentos</a>
+        </div>
+      </div>
+      <a href="#">Sobre</a>
+      <a href="#">Contato</a>
       <a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
     </nav>
   </header>
 
-  <h1>Coleção BTS</h1>
-
-  <section class="produtos-destaque">
-    <!-- Produtos aqui -->
+  <section class="banner-topo">
+    <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/BANNER-BTS.png" alt="Banner Coleção BTS">
   </section>
 
-  <div class="modal" id="modal">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <span class="close-btn" onclick="fecharModal()">&times;</span>
-      <h2 id="modal-title"></h2>
-      <img id="modal-img" src="" alt="">
-      <p id="modal-desc"></p>
-      <div class="opcoes-produto">
-        <label for="tamanho">Tamanho:</label>
-        <select id="tamanho">
-          <option value="P">P</option>
-          <option value="M">M</option>
-          <option value="G">G</option>
-          <option value="GG">GG</option>
-        </select>
-        <label for="cor">Cor:</label>
-        <select id="cor">
-          <option value="Branca">Branca</option>
-          <option value="Preta">Preta</option>
-        </select>
-      </div>
-      <button onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
+  <section class="produtos-destaque">
+    <div class="produto">
+      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jimin.jpg" alt="Camiseta Jimin">
+      <h3>Camiseta Jimin</h3>
+      <p>R$ 59,90</p>
+      <button>Ver Produto</button>
     </div>
+    <div class="produto">
+      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jk.jpg" alt="Camiseta JK">
+      <h3>Camiseta JK-BTS</h3>
+      <p>R$ 59,90</p>
+      <button>Ver Produto</button>
+    </div>
+    <div class="produto">
+      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-v.jpg" alt="Camiseta V">
+      <h3>Camiseta V-BTS</h3>
+      <p>R$ 59,90</p>
+      <button>Ver Produto</button>
+    </div>
+    <div class="produto">
+      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-suga.jpg" alt="Camiseta Suga">
+      <h3>Camiseta Suga-BTS</h3>
+      <p>R$ 59,90</p>
+      <button>Ver Produto</button>
+    </div>
+    <div class="produto">
+      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jungkook.png" alt="Camiseta Jeon Jung-Kook">
+      <h3>Camiseta Jeon Jung-Kook</h3>
+      <p>R$ 59,90</p>
+      <button>Ver Produto</button>
+    </div>
+  </section>
+
+  <div class="banner-frase">
+    "Seu estilo fala coreano. A sua camiseta também."
   </div>
 
   <footer>
     © 2025 I Purple You Creative • Feito com amor por dorameiras 💜 | Instagram: @ipurpleyoucreative
   </footer>
-
-  <script>
-    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-
-    function abrirModal(titulo, imagem, descricao) {
-      document.getElementById('modal-title').textContent = titulo;
-      document.getElementById('modal-img').src = imagem;
-      document.getElementById('modal-desc').textContent = descricao;
-      document.getElementById('modal').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      document.getElementById('modal').dataset.produtoAtual = JSON.stringify({ titulo, imagem, descricao });
-    }
-
-    function fecharModal() {
-      document.getElementById('modal').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-    function fecharModalFora(event) {
-      if (event.target === document.getElementById('modal')) {
-        fecharModal();
-      }
-    }
-
-    function adicionarAoCarrinho() {
-      const produtoBase = JSON.parse(document.getElementById('modal').dataset.produtoAtual);
-      const tamanho = document.getElementById('tamanho').value;
-      const cor = document.getElementById('cor').value;
-      const produto = {
-        ...produtoBase,
-        tamanho,
-        cor
-      };
-      carrinho.push(produto);
-      localStorage.setItem('carrinho', JSON.stringify(carrinho));
-      atualizarContadorCarrinho();
-      fecharModal();
-    }
-
-    function atualizarContadorCarrinho() {
-      document.getElementById('contador-carrinho').textContent = carrinho.length;
-    }
-
-    atualizarContadorCarrinho();
-  </script>
 </body>
 </html>
