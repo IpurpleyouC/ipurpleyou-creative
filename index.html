@@ -136,6 +136,36 @@
       border-radius: 6px;
     }
   </style>
+  .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(255,255,255,0.95);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 8px;
+}
+
+.dropdown-content a {
+  color: #6a1b9a;
+  padding: 10px 14px;
+  text-decoration: none;
+  display: block;
+  font-weight: bold;
+}
+
+.dropdown-content a:hover {
+  background-color: #f3e5f5;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 </head>
 <body onclick="fecharModalFora(event)">
   <header>
@@ -143,6 +173,15 @@
     <nav>
       <a href="#">Home</a>
       <a href="#">Produtos</a>
+      <div class="dropdown">
+    <a href="#">Coleções ▾</a>
+    <div class="dropdown-content">
+      <a href="colecao-bts.html">BTS</a>
+      <a href="colecao-dorameiras.html">Dorameiras</a>
+      <a href="colecao-kpop.html">K-pop</a>
+      <a href="colecao-lancamentos.html">Lançamentos</a>
+    </div>
+  </div>
       <a href="#">Sobre</a>
       <a href="#">Contato</a>
       <a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
