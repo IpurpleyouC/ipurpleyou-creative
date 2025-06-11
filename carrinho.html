@@ -6,5 +6,71 @@
   <title>Carrinho</title>
   <style>
     body {
-      font-family: Arial, sans-serif
+      font-family: Arial, sans-serif;
+      background-image: url('https://ipurpleyouc.github.io/ipurpleyou-creative/assets/imagem-fundo.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #eee;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .home-link {
+      display: block;
+      margin-top: 30px;
+      text-align: center;
+      text-decoration: none;
+      color: #7b3e9f;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Seu Carrinho</h1>
+    <ul id="cart-items"></ul>
+    <a href="index.html" class="home-link">Voltar para a loja</a>
+  </div>
+
+  <script>
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const list = document.getElementById("cart-items");
+
+    cartItems.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = `${item.name} - R$ ${item.price.toFixed(2).replace('.', ',')}`;
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>
+
 
