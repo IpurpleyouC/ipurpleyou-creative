@@ -41,9 +41,6 @@
       height: auto;
       display: block;
     }
-    .apresentacao {
-      display: none;
-    }
     .produtos-destaque {
       display: flex;
       justify-content: center;
@@ -110,6 +107,20 @@
       font-size: 1.2rem;
       cursor: pointer;
     }
+    .opcoes-produto {
+      margin: 1rem 0;
+      text-align: left;
+    }
+    .opcoes-produto label {
+      display: block;
+      margin: 0.5rem 0 0.2rem;
+      font-weight: bold;
+    }
+    .opcoes-produto select {
+      width: 100%;
+      padding: 0.4rem;
+      border-radius: 6px;
+    }
   </style>
 </head>
 <body>
@@ -133,13 +144,13 @@
       <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jimin.jpg" alt="Camiseta Jimin">
       <h3>Camiseta Jimin</h3>
       <p>R$ 59,90</p>
-      <button onclick="abrirModal('Camiseta Jimin', 'https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jimin.jpg', 'Camiseta unissex em algodão com estampa do Jimin. Disponível nos tamanhos P, M, G, GG.')">Ver Produto</button>
+      <button onclick="abrirModal('Camiseta Jimin', 'https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jimin.jpg', 'Camiseta unissex em algodão com estampa do Jimin.')">Ver Produto</button>
     </div>
     <div class="produto">
       <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jk.jpg" alt="Camiseta JK">
       <h3>Camiseta JK-BTS</h3>
       <p>R$ 59,90</p>
-      <button onclick="abrirModal('Camiseta JK-BTS', 'https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jk.jpg', 'Camiseta unissex em algodão com estampa do Jungkook. Disponível nos tamanhos P, M, G, GG.')">Ver Produto</button>
+      <button onclick="abrirModal('Camiseta JK-BTS', 'https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jk.jpg', 'Camiseta unissex em algodão com estampa do Jungkook.')">Ver Produto</button>
     </div>
   </section>
 
@@ -149,6 +160,20 @@
       <h2 id="modal-title"></h2>
       <img id="modal-img" src="" alt="">
       <p id="modal-desc"></p>
+      <div class="opcoes-produto">
+        <label for="tamanho">Tamanho:</label>
+        <select id="tamanho">
+          <option value="P">P</option>
+          <option value="M">M</option>
+          <option value="G">G</option>
+          <option value="GG">GG</option>
+        </select>
+        <label for="cor">Cor:</label>
+        <select id="cor">
+          <option value="Branca">Branca</option>
+          <option value="Preta">Preta</option>
+        </select>
+      </div>
       <button onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
     </div>
   </div>
@@ -170,7 +195,6 @@
       document.getElementById('modal-desc').textContent = descricao;
       document.getElementById('modal').style.display = 'flex';
 
-      // Salva o produto atual para adicionar ao carrinho depois
       document.getElementById('modal').dataset.produtoAtual = JSON.stringify({ titulo, imagem, descricao });
     }
 
@@ -179,7 +203,14 @@
     }
 
     function adicionarAoCarrinho() {
-      const produto = JSON.parse(document.getElementById('modal').dataset.produtoAtual);
+      const produtoBase = JSON.parse(document.getElementById('modal').dataset.produtoAtual);
+      const tamanho = document.getElementById('tamanho').value;
+      const cor = document.getElementById('cor').value;
+      const produto = {
+        ...produtoBase,
+        tamanho,
+        cor
+      };
       carrinho.push(produto);
       atualizarContadorCarrinho();
       fecharModal();
