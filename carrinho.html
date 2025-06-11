@@ -16,7 +16,7 @@
     }
 
     .container {
-      max-width: 700px;
+      max-width: 800px;
       margin: 50px auto;
       background-color: rgba(255, 255, 255, 0.95);
       padding: 30px;
@@ -36,14 +36,38 @@
     }
 
     li {
-      padding: 10px;
-      margin-bottom: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
       background-color: #eee;
       border-radius: 8px;
       display: flex;
-      justify-content: space-between;
-      flex-direction: column;
-      font-weight: bold;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+    }
+
+    li img {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .info {
+      flex-grow: 1;
+    }
+
+    .remove-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #ff5252;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
     }
 
     .total {
@@ -64,74 +88,7 @@
     }
 
     .finalizar-btn {
-      background-color: #7b3e9f;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      display: block;
-      margin: 20px auto 0;
-      transition: background-color 0.3s ease;
-    }
-
-    .finalizar-btn:hover {
-      background-color: #5e2e7d;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Seu Carrinho</h1>
-    <ul id="cart-items"></ul>
-    <div class="total" id="total">Total: R$ 0,00</div>
-    <button class="finalizar-btn" onclick="finalizarCompra()">Finalizar Compra</button>
-    <a href="index.html" class="home-link">Voltar para a loja</a>
-  </div>
-
-  <script>
-    const cartItems = JSON.parse(localStorage.getItem("carrinho")) || [];
-    const list = document.getElementById("cart-items");
-    const totalDisplay = document.getElementById("total");
-    let total = 0;
-
-    cartItems.forEach(item => {
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <div>${item.titulo}</div>
-        <div>Tamanho: ${item.tamanho}</div>
-        <div>Cor: ${item.cor}</div>
-        <div>Preço: R$ 59,90</div>
-      `;
-      list.appendChild(li);
-      total += 59.90;
-    });
-
-    totalDisplay.textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
-
-    function finalizarCompra() {
-      if (cartItems.length === 0) {
-        alert("Seu carrinho está vazio!");
-        return;
-      }
-
-      let textoPedido = "Olá! Quero finalizar minha compra na loja I Purple You Creative:%0A%0A";
-      cartItems.forEach((item, index) => {
-        textoPedido += `${index + 1}. ${item.titulo} - Tamanho: ${item.tamanho}, Cor: ${item.cor}%0A`;
-      });
-      textoPedido += `%0ATotal: R$ ${total.toFixed(2).replace('.', ',')}`;
-
-      const numeroWhatsApp = "5599999999999"; // Substitua com o número da loja
-      const url = `https://wa.me/${numeroWhatsApp}?text=${textoPedido}`;
-
-      window.open(url, '_blank');
-
-      localStorage.removeItem("carrinho");
-    }
-  </script>
-</body>
-</html>
+      b
 
 
 
