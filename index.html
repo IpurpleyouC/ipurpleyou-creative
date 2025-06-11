@@ -3,102 +3,267 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrinho - I Purple You Creative</title>
+  <title>I Purple You Creative</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f8f0fc;
-      color: #333;
       margin: 0;
-      padding: 2rem;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('https://ipurpleyouc.github.io/ipurpleyou-creative/assets/imagem-fundo.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      color: #333;
     }
-    h1 {
-      text-align: center;
+    header {
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    header img.logo {
+      height: 60px;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
       color: #6a1b9a;
+      font-weight: bold;
     }
-    .carrinho-container {
-      max-width: 800px;
-      margin: 0 auto;
+    .banner-topo {
+      width: 100%;
+      max-height: 500px;
+      overflow: hidden;
+    }
+    .banner-topo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .produtos-destaque {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 2rem;
+    }
+    .produto {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 1rem;
+      border-radius: 12px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .produto img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .banner-frase {
+      text-align: center;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: #4a148c;
+      margin: 3rem auto;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 1rem;
+      max-width: 600px;
+      border-radius: 12px;
+    }
+    footer {
+      background-color: rgba(255, 255, 255, 0.95);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #6a1b9a;
+      margin-top: 4rem;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .modal-content {
       background: white;
       padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      position: relative;
     }
-    .item-carrinho {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 1rem;
-    }
-    .item-carrinho img {
-      width: 80px;
-      margin-right: 1rem;
+    .modal-content img {
+      width: 100%;
       border-radius: 8px;
     }
-    .info-produto {
-      flex-grow: 1;
-    }
-    .info-produto p {
-      margin: 0.3rem 0;
-    }
-    .remover {
-      background-color: #e53935;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .total {
-      text-align: right;
+    .close-btn {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background-color: #fff;
+      border: 2px solid #ccc;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 1.2rem;
-      margin-top: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .opcoes-produto {
+      margin: 1rem 0;
+      text-align: left;
+    }
+    .opcoes-produto label {
+      display: block;
+      margin: 0.5rem 0 0.2rem;
+      font-weight: bold;
+    }
+    .opcoes-produto select {
+      width: 100%;
+      padding: 0.4rem;
+      border-radius: 6px;
     }
   </style>
 </head>
-<body>
-  <h1>🛒 Seu Carrinho</h1>
-  <div class="carrinho-container" id="lista-carrinho">
-    <!-- Itens serão inseridos aqui -->
+<body onclick="fecharModalFora(event)">
+  <header>
+    <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Produtos</a>
+      <a href="#">Sobre</a>
+      <a href="#">Contato</a>
+      <a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
+    </nav>
+  </header>
+
+  <section class="banner-topo">
+    <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/banner-bonequinha-oficial.png" alt="Banner de boas-vindas IPYC">
+  </section>
+
+  <section class="produtos-destaque">
+    <div class="produto">
+      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jimin.jpg" alt="Camiseta Jimin">
+      <h3>Camiseta Jimin</h3>
+      <p>R$ 59,90</p>
+      <button onclick="abrirModal('Camiseta Jimin', 'https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jimin.jpg', 'Camiseta unissex 100% poliéster com estampa do Jimin. Disponível nas cores branca e preta, tamanhos P, M, G e GG.')">Ver Produto</button>
+    </div>
+    <div class="produto">
+      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jk.jpg" alt="Camiseta JK">
+      <h3>Camiseta JK-BTS</h3>
+      <p>R$ 59,90</p>
+      <button onclick="abrirModal('Camiseta JK-BTS', 'https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-jk.jpg', 'Camiseta unissex 100% poliéster com estampa do Jungkook. Disponível nas cores branca e preta, tamanhos P, M, G e GG.')">Ver Produto</button>
+    </div>
+    <div class="produto">
+      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-v.jpg" alt="Camiseta V">
+      <h3>Camiseta V-BTS</h3>
+      <p>R$ 59,90</p>
+      <button onclick="abrirModal('Camiseta V-BTS', 'https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-v.jpg', 'Camiseta unissex 100% poliéster com estampa do V. Disponível nas cores branca e preta, tamanhos P, M, G e GG.')">Ver Produto</button>
+    </div>
+    <div class="produto">
+      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-suga.jpg" alt="Camiseta Suga">
+      <h3>Camiseta Suga-BTS</h3>
+      <p>R$ 59,90</p>
+      <button onclick="abrirModal('Camiseta Suga-BTS', 'https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-suga.jpg', 'Camiseta unissex 100% poliéster com estampa do Suga. Disponível nas cores branca e preta, tamanhos P, M, G e GG.')">Ver Produto</button>
+    </div>
+    <div class="produto">
+      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-dorameira.jpg" alt="Camiseta Dorameira">
+      <h3>Camiseta Dorameira</h3>
+      <p>R$ 59,90</p>
+      <button onclick="abrirModal('Camiseta Dorameira', 'https://ipurpleyouc.github.io/ipurpleyou-creative/assets/camisa-dorameira.jpg', 'Camiseta criativa e divertida para quem respira doramas! 100% poliéster, disponível nas cores branca e preta, tamanhos P, M, G e GG.')">Ver Produto</button>
+    </div>
+  </section>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close-btn" onclick="fecharModal()">&times;</span>
+      <h2 id="modal-title"></h2>
+      <img id="modal-img" src="" alt="">
+      <p id="modal-desc"></p>
+      <div class="opcoes-produto">
+        <label for="tamanho">Tamanho:</label>
+        <select id="tamanho">
+          <option value="P">P</option>
+          <option value="M">M</option>
+          <option value="G">G</option>
+          <option value="GG">GG</option>
+        </select>
+        <label for="cor">Cor:</label>
+        <select id="cor">
+          <option value="Branca">Branca</option>
+          <option value="Preta">Preta</option>
+        </select>
+      </div>
+      <button onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
+    </div>
   </div>
-  <div class="total" id="total-carrinho">Total: R$ 0,00</div>
+
+  <div class="banner-frase">
+    "Seu estilo fala coreano. A sua camiseta também."
+  </div>
+
+  <footer>
+    © 2025 I Purple You Creative • Feito com amor por dorameiras 💜 | Instagram: @ipurpleyoucreative
+  </footer>
 
   <script>
-    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-    const lista = document.getElementById('lista-carrinho');
-    const total = document.getElementById('total-carrinho');
+    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
-    function atualizarCarrinho() {
-      lista.innerHTML = '';
-      let totalValor = 0;
-      carrinho.forEach((item, index) => {
-        const div = document.createElement('div');
-        div.className = 'item-carrinho';
-        div.innerHTML = `
-          <img src="${item.imagem}" alt="${item.titulo}">
-          <div class="info-produto">
-            <p><strong>${item.titulo}</strong></p>
-            <p>Tamanho: ${item.tamanho}</p>
-            <p>Cor: ${item.cor}</p>
-            <p>R$ 59,90</p>
-          </div>
-          <button class="remover" onclick="removerItem(${index})">Remover</button>
-        `;
-        lista.appendChild(div);
-        totalValor += 59.90;
-      });
-      total.textContent = `Total: R$ ${totalValor.toFixed(2)}`;
+    function abrirModal(titulo, imagem, descricao) {
+      document.getElementById('modal-title').textContent = titulo;
+      document.getElementById('modal-img').src = imagem;
+      document.getElementById('modal-desc').textContent = descricao;
+      document.getElementById('modal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      document.getElementById('modal').dataset.produtoAtual = JSON.stringify({ titulo, imagem, descricao });
     }
 
-    function removerItem(index) {
-      carrinho.splice(index, 1);
+    function fecharModal() {
+      document.getElementById('modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function fecharModalFora(event) {
+      const modal = document.getElementById('modal');
+      if (event.target === modal) {
+        fecharModal();
+      }
+    }
+
+    function adicionarAoCarrinho() {
+      const produtoBase = JSON.parse(document.getElementById('modal').dataset.produtoAtual);
+      const tamanho = document.getElementById('tamanho').value;
+      const cor = document.getElementById('cor').value;
+      const produto = {
+        ...produtoBase,
+        tamanho,
+        cor
+      };
+      carrinho.push(produto);
       localStorage.setItem('carrinho', JSON.stringify(carrinho));
-      atualizarCarrinho();
+      atualizarContadorCarrinho();
+      fecharModal();
     }
 
-    atualizarCarrinho();
+    function atualizarContadorCarrinho() {
+      document.getElementById('contador-carrinho').textContent = carrinho.length;
+    }
+
+    atualizarContadorCarrinho();
   </script>
 </body>
 </html>
+
 
