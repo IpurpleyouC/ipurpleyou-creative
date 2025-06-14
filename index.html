@@ -306,10 +306,16 @@
       return;
     }
     // Adiciona ao carrinho
-    let count = parseInt(localStorage.getItem("itensCarrinho") || "0");
-    count += 1;
-    localStorage.setItem("itensCarrinho", count.toString());
-    atualizarContador();
+   const produto = {
+  nome: nome.textContent,
+  preco: preco.textContent,
+  tamanho: selT.value,
+  cor: selC.value
+};
+let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+carrinho.push(produto);
+localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
+  atualizarContador();
 
     alert(`Adicionado: ${nome.textContent}\nTamanho: ${selT.value}\nCor: ${selC.value}`);
     modal.style.display = "none";
