@@ -315,7 +315,9 @@
 let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
 carrinho.push(produto);
 localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
-  atualizarContador();
+
+// Atualiza contador e fecha modal
+atualizarContador();
 
     alert(`Adicionado: ${nome.textContent}\nTamanho: ${selT.value}\nCor: ${selC.value}`);
     modal.style.display = "none";
