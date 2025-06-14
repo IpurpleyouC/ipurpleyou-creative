@@ -269,42 +269,56 @@
     © 2025 I Purple You Creative • Feito com amor por dorameiras 💜 | Instagram: @ipurpleyoucreative
   </footer>
 
-  <script>
-    const modal = document.getElementById("produto-modal");
-    const btn = document.querySelector(".ver-produto-btn");
-    const span = modal.querySelector(".close");
-    const img = document.getElementById("modal-img");
-    const nome = document.getElementById("modal-nome");
-    const preco = document.getElementById("modal-preco");
-    const selT = document.getElementById("modal-tamanho");
-    const selC = document.getElementById("modal-cor");
-    const erro = document.getElementById("erro");
-    const addBtn = document.getElementById("adicionar-carrinho");
+<script>
+  const modal = document.getElementById("produto-modal");
+  const btn = document.querySelector(".ver-produto-btn");
+  const span = modal.querySelector(".close");
+  const img = document.getElementById("modal-img");
+  const nome = document.getElementById("modal-nome");
+  const preco = document.getElementById("modal-preco");
+  const selT = document.getElementById("modal-tamanho");
+  const selC = document.getElementById("modal-cor");
+  const erro = document.getElementById("erro");
+  const addBtn = document.getElementById("adicionar-carrinho");
+  const contador = document.getElementById("contador-carrinho");
 
-    btn.onclick = () => {
-      img.src = btn.dataset.img;
-      nome.textContent = btn.dataset.nome;
-      preco.textContent = btn.dataset.preco;
-      selT.value = "";
-      selC.value = "";
-      erro.style.display = "none";
-      modal.style.display = "flex";
-    };
+  function atualizarContador() {
+    const count = parseInt(localStorage.getItem("itensCarrinho") || "0");
+    contador.textContent = count;
+  }
 
-    span.onclick = () => modal.style.display = "none";
-    window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+  btn.onclick = () => {
+    img.src = btn.dataset.img;
+    nome.textContent = btn.dataset.nome;
+    preco.textContent = btn.dataset.preco;
+    selT.value = "";
+    selC.value = "";
+    erro.style.display = "none";
+    modal.style.display = "flex";
+  };
 
-    addBtn.onclick = () => {
-      if (!selT.value || !selC.value) {
-        erro.style.display = "block";
-        return;
-      }
-      alert(`Adicionado: ${nome.textContent}\nTamanho: ${selT.value}\nCor: ${selC.value}`);
-      modal.style.display = "none";
-    };
-  </script>
-</body>
-</html>
+  span.onclick = () => modal.style.display = "none";
+  window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+
+  addBtn.onclick = () => {
+    if (!selT.value || !selC.value) {
+      erro.style.display = "block";
+      return;
+    }
+    // Adiciona ao carrinho
+    let count = parseInt(localStorage.getItem("itensCarrinho") || "0");
+    count += 1;
+    localStorage.setItem("itensCarrinho", count.toString());
+    atualizarContador();
+
+    alert(`Adicionado: ${nome.textContent}\nTamanho: ${selT.value}\nCor: ${selC.value}`);
+    modal.style.display = "none";
+  };
+
+  // Atualiza o contador ao carregar a página
+  atualizarContador();
+</script>
+
 
 
 
