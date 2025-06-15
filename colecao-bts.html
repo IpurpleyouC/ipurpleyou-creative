@@ -14,7 +14,6 @@
       background-position: center;
       color: #333;
     }
-
     header {
       background-color: rgba(255, 255, 255, 0.9);
       display: flex;
@@ -23,32 +22,20 @@
       padding: 1rem 2rem;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-
     header img.logo {
       height: 60px;
     }
-
     nav a {
       margin: 0 1rem;
       text-decoration: none;
       color: #6a1b9a;
       font-weight: bold;
     }
-
-    .banner-topo {
-      width: 100%;
-      max-height: 400px;
-      overflow: hidden;
-      margin-top: 1rem;
-    }
-
     .banner-topo img {
       width: 100%;
       height: auto;
       display: block;
-      object-fit: cover;
     }
-
     .produtos-destaque {
       display: flex;
       justify-content: center;
@@ -56,7 +43,6 @@
       flex-wrap: wrap;
       margin: 2rem;
     }
-
     .produto {
       background: rgba(255, 255, 255, 0.9);
       padding: 1rem;
@@ -65,12 +51,10 @@
       text-align: center;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-
     .produto img {
       width: 100%;
       border-radius: 8px;
     }
-
     .produto button {
       margin-top: 0.5rem;
       padding: 0.4rem 1rem;
@@ -81,11 +65,60 @@
       cursor: pointer;
       font-weight: bold;
     }
-
     .produto button:hover {
       background-color: #4a148c;
     }
-
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 90%;
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+    .modal-content img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      cursor: zoom-in;
+      transition: transform 0.3s ease;
+    }
+    .modal-content img:hover {
+      transform: scale(1.5);
+    }
+    .modal-content .close {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .modal-content select, .modal-content button {
+      margin-top: 8px;
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+    }
+    .modal-content button {
+      background-color: #6a1b9a;
+      color: white;
+      border: none;
+    }
+    .modal-content button:hover {
+      background-color: #4a148c;
+    }
     footer {
       background-color: rgba(255, 255, 255, 0.95);
       text-align: center;
@@ -102,11 +135,10 @@
     <img src="assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
     <nav>
       <a href="index.html">Home</a>
-      <a href="carrinho.html">🛒 Carrinho</a>
+      <a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
     </nav>
   </header>
 
-  <!-- Banner da Coleção BTS -->
   <section class="banner-topo">
     <img src="assets/BANNER-BTS.png" alt="Banner Coleção BTS">
   </section>
@@ -118,84 +150,43 @@
       <img src="assets/camisa-BE-.png" alt="Camiseta BTS BE">
       <h3>Camiseta BTS - BE</h3>
       <p>R$ 59,90</p>
-      <p style="font-size: 0.9rem; color: #6a1b9a;">
-        <strong>Disponível apenas na cor preta</strong>
-      </p>
-      <a href="ver-produto.html">
-        <button>Ver Produto</button>
-      </a>
+      <button class="ver-produto-btn" data-img="assets/camisa-BE-.png" data-nome="Camiseta BTS - BE" data-preco="59.90">Ver Produto</button>
     </div>
 
-    <!-- Outras camisetas -->
     <div class="produto">
       <img src="assets/camisa-BTS-cor.png" alt="Camiseta BTS Colorida">
       <h3>Camiseta BTS - Colorida</h3>
       <p>R$ 59,90</p>
-      <a href="ver-produto.html">
-        <button>Ver Produto</button>
-      </a>
+      <button class="ver-produto-btn" data-img="assets/camisa-BTS-cor.png" data-nome="Camiseta BTS - Colorida" data-preco="59.90">Ver Produto</button>
     </div>
 
     <div class="produto">
       <img src="assets/canisa-echo.jpg" alt="Camiseta Jin Echo">
       <h3>Camiseta Jin - Echo</h3>
       <p>R$ 59,90</p>
-      <a href="ver-produto.html">
-        <button>Ver Produto</button>
-      </a>
+      <button class="ver-produto-btn" data-img="assets/canisa-echo.jpg" data-nome="Camiseta Jin - Echo" data-preco="59.90">Ver Produto</button>
     </div>
 
     <div class="produto">
       <img src="assets/camisa-jimin.jpg" alt="Camiseta Jimin">
       <h3>Camiseta Jimin</h3>
       <p>R$ 59,90</p>
-      <a href="ver-produto.html">
-        <button>Ver Produto</button>
-      </a>
+      <button class="ver-produto-btn" data-img="assets/camisa-jimin.jpg" data-nome="Camiseta Jimin" data-preco="59.90">Ver Produto</button>
     </div>
 
     <div class="produto">
       <img src="assets/camisa-jk.jpg" alt="Camiseta JK">
       <h3>Camiseta JK - BTS</h3>
       <p>R$ 59,90</p>
-      <a href="ver-produto.html">
-        <button>Ver Produto</button>
-      </a>
+      <button class="ver-produto-btn" data-img="assets/camisa-jk.jpg" data-nome="Camiseta JK - BTS" data-preco="59.90">Ver Produto</button>
     </div>
 
     <div class="produto">
       <img src="assets/camisa-v.jpg" alt="Camiseta V">
       <h3>Camiseta V - BTS</h3>
       <p>R$ 59,90</p>
-      <a href="ver-produto.html">
-        <button>Ver Produto</button>
-      </a>
-    </div>
+      <button class="ver-produto-btn" data-img="assets/camisa-v.jpg" data-nome="Camiseta V - BTS" data-preco="59.90">Ver Produto</button>
 
-    <div class="produto">
-      <img src="assets/camisa-suga.jpg" alt="Camiseta Suga">
-      <h3>Camiseta Suga - BTS</h3>
-      <p>R$ 59,90</p>
-      <a href="ver-produto.html">
-        <button>Ver Produto</button>
-      </a>
-    </div>
-
-    <div class="produto">
-      <img src="assets/camisa-jungkook.png" alt="Camiseta Jungkook">
-      <h3>Camiseta Jeon Jung‑Kook</h3>
-      <p>R$ 59,90</p>
-      <a href="ver-produto.html">
-        <button>Ver Produto</button>
-      </a>
-    </div>
-  </section>
-
-  <footer>
-    © 2025 I Purple You Creative • Feito com amor por dorameiras 💜
-  </footer>
-</body>
-</html>
 
 
 
