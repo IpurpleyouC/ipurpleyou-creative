@@ -283,8 +283,8 @@
   const contador = document.getElementById("contador-carrinho");
 
   function atualizarContador() {
-    const count = parseInt(localStorage.getItem("itensCarrinho") || "0");
-    contador.textContent = count;
+    const count = parseInt(localStorage.getItem("carrinhoItems") || "0");
+    contador.textContent = carrinho.length;
   }
 
   btn.onclick = () => {
