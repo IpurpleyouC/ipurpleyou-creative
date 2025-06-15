@@ -99,64 +99,60 @@
     <a href="index.html">← Continuar Comprando</a>
   </main>
 
-  <script>
-    const tbody = document.getElementById("carrinho-body");
-    const totalDisplay = document.getElementById("total");
-    const contador = document.getElementById("contador-carrinho");
+ <script>
+  const tbody = document.getElementById("carrinho-body");
+  const totalDisplay = document.getElementById("total");
+  const contador = document.getElementById("contador-carrinho");
 
-    function atualizarContador() {
-      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-      contador.textContent = carrinho.length;
+  function atualizarContador() {
+    const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+    contador.textContent = carrinho.length;
+  }
+
+  function carregarCarrinho() {
+    const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+    let total = 0;
+    tbody.innerHTML = "";
+
+    if (carrinho.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5">Carrinho vazio!</td></tr>';
+      totalDisplay.textContent = "Total: R$ 0,00";
+      return;
     }
 
-    function carregarCarrinho() {
-      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-      let total = 0;
-      tbody.innerHTML = "";
+    carrinho.forEach((item, index) => {
+      tbody.innerHTML += `
+        <tr>
+          <td>${item.nome}</td>
+          <td>${item.tamanho}</td>
+          <td>${item.cor}</td>
+          <td>R$ ${item.preco}</td>
+          <td><button class="remover-btn" onclick="removerItem(${index})">Remover</button></td>
+        </tr>
+      `;
+      total += parseFloat(item.preco);
+    });
 
-      if (carrinho.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5">Carrinho vazio!</td></tr>';
-        totalDisplay.textContent = "Total: R$ 0,00";
-        return;
-      }
+    totalDisplay.textContent = "Total: R$ " + total.toFixed(2).replace(".", ",");
+  }
 
-      carrinho.forEach((item, index) => {
-        tbody.innerHTML += `
-          <tr>
-            <td>${item.nome}</td>
-            <td>${item.tamanho}</td>
-            <td>${item.cor}</td>
-            <td>R$ ${item.preco}</td>
-            <td><button class="remover-btn" onclick="removerItem(${index})">Remover</button></td>
-          </tr>
-        `;
-        total += parseFloat(item.preco);
-      });
-
-      totalDisplay.textContent = "Total: R$ " + total.toFixed(2).replace(".", ",");
-    }
-
-    function removerItem(index) {
-      let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-      carrinho.splice(index, 1);
-      localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
-      carregarCarrinho();
-      atualizarContador();
-    }
-
-    document.getElementById("limpar-carrinho").onclick = () => {
-      localStorage.removeItem("carrinhoItems");
-      carregarCarrinho();
-      atualizarContador();
-    };
-
+  function removerItem(index) {
+    let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+    carrinho.splice(index, 1);
+    localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
     carregarCarrinho();
     atualizarContador();
-  </script>
+  }
 
-</body>
-</html>
+  document.getElementById("limpar-carrinho").onclick = () => {
+    localStorage.removeItem("carrinhoItems");
+    carregarCarrinho();
+    atualizarContador();
+  };
 
+  carregarCarrinho();
+  atualizarContador();
+</script>
 
 
 
