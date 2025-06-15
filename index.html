@@ -283,7 +283,7 @@
   const contador = document.getElementById("contador-carrinho");
 
   function atualizarContador() {
-    const count = parseInt(localStorage.getItem("carrinhoItems") || "0");
+    const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
     contador.textContent = carrinho.length;
   }
 
@@ -305,7 +305,6 @@
       erro.style.display = "block";
       return;
     }
-    // Adiciona ao carrinho
    const produto = {
   nome: nome.textContent,
   preco: preco.textContent,
@@ -316,14 +315,12 @@ let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
 carrinho.push(produto);
 localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
 
-// Atualiza contador e fecha modal
 atualizarContador();
 
     alert(`Adicionado: ${nome.textContent}\nTamanho: ${selT.value}\nCor: ${selC.value}`);
     modal.style.display = "none";
   };
 
-  // Atualiza o contador ao carregar a página
   atualizarContador();
 </script>
 
