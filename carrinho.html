@@ -165,13 +165,12 @@ function enviarParaWhatsApp() {
   });
   mensagem += `\nTotal de itens: ${carrinho.length}`;
 
-  const numero = "55SEUNUMEROAQUI";
+  const numero = "5541995081726";
   const linkWhats = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
   window.open(linkWhats, '_blank');
 }
 </script>
 
-<!-- Botão do WhatsApp -->
 <button onclick="enviarParaWhatsApp()" style="background-color: #25D366; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; margin-top: 1rem;">
   Finalizar Pedido via WhatsApp
 </button>
