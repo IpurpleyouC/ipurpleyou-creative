@@ -146,13 +146,39 @@
 
   document.getElementById("limpar-carrinho").onclick = () => {
     localStorage.removeItem("carrinhoItems");
-    carregarCarrinho();
-    atualizarContador();
-  };
+   carregarCarrinho();
+atualizarContador();
 
-  carregarCarrinho();
-  atualizarContador();
+carregarCarrinho();
+atualizarContador();
+
+function enviarParaWhatsApp() {
+  const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+  if (carrinho.length === 0) {
+    alert("Seu carrinho está vazio!");
+    return;
+  }
+
+  let mensagem = "Olá! Quero finalizar meu pedido na loja I Purple You Creative 😊\n\nMeu carrinho:\n\n";
+  carrinho.forEach((item, index) => {
+    mensagem += `- ${item.nome} | Tamanho: ${item.tamanho} | Cor: ${item.cor}\n`;
+  });
+  mensagem += `\nTotal de itens: ${carrinho.length}`;
+
+  const numero = "55SEUNUMEROAQUI";
+  const linkWhats = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+  window.open(linkWhats, '_blank');
+}
 </script>
+
+<!-- Botão do WhatsApp -->
+<button onclick="enviarParaWhatsApp()" style="background-color: #25D366; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; margin-top: 1rem;">
+  Finalizar Pedido via WhatsApp
+</button>
+
+</body>
+</html>
+
 
 
 
