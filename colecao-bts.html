@@ -112,7 +112,133 @@
       border-radius: 6px;
     }
     .modal-content button {
-      background-
+      background-color: #6a1b9a;
+      color: white;
+      border: none;
+    }
+    .modal-content button:hover {
+      background-color: #4a148c;
+    }
+    footer {
+      background-color: rgba(255, 255, 255, 0.95);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #6a1b9a;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
+    </nav>
+  </header>
+
+  <section class="banner-topo">
+    <img src="assets/BANNER-BTS.png" alt="Banner Coleção BTS">
+  </section>
+
+  <h1 style="text-align: center; color: #6a1b9a; margin-top: 2rem;">Coleção BTS</h1>
+
+  <section class="produtos-destaque">
+    <!-- Exemplo de produto -->
+    <div class="produto">
+      <img src="assets/camisa-BE-.png" alt="Camiseta BTS BE">
+      <h3>Camiseta BTS - BE</h3>
+      <p>R$ 59,90</p>
+      <button class="ver-produto-btn" data-img="assets/camisa-BE-.png" data-nome="Camiseta BTS - BE" data-preco="59.90">Ver Produto</button>
+    </div>
+    <!-- Adicione os outros produtos iguais ao que você já tinha -->
+    <!-- ... -->
+  </section>
+
+  <!-- Modal de Produto -->
+  <div id="produto-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img id="modal-img" src="" alt="">
+      <h2 id="modal-nome"></h2>
+      <p><strong>Preço:</strong> R$ <span id="modal-preco"></span></p>
+      <select id="modal-tamanho">
+        <option value="">Tamanho</option>
+        <option>P</option><option>M</option><option>G</option><option>GG</option>
+      </select>
+      <select id="modal-cor">
+        <option value="">Cor</option>
+        <option>Preta</option><option>Branca</option>
+      </select>
+      <button id="adicionar-carrinho">Adicionar ao Carrinho</button>
+      <p id="erro" style="color:red; display:none">Escolha tamanho e cor.</p>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 I Purple You Creative • Feito com amor por dorameiras 💜
+  </footer>
+
+  <script>
+    const modal = document.getElementById("produto-modal");
+    const img = document.getElementById("modal-img");
+    const nome = document.getElementById("modal-nome");
+    const preco = document.getElementById("modal-preco");
+    const selT = document.getElementById("modal-tamanho");
+    const selC = document.getElementById("modal-cor");
+    const erro = document.getElementById("erro");
+    const addBtn = document.getElementById("adicionar-carrinho");
+    const contador = document.getElementById("contador-carrinho");
+
+    function atualizarContador() {
+      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+      contador.textContent = carrinho.length;
+    }
+
+    document.querySelectorAll(".ver-produto-btn").forEach(btn => {
+      btn.onclick = () => {
+        img.src = btn.dataset.img;
+        nome.textContent = btn.dataset.nome;
+        preco.textContent = btn.dataset.preco;
+        selT.value = "";
+        selC.value = "";
+        erro.style.display = "none";
+        modal.style.display = "flex";
+      };
+    });
+
+    document.querySelector(".close").onclick = () => modal.style.display = "none";
+    window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+
+    addBtn.onclick = () => {
+      if (!selT.value || !selC.value) {
+        erro.style.display = "block";
+        return;
+      }
+
+      const produto = {
+        nome: nome.textContent,
+        preco: preco.textContent,
+        tamanho: selT.value,
+        cor: selC.value
+      };
+
+      let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+      carrinho.push(produto);
+      localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
+      atualizarContador();
+
+      alert(`Adicionado ao carrinho:\n${produto.nome}\nTamanho: ${produto.tamanho}\nCor: ${produto.cor}`);
+      modal.style.display = "none";
+    };
+
+    atualizarContador();
+  </script>
+
+</body>
+</html>
 
 
 
