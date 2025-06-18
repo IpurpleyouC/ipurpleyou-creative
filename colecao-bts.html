@@ -15,7 +15,7 @@
       color: #333;
     }
     header, footer, .produto, .modal, button {
-      /* Seus estilos anteriores, mantidos... */
+      /* Mantenha os estilos anteriores */
     }
   </style>
 </head>
@@ -36,19 +36,55 @@
     <p>R$ 59,90</p>
     <button class="ver-produto-btn" data-img="assets/camisa-BE-.png" data-nome="REF 001 - Camiseta BTS - BE" data-preco="59.90">Ver Produto</button>
   </div>
+
   <div class="produto">
     <img src="assets/camisa-BTS-cor.png" alt="Camiseta BTS Colorida">
     <h3>REF 002 - Camiseta BTS - Colorida</h3>
     <p>R$ 59,90</p>
     <button class="ver-produto-btn" data-img="assets/camisa-BTS-cor.png" data-nome="REF 002 - Camiseta BTS - Colorida" data-preco="59.90">Ver Produto</button>
   </div>
+
   <div class="produto">
     <img src="assets/canisa-echo.jpg" alt="Camiseta Jin Echo">
     <h3>REF 003 - Camiseta Jin - Echo</h3>
     <p>R$ 59,90</p>
     <button class="ver-produto-btn" data-img="assets/canisa-echo.jpg" data-nome="REF 003 - Camiseta Jin - Echo" data-preco="59.90">Ver Produto</button>
   </div>
-  <!-- Repete o padrão para os outros produtos até o REF 008 -->
+
+  <div class="produto">
+    <img src="assets/camisa-jimin.jpg" alt="Camiseta Jimin">
+    <h3>REF 004 - Camiseta Jimin</h3>
+    <p>R$ 59,90</p>
+    <button class="ver-produto-btn" data-img="assets/camisa-jimin.jpg" data-nome="REF 004 - Camiseta Jimin" data-preco="59.90">Ver Produto</button>
+  </div>
+
+  <div class="produto">
+    <img src="assets/camisa-jk.jpg" alt="Camiseta JK">
+    <h3>REF 005 - Camiseta JK - BTS</h3>
+    <p>R$ 59,90</p>
+    <button class="ver-produto-btn" data-img="assets/camisa-jk.jpg" data-nome="REF 005 - Camiseta JK - BTS" data-preco="59.90">Ver Produto</button>
+  </div>
+
+  <div class="produto">
+    <img src="assets/camisa-v.jpg" alt="Camiseta V">
+    <h3>REF 006 - Camiseta V - BTS</h3>
+    <p>R$ 59,90</p>
+    <button class="ver-produto-btn" data-img="assets/camisa-v.jpg" data-nome="REF 006 - Camiseta V - BTS" data-preco="59.90">Ver Produto</button>
+  </div>
+
+  <div class="produto">
+    <img src="assets/camisa-suga.jpg" alt="Camiseta Suga">
+    <h3>REF 007 - Camiseta Suga - BTS</h3>
+    <p>R$ 59,90</p>
+    <button class="ver-produto-btn" data-img="assets/camisa-suga.jpg" data-nome="REF 007 - Camiseta Suga - BTS" data-preco="59.90">Ver Produto</button>
+  </div>
+
+  <div class="produto">
+    <img src="assets/camisa-jungkook.png" alt="Camiseta Jungkook">
+    <h3>REF 008 - Camiseta Jeon Jung-Kook</h3>
+    <p>R$ 59,90</p>
+    <button class="ver-produto-btn" data-img="assets/camisa-jungkook.png" data-nome="REF 008 - Camiseta Jeon Jung-Kook" data-preco="59.90">Ver Produto</button>
+  </div>
 </section>
 
 <!-- Modal -->
@@ -109,17 +145,20 @@
       erro.style.display = "block";
       return;
     }
+
     const produto = {
       nome: nome.textContent,
       preco: preco.textContent,
       tamanho: selT.value,
       cor: selC.value
     };
+
     let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
     carrinho.push(produto);
     localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
     atualizarContador();
-    alert(`Adicionado: ${produto.nome}\nTamanho: ${produto.tamanho}\nCor: ${produto.cor}`);
+
+    alert(`Adicionado ao carrinho:\n${produto.nome}\nTamanho: ${produto.tamanho}\nCor: ${produto.cor}`);
     modal.style.display = "none";
   };
 
