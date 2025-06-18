@@ -96,87 +96,50 @@
     <p id="total">Total: R$ 0,00</p>
 
     <button id="limpar-carrinho">Esvaziar Carrinho</button><br><br>
-    <a href="index.html">← Continuar Comprando</a>
+    <a href="index.html">← Continuar Comprando</a><br><br>
+
+    <!-- Botão do WhatsApp -->
+    <button onclick="enviarParaWhatsApp()" style="background-color: #25D366; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; margin-top: 1rem;">
+      Finalizar Pedido via WhatsApp
+    </button>
   </main>
 
- <script>
-  const tbody = document.getElementById("carrinho-body");
-  const totalDisplay = document.getElementById("total");
-  const contador = document.getElementById("contador-carrinho");
+  <script>
+    const tbody = document.getElementById("carrinho-body");
+    const totalDisplay = document.getElementById("total");
+    const contador = document.getElementById("contador-carrinho");
 
-  function atualizarContador() {
-    const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-    contador.textContent = carrinho.length;
-  }
-
-  function carregarCarrinho() {
-    const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-    let total = 0;
-    tbody.innerHTML = "";
-
-    if (carrinho.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="5">Carrinho vazio!</td></tr>';
-      totalDisplay.textContent = "Total: R$ 0,00";
-      return;
+    function atualizarContador() {
+      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+      contador.textContent = carrinho.length;
     }
 
-    carrinho.forEach((item, index) => {
-      tbody.innerHTML += `
-        <tr>
-          <td>${item.nome}</td>
-          <td>${item.tamanho}</td>
-          <td>${item.cor}</td>
-          <td>R$ ${item.preco}</td>
-          <td><button class="remover-btn" onclick="removerItem(${index})">Remover</button></td>
-        </tr>
-      `;
-      total += parseFloat(item.preco);
-    });
+    function carregarCarrinho() {
+      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+      let total = 0;
+      tbody.innerHTML = "";
 
-    totalDisplay.textContent = "Total: R$ " + total.toFixed(2).replace(".", ",");
-  }
+      if (carrinho.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5">Carrinho vazio!</td></tr>';
+        totalDisplay.textContent = "Total: R$ 0,00";
+        return;
+      }
 
-  function removerItem(index) {
-    let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-    carrinho.splice(index, 1);
-    localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
-    carregarCarrinho();
-    atualizarContador();
-  }
+      carrinho.forEach((item, index) => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${item.nome}</td>
+            <td>${item.tamanho}</td>
+            <td>${item.cor}</td>
+            <td>R$ ${item.preco}</td>
+            <td><button class="remover-btn" onclick="removerItem(${index})">Remover</button></td>
+          </tr>
+        `;
+        total += parseFloat(item.preco);
+      });
 
-  document.getElementById("limpar-carrinho").onclick = () => {
-    localStorage.removeItem("carrinhoItems");
-   carregarCarrinho();
-atualizarContador();
+      totalDisplay.textCo
 
-carregarCarrinho();
-atualizarContador();
-
-function enviarParaWhatsApp() {
-  const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-  if (carrinho.length === 0) {
-    alert("Seu carrinho está vazio!");
-    return;
-  }
-
-  let mensagem = "Olá! Quero finalizar meu pedido na loja I Purple You Creative 😊\n\nMeu carrinho:\n\n";
-  carrinho.forEach((item, index) => {
-    mensagem += `- ${item.nome} | Tamanho: ${item.tamanho} | Cor: ${item.cor}\n`;
-  });
-  mensagem += `\nTotal de itens: ${carrinho.length}`;
-
-  const numero = "5541995081726";
-  const linkWhats = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-  window.open(linkWhats, '_blank');
-}
-</script>
-
-<button onclick="enviarParaWhatsApp()" style="background-color: #25D366; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; margin-top: 1rem;">
-  Finalizar Pedido via WhatsApp
-</button>
-
-</body>
-</html>
 
 
 
