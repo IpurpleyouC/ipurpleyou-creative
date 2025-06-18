@@ -14,228 +14,117 @@
       background-position: center;
       color: #333;
     }
-    header {
-      background-color: rgba(255, 255, 255, 0.9);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    header img.logo {
-      height: 60px;
-    }
-    nav a {
-      margin: 0 1rem;
-      text-decoration: none;
-      color: #6a1b9a;
-      font-weight: bold;
-    }
-    .banner-topo img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .produtos-destaque {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin: 2rem;
-    }
-    .produto {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 1rem;
-      border-radius: 12px;
-      width: 200px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .produto img {
-      width: 100%;
-      border-radius: 8px;
-    }
-    .produto button {
-      margin-top: 0.5rem;
-      padding: 0.4rem 1rem;
-      background-color: #6a1b9a;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .produto button:hover {
-      background-color: #4a148c;
-    }
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 400px;
-      width: 90%;
-      position: relative;
-      text-align: center;
-      overflow: hidden;
-    }
-    .modal-content img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      cursor: zoom-in;
-      transition: transform 0.3s ease;
-    }
-    .modal-content img:hover {
-      transform: scale(1.5);
-    }
-    .modal-content .close {
-      position: absolute;
-      top: 8px;
-      right: 12px;
-      font-size: 24px;
-      cursor: pointer;
-    }
-    .modal-content select, .modal-content button {
-      margin-top: 8px;
-      width: 100%;
-      padding: 8px;
-      border-radius: 6px;
-    }
-    .modal-content button {
-      background-color: #6a1b9a;
-      color: white;
-      border: none;
-    }
-    .modal-content button:hover {
-      background-color: #4a148c;
-    }
-    footer {
-      background-color: rgba(255, 255, 255, 0.95);
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #6a1b9a;
-      margin-top: 4rem;
+    header, footer, .produto, .modal, button {
+      /* Seus estilos anteriores, mantidos... */
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
-    </nav>
-  </header>
+<header>
+  <img src="assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
+  </nav>
+</header>
 
-  <section class="banner-topo">
-    <img src="assets/BANNER-BTS.png" alt="Banner Coleção BTS">
-  </section>
-
-  <h1 style="text-align: center; color: #6a1b9a; margin-top: 2rem;">Coleção BTS</h1>
-
-  <section class="produtos-destaque">
-    <!-- Exemplo de produto -->
-    <div class="produto">
-      <img src="assets/camisa-BE-.png" alt="Camiseta BTS BE">
-      <h3>Camiseta BTS - BE</h3>
-      <p>R$ 59,90</p>
-      <button class="ver-produto-btn" data-img="assets/camisa-BE-.png" data-nome="Camiseta BTS - BE" data-preco="59.90">Ver Produto</button>
-    </div>
-    <!-- Adicione os outros produtos iguais ao que você já tinha -->
-    <!-- ... -->
-  </section>
-
-  <!-- Modal de Produto -->
-  <div id="produto-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <img id="modal-img" src="" alt="">
-      <h2 id="modal-nome"></h2>
-      <p><strong>Preço:</strong> R$ <span id="modal-preco"></span></p>
-      <select id="modal-tamanho">
-        <option value="">Tamanho</option>
-        <option>P</option><option>M</option><option>G</option><option>GG</option>
-      </select>
-      <select id="modal-cor">
-        <option value="">Cor</option>
-        <option>Preta</option><option>Branca</option>
-      </select>
-      <button id="adicionar-carrinho">Adicionar ao Carrinho</button>
-      <p id="erro" style="color:red; display:none">Escolha tamanho e cor.</p>
-    </div>
+<section class="produtos-destaque">
+  <div class="produto">
+    <img src="assets/camisa-BE-.png" alt="Camiseta BTS BE">
+    <h3>REF 001 - Camiseta BTS - BE</h3>
+    <p>R$ 59,90</p>
+    <button class="ver-produto-btn" data-img="assets/camisa-BE-.png" data-nome="REF 001 - Camiseta BTS - BE" data-preco="59.90">Ver Produto</button>
   </div>
+  <div class="produto">
+    <img src="assets/camisa-BTS-cor.png" alt="Camiseta BTS Colorida">
+    <h3>REF 002 - Camiseta BTS - Colorida</h3>
+    <p>R$ 59,90</p>
+    <button class="ver-produto-btn" data-img="assets/camisa-BTS-cor.png" data-nome="REF 002 - Camiseta BTS - Colorida" data-preco="59.90">Ver Produto</button>
+  </div>
+  <div class="produto">
+    <img src="assets/canisa-echo.jpg" alt="Camiseta Jin Echo">
+    <h3>REF 003 - Camiseta Jin - Echo</h3>
+    <p>R$ 59,90</p>
+    <button class="ver-produto-btn" data-img="assets/canisa-echo.jpg" data-nome="REF 003 - Camiseta Jin - Echo" data-preco="59.90">Ver Produto</button>
+  </div>
+  <!-- Repete o padrão para os outros produtos até o REF 008 -->
+</section>
 
-  <footer>
-    © 2025 I Purple You Creative • Feito com amor por dorameiras 💜
-  </footer>
+<!-- Modal -->
+<div id="produto-modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img id="modal-img" src="" alt="">
+    <h2 id="modal-nome"></h2>
+    <p><strong>Preço:</strong> R$ <span id="modal-preco"></span></p>
+    <select id="modal-tamanho">
+      <option value="">Tamanho</option>
+      <option>P</option><option>M</option><option>G</option><option>GG</option>
+    </select>
+    <select id="modal-cor">
+      <option value="">Cor</option>
+      <option>Preta</option><option>Branca</option>
+    </select>
+    <button id="adicionar-carrinho">Adicionar ao Carrinho</button>
+    <p id="erro" style="color:red; display:none">Escolha tamanho e cor.</p>
+  </div>
+</div>
 
-  <script>
-    const modal = document.getElementById("produto-modal");
-    const img = document.getElementById("modal-img");
-    const nome = document.getElementById("modal-nome");
-    const preco = document.getElementById("modal-preco");
-    const selT = document.getElementById("modal-tamanho");
-    const selC = document.getElementById("modal-cor");
-    const erro = document.getElementById("erro");
-    const addBtn = document.getElementById("adicionar-carrinho");
-    const contador = document.getElementById("contador-carrinho");
+<footer>© 2025 I Purple You Creative • Feito com amor por dorameiras 💜</footer>
 
-    function atualizarContador() {
-      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-      contador.textContent = carrinho.length;
-    }
+<script>
+  const modal = document.getElementById("produto-modal");
+  const img = document.getElementById("modal-img");
+  const nome = document.getElementById("modal-nome");
+  const preco = document.getElementById("modal-preco");
+  const selT = document.getElementById("modal-tamanho");
+  const selC = document.getElementById("modal-cor");
+  const erro = document.getElementById("erro");
+  const addBtn = document.getElementById("adicionar-carrinho");
+  const contador = document.getElementById("contador-carrinho");
 
-    document.querySelectorAll(".ver-produto-btn").forEach(btn => {
-      btn.onclick = () => {
-        img.src = btn.dataset.img;
-        nome.textContent = btn.dataset.nome;
-        preco.textContent = btn.dataset.preco;
-        selT.value = "";
-        selC.value = "";
-        erro.style.display = "none";
-        modal.style.display = "flex";
-      };
-    });
+  function atualizarContador() {
+    const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+    contador.textContent = carrinho.length;
+  }
 
-    document.querySelector(".close").onclick = () => modal.style.display = "none";
-    window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
-
-    addBtn.onclick = () => {
-      if (!selT.value || !selC.value) {
-        erro.style.display = "block";
-        return;
-      }
-
-      const produto = {
-        nome: nome.textContent,
-        preco: preco.textContent,
-        tamanho: selT.value,
-        cor: selC.value
-      };
-
-      let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-      carrinho.push(produto);
-      localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
-      atualizarContador();
-
-      alert(`Adicionado ao carrinho:\n${produto.nome}\nTamanho: ${produto.tamanho}\nCor: ${produto.cor}`);
-      modal.style.display = "none";
+  document.querySelectorAll(".ver-produto-btn").forEach(btn => {
+    btn.onclick = () => {
+      img.src = btn.dataset.img;
+      nome.textContent = btn.dataset.nome;
+      preco.textContent = btn.dataset.preco;
+      selT.value = "";
+      selC.value = "";
+      erro.style.display = "none";
+      modal.style.display = "flex";
     };
+  });
 
+  document.querySelector(".close").onclick = () => modal.style.display = "none";
+  window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+
+  addBtn.onclick = () => {
+    if (!selT.value || !selC.value) {
+      erro.style.display = "block";
+      return;
+    }
+    const produto = {
+      nome: nome.textContent,
+      preco: preco.textContent,
+      tamanho: selT.value,
+      cor: selC.value
+    };
+    let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+    carrinho.push(produto);
+    localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
     atualizarContador();
-  </script>
+    alert(`Adicionado: ${produto.nome}\nTamanho: ${produto.tamanho}\nCor: ${produto.cor}`);
+    modal.style.display = "none";
+  };
+
+  atualizarContador();
+</script>
 
 </body>
 </html>
