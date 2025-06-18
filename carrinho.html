@@ -138,7 +138,47 @@
         total += parseFloat(item.preco);
       });
 
-      totalDisplay.textCo
+      totalDisplay.textContent = "Total: R$ " + total.toFixed(2).replace(".", ",");
+    }
+
+    function removerItem(index) {
+      let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+      carrinho.splice(index, 1);
+      localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
+      carregarCarrinho();
+      atualizarContador();
+    }
+
+    document.getElementById("limpar-carrinho").onclick = () => {
+      localStorage.removeItem("carrinhoItems");
+      carregarCarrinho();
+      atualizarContador();
+    };
+
+    function enviarParaWhatsApp() {
+      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+      if (carrinho.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
+      }
+
+      let mensagem = "Olá! Quero finalizar meu pedido na loja I Purple You Creative 😊\n\nMeu carrinho:\n\n";
+      carrinho.forEach((item, index) => {
+        mensagem += `- ${item.nome} | Tamanho: ${item.tamanho} | Cor: ${item.cor}\n`;
+      });
+      mensagem += `\nTotal de itens: ${carrinho.length}`;
+
+      const numero = "5541995081726";  // 👉 Troque para seu número com DDD
+      const linkWhats = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+      window.open(linkWhats, '_blank');
+    }
+
+    carregarCarrinho();
+    atualizarContador();
+  </script>
+
+</body>
+</html>
 
 
 
