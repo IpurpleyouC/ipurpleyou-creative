@@ -1,20 +1,50 @@
-function adicionarAoCarrinho() {
-    let quantidade = localStorage.getItem('cartCount') || 0;
-    quantidade = parseInt(quantidade) + 1;
-    localStorage.setItem('cartCount', quantidade);
-    atualizarContadorCarrinho();
-}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras | I Purple You Creative</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="carrinho.js" defer></script>
+</head>
+<body>
+    <header>
+        <img src="assets/logo.png" alt="I Purple You Creative" class="logo">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="colecao-bts.html">Coleção BTS</a>
+            <a href="colecao-dorameira.html">Coleção Dorameira</a>
+            <a href="carrinho.html">Carrinho (<span id="cart-count">0</span>)</a>
+        </nav>
+    </header>
 
-function atualizarContadorCarrinho() {
-    const count = localStorage.getItem('cartCount') || 0;
-    const contador = document.getElementById('cart-count');
-    if (contador) {
-        contador.textContent = count;
-    }
-}
+    <main style="background-color: rgba(255, 255, 255, 0.9); max-width: 600px; margin: 2rem auto; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center;">
+        <h1>Seu Carrinho 🛒</h1>
+        <p>Quantidade total de itens: <span id="quantidade-itens">0</span></p>
+        <p>Valor total: R$ <span id="valor-total">0.00</span></p>
+        <button onclick="finalizarCompra()">Finalizar Compra</button>
+    </main>
 
-// Atualizar o contador sempre que a página carregar
-document.addEventListener('DOMContentLoaded', atualizarContadorCarrinho);
+    <script>
+        function atualizarCarrinho() {
+            const quantidade = localStorage.getItem('cartCount') || 0;
+            document.getElementById('quantidade-itens').textContent = quantidade;
+            const total = quantidade * 59.90;
+            document.getElementById('valor-total').textContent = total.toFixed(2);
+        }
+
+        function finalizarCompra() {
+            alert('Obrigado pela sua compra! 🩷');
+            localStorage.removeItem('cartCount');
+            atualizarContadorCarrinho();
+            atualizarCarrinho();
+        }
+
+        document.addEventListener('DOMContentLoaded', atualizarCarrinho);
+    </script>
+</body>
+</html>
+
 
 
 
