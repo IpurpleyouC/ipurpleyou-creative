@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrinho de Compras | I Purple You Creative</title>
+    <title>Carrinho | I Purple You Creative</title>
     <link rel="stylesheet" href="style.css">
     <script src="carrinho.js" defer></script>
 </head>
@@ -18,11 +18,10 @@
         </nav>
     </header>
 
-    <main style="background-color: rgba(255, 255, 255, 0.9); max-width: 600px; margin: 2rem auto; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center;">
+    <main style="background: rgba(255, 255, 255, 0.9); max-width: 600px; margin: 2rem auto; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center;">
         <h1>Seu Carrinho 🛒</h1>
-        <p>Quantidade total de itens: <span id="quantidade-itens">0</span></p>
-        <p>Valor total: R$ <span id="valor-total">0.00</span></p>
-        <button onclick="finalizarCompra()">Finalizar Compra</button>
+        <p>Quantidade de itens: <span id="quantidade-itens">0</span></p>
+        <p>Total: R$ <span id="valor-total">0.00</span></p>
     </main>
 
     <script>
@@ -33,17 +32,14 @@
             document.getElementById('valor-total').textContent = total.toFixed(2);
         }
 
-        function finalizarCompra() {
-            alert('Obrigado pela sua compra! 🩷');
-            localStorage.removeItem('cartCount');
+        document.addEventListener('DOMContentLoaded', () => {
             atualizarContadorCarrinho();
             atualizarCarrinho();
-        }
-
-        document.addEventListener('DOMContentLoaded', atualizarCarrinho);
+        });
     </script>
 </body>
 </html>
+
 
 
 
