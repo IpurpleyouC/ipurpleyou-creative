@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coleção Dorameira | I Purple You Creative</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="carrinho.js" defer></script>
+</head>
+<body style="background-image: url('assets/imagem-fundo.jpg'); background-size: cover; background-attachment: fixed; background-position: center;">
+    <header>
+        <img src="assets/logo.png" alt="Logo da Loja" class="logo">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="colecao-bts.html">Coleção BTS</a>
+            <a href="colecao-dorameira.html">Coleção Dorameira</a>
+            <a href="carrinho.html">Carrinho (<span id="contador-carrinho">0</span>)</a>
+        </nav>
+    </header>
+
+    <section class="banner">
+        <img src="assets/banner-dorameira.png" alt="Banner Coleção Dorameira" style="width:100%;">
+    </section>
+
+    <section class="produtos">
+        <div class="produto">
+            <img src="assets/camiseta-goblin.png" alt="Camiseta Outono Goblin">
+            <h2>Camiseta Outono Goblin</h2>
+            <p>Ref: DM007</p>
+            <button onclick="abrirModal('DM007', 'Camiseta Outono Goblin', '59.90', ['Preta','Branca'], ['P','M','G','GG'], 'assets/camiseta-goblin.png')">Ver Produto</button>
+        </div>
+
+        <div class="produto">
+            <img src="assets/hidden-love-raposa.png" alt="Camiseta Hidden Love">
+            <h2>Camiseta Hidden Love</h2>
+            <p>Ref: DM008</p>
+            <button onclick="abrirModal('DM008', 'Camiseta Hidden Love', '59.90', ['Preta','Branca'], ['P','M','G','GG'], 'assets/hidden-love-raposa.png')">Ver Produto</button>
+        </div>
+
+        <div class="produto">
+            <img src="assets/camiseta-Bogum.png" alt="Camiseta Park Bo Gum">
+            <h2>Camiseta Park Bo Gum</h2>
+            <p>Ref: DM009</p>
+            <button onclick="abrirModal('DM009', 'Camiseta Park Bo Gum', '59.90', ['Preta','Branca'], ['P','M','G','GG'], 'assets/camiseta-Bogum.png')">Ver Produto</button>
+        </div>
+    </section>
+
+    <div id="modal-produto" class="modal">
+        <div class="modal-conteudo">
+            <span class="fechar" onclick="fecharModal()">&times;</span>
+            <img id="imagem-produto" src="" alt="">
+            <h2 id="titulo-produto"></h2>
+            <p id="preco-produto"></p>
+            <label for="cor">Cor:</label>
+            <select id="cor"></select>
+            <label for="tamanho">Tamanho:</label>
+            <select id="tamanho"></select>
+            <button onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
+        </div>
+    </div>
+
+</body>
+</html>
