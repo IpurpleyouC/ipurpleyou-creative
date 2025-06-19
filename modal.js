@@ -1,19 +1,68 @@
-<!-- Modal -->
-<div id="product-modal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="fecharModal()">&times;</span>
-        <img id="modal-imagem" src="" alt="Imagem do Produto">
-        <h2 id="modal-titulo"></h2>
-        <p><strong>Referência:</strong> <span id="modal-referencia"></span></p>
+let produtoSelecionado = {};
 
-        <label for="selecao-cor"><strong>Cores:</strong></label>
-        <select id="selecao-cor"></select>
+function abrirModal(titulo, referencia, cores, tamanhos, preco, imagem) {
+    produtoSelecionado = {
+        nome: titulo,
+        referencia: referencia,
+        cores: cores.split(",").map(c => c.trim()),
+        tamanhos: tamanhos.split(",").map(t => t.trim()),
+        preco: preco,
+        imagem: imagem
+    };
 
-        <label for="selecao-tamanho"><strong>Tamanhos:</strong></label>
-        <select id="selecao-tamanho"></select>
+    document.getElementById('modal-titulo').textContent = titulo;
+    document.getElementById('modal-referencia').textContent = referencia;
+    document.getElementById('modal-preco').textContent = preco;
+    document.getElementById('modal-imagem').src = imagem;
 
-        <p><strong>Preço:</strong> R$ <span id="modal-preco"></span></p>
-        <button onclick="adicionarProdutoAoCarrinho()">Adicionar ao Carrinho</button>
-    </div>
-</div>
+    preencherSelect('selecao-cor', produtoSelecionado.cores);
+    preencherSelect('selecao-tamanho', produtoSelecionado.tamanhos);
+
+    document.getElementById('product-modal').style.display = 'block';
+}
+
+function preencherSelect(id, opcoes) {
+    const select = document.getElementById(id);
+    select.innerHTML = "";
+    opcoes.forEach(opcao => {
+        const option = document.createElement('option');
+        option.value = opcao;
+        option.textContent = opcao;
+        select.appendChild(option);
+    });
+}
+
+function fecharModal() {
+    document.getElementById('product-modal').style.display = 'none';
+}
+
+function adicionarProdutoAoCarrinho() {
+    const corSelecionada = document.getElementById('selecao-cor').value;
+    const tamanhoSelecionado = document.getElementById('selecao-tamanho').value;
+
+    let carrinho = JSON.parse(localStorage.getItem('carrinhoItems') || '[]');
+
+    carrinho.push({
+        nome: produtoSelecionado.nome,
+        referencia: produtoSelecionado.referencia,
+        cor: corSelecionada,
+        tamanho: tamanhoSelecionado,
+        preco: produtoSelecionado.preco,
+        imagem: produtoSelecionado.imagem
+    });
+
+    localStorage.setItem('carrinhoItems', JSON.stringify(carrinho));
+    fecharModal();
+    atualizarContador();
+}
+
+function atualizarContador() {
+    const carrinho = JSON.parse(localStorage.getItem('carrinhoItems') || '[]');
+    const contador = document.getElementById('contador-carrinho');
+    if (contador) {
+        contador.textContent = carrinho.length;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', atualizarContador);
 
