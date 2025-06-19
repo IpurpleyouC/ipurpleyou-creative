@@ -9,57 +9,48 @@
     <script src="modal.js" defer></script>
 </head>
 <body>
+
     <header>
-        <img src="assets/logo.png" alt="I Purple You Creative" class="logo">
+        <img src="assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
         <nav>
             <a href="index.html">Home</a>
             <a href="colecao-bts.html">Coleção BTS</a>
             <a href="colecao-dorameira.html">Coleção Dorameira</a>
-            <a href="carrinho.html">Carrinho (<span id="cart-count">0</span>)</a>
+            <a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
         </nav>
     </header>
 
-    <div class="banner">
-        <img src="assets/banner-dorameira.jpg" alt="Banner Coleção Dorameira" style="width: 100%;">
-    </div>
+    <main style="background: rgba(255, 255, 255, 0.9); max-width: 1200px; margin: 2rem auto; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center;">
+        <h1>Coleção Dorameira</h1>
 
-    <div class="produtos">
-        <div class="produto">
-            <img src="assets/produtos/dorameira-goblin.jpg" alt="Camiseta Outono Goblin">
-            <h3>Camiseta Outono Goblin</h3>
-            <p>Ref: DM007</p>
-            <button onclick="abrirModal('Camiseta Outono Goblin', 'DM007', 'Preta e Branca', 'P, M, G, GG', '59,90', 'assets/produtos/dorameira-goblin.jpg')">Ver Produto</button>
-        </div>
+        <div class="produtos">
+            <div class="produto">
+                <img src="assets/produtos/dorameira-goblin.jpg" alt="Camiseta Outono Goblin">
+                <h3>Camiseta Outono Goblin</h3>
+                <p>Ref: DM007</p>
+                <button onclick="abrirModal('Camiseta Outono Goblin', 'DM007', 'Preta e Branca', 'P, M, G, GG', '59.90', 'assets/produtos/dorameira-goblin.jpg')">Ver Produto</button>
+            </div>
 
-        <div class="produto">
-            <img src="assets/produtos/dorameira-hidden-love.jpg" alt="Camiseta Hidden Love">
-            <h3>Camiseta Hidden Love</h3>
-            <p>Ref: DM008</p>
-            <button onclick="abrirModal('Camiseta Hidden Love', 'DM008', 'Preta e Branca', 'P, M, G, GG', '59,90', 'assets/produtos/dorameira-hidden-love.jpg')">Ver Produto</button>
-        </div>
+            <div class="produto">
+                <img src="assets/produtos/dorameira-hidden-love.jpg" alt="Camiseta Hidden Love">
+                <h3>Camiseta Hidden Love</h3>
+                <p>Ref: DM008</p>
+                <button onclick="abrirModal('Camiseta Hidden Love', 'DM008', 'Preta e Branca', 'P, M, G, GG', '59.90', 'assets/produtos/dorameira-hidden-love.jpg')">Ver Produto</button>
+            </div>
 
-        <div class="produto">
-            <img src="assets/produtos/dorameira-park-bo-gum.jpg" alt="Camiseta Park Bo Gum">
-            <h3>Camiseta Park Bo Gum</h3>
-            <p>Ref: DM009</p>
-            <button onclick="abrirModal('Camiseta Park Bo Gum', 'DM009', 'Preta e Branca', 'P, M, G, GG', '59,90', 'assets/produtos/dorameira-park-bo-gum.jpg')">Ver Produto</button>
+            <div class="produto">
+                <img src="assets/produtos/dorameira-park-bo-gum.jpg" alt="Camiseta Park Bo Gum">
+                <h3>Camiseta Park Bo Gum</h3>
+                <p>Ref: DM009</p>
+                <button onclick="abrirModal('Camiseta Park Bo Gum', 'DM009', 'Preta e Branca', 'P, M, G, GG', '59.90', 'assets/produtos/dorameira-park-bo-gum.jpg')">Ver Produto</button>
+            </div>
         </div>
-    </div>
+    </main>
 
     <!-- Modal de Produto -->
-    <div id="product-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="fecharModal()">&times;</span>
-            <img id="modal-imagem" src="" alt="Imagem do Produto">
-            <h2 id="modal-titulo"></h2>
-            <p><strong>Referência:</strong> <span id="modal-referencia"></span></p>
-            <p><strong>Cores:</strong> <span id="modal-cores"></span></p>
-            <p><strong>Tamanhos:</strong> <span id="modal-tamanhos"></span></p>
-            <p><strong>Preço:</strong> R$ <span id="modal-preco"></span></p>
-            <button onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
-        </div>
-    </div>
-</body>
-</html>
+    <div id="product-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7);">
+        <div class="modal-content" style="background:white; padding:1rem; max-width:500px; margin:10% auto; border-radius:12px; position:relative;">
+            <span onclick="fecharModal()" style="position:absolute; top:10px; right:15px; cursor:p
+
 
 
