@@ -1,184 +1,20 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrinho de Compras | I Purple You Creative</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
+function adicionarAoCarrinho() {
+    let quantidade = localStorage.getItem('cartCount') || 0;
+    quantidade = parseInt(quantidade) + 1;
+    localStorage.setItem('cartCount', quantidade);
+    atualizarContadorCarrinho();
+}
+
+function atualizarContadorCarrinho() {
+    const count = localStorage.getItem('cartCount') || 0;
+    const contador = document.getElementById('cart-count');
+    if (contador) {
+        contador.textContent = count;
     }
-    header {
-      background-color: rgba(255,255,255,0.9);
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    header img.logo {
-      height: 60px;
-    }
-    nav a {
-      margin: 0 1rem;
-      text-decoration: none;
-      color: #6a1b9a;
-      font-weight: bold;
-    }
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
-    }
-    #total {
-      font-weight: bold;
-      margin-top: 1rem;
-      text-align: right;
-    }
-    button {
-      padding: 6px 12px;
-      background-color: #6a1b9a;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #4a148c;
-    }
-    .remover-btn {
-      background-color: #d32f2f;
-    }
-    .remover-btn:hover {
-      background-color: #b71c1c;
-    }
-  </style>
-</head>
-<body>
+}
 
-  <header>
-    <img src="assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
-    </nav>
-  </header>
-
-  <main>
-    <h1>Seu Carrinho de Compras</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Produto</th>
-          <th>Tamanho</th>
-          <th>Cor</th>
-          <th>Preço</th>
-          <th>Ação</th>
-        </tr>
-      </thead>
-      <tbody id="carrinho-body">
-        <!-- Itens do carrinho vão aparecer aqui -->
-      </tbody>
-    </table>
-
-    <p id="total">Total: R$ 0,00</p>
-
-    <button id="limpar-carrinho">Esvaziar Carrinho</button><br><br>
-    <a href="index.html">← Continuar Comprando</a><br><br>
-
-    <!-- Botão do WhatsApp -->
-    <button onclick="enviarParaWhatsApp()" style="background-color: #25D366; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; margin-top: 1rem;">
-      Finalizar Pedido via WhatsApp
-    </button>
-  </main>
-
-  <script>
-    const tbody = document.getElementById("carrinho-body");
-    const totalDisplay = document.getElementById("total");
-    const contador = document.getElementById("contador-carrinho");
-
-    function atualizarContador() {
-      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-      contador.textContent = carrinho.length;
-    }
-
-    function carregarCarrinho() {
-      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-      let total = 0;
-      tbody.innerHTML = "";
-
-      if (carrinho.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5">Carrinho vazio!</td></tr>';
-        totalDisplay.textContent = "Total: R$ 0,00";
-        return;
-      }
-
-      carrinho.forEach((item, index) => {
-        tbody.innerHTML += `
-          <tr>
-            <td>${item.nome}</td>
-            <td>${item.tamanho}</td>
-            <td>${item.cor}</td>
-            <td>R$ ${item.preco}</td>
-            <td><button class="remover-btn" onclick="removerItem(${index})">Remover</button></td>
-          </tr>
-        `;
-        total += parseFloat(item.preco);
-      });
-
-      totalDisplay.textContent = "Total: R$ " + total.toFixed(2).replace(".", ",");
-    }
-
-    function removerItem(index) {
-      let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-      carrinho.splice(index, 1);
-      localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
-      carregarCarrinho();
-      atualizarContador();
-    }
-
-    document.getElementById("limpar-carrinho").onclick = () => {
-      localStorage.removeItem("carrinhoItems");
-      carregarCarrinho();
-      atualizarContador();
-    };
-
-    function enviarParaWhatsApp() {
-      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-      if (carrinho.length === 0) {
-        alert("Seu carrinho está vazio!");
-        return;
-      }
-
-      let mensagem = "Olá! Quero finalizar meu pedido na loja I Purple You Creative 😊\n\nMeu carrinho:\n\n";
-      carrinho.forEach((item, index) => {
-        mensagem += `- ${item.nome} | Tamanho: ${item.tamanho} | Cor: ${item.cor}\n`;
-      });
-      mensagem += `\nTotal de itens: ${carrinho.length}`;
-
-      const numero = "5541995081726";  // 👉 Coloque seu número com DDD
-      const linkWhats = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-      window.open(linkWhats, '_blank');
-    }
-
-    carregarCarrinho();
-    atualizarContador();
-  </script>
-
-</body>
-</html>
+// Atualizar o contador sempre que a página carregar
+document.addEventListener('DOMContentLoaded', atualizarContadorCarrinho);
 
 
 
