@@ -1,46 +1,164 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrinho | I Purple You Creative</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="carrinho.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho de Compras | I Purple You Creative</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background-color: rgba(255,255,255,0.9);
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header img.logo {
+      height: 60px;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #6a1b9a;
+      font-weight: bold;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    #total {
+      font-weight: bold;
+      margin-top: 1rem;
+      text-align: right;
+    }
+    button {
+      padding: 6px 12px;
+      background-color: #6a1b9a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #4a148c;
+    }
+    .remover-btn {
+      background-color: #d32f2f;
+    }
+    .remover-btn:hover {
+      background-color: #b71c1c;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <img src="assets/logo.png" alt="I Purple You Creative" class="logo">
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="colecao-bts.html">Coleção BTS</a>
-            <a href="colecao-dorameira.html">Coleção Dorameira</a>
-            <a href="carrinho.html">Carrinho (<span id="cart-count">0</span>)</a>
-        </nav>
-    </header>
 
-    <main style="background: rgba(255, 255, 255, 0.9); max-width: 600px; margin: 2rem auto; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center;">
-        <h1>Seu Carrinho 🛒</h1>
-        <p>Quantidade de itens: <span id="quantidade-itens">0</span></p>
-        <p>Total: R$ <span id="valor-total">0.00</span></p>
-    </main>
+  <header>
+    <img src="assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
+    </nav>
+  </header>
 
-    <script>
-        function atualizarCarrinho() {
-            const quantidade = localStorage.getItem('cartCount') || 0;
-            document.getElementById('quantidade-itens').textContent = quantidade;
-            const total = quantidade * 59.90;
-            document.getElementById('valor-total').textContent = total.toFixed(2);
-        }
+  <main>
+    <h1>Seu Carrinho de Compras</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Tamanho</th>
+          <th>Cor</th>
+          <th>Preço</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody id="carrinho-body">
+        <!-- Itens do carrinho vão aparecer aqui -->
+      </tbody>
+    </table>
 
-        document.addEventListener('DOMContentLoaded', () => {
-            atualizarContadorCarrinho();
-            atualizarCarrinho();
-        });
-    </script>
+    <p id="total">Total: R$ 0,00</p>
+
+    <button id="limpar-carrinho">Esvaziar Carrinho</button><br><br>
+    <a href="index.html">← Continuar Comprando</a>
+  </main>
+
+  <script>
+    const tbody = document.getElementById("carrinho-body");
+    const totalDisplay = document.getElementById("total");
+    const contador = document.getElementById("contador-carrinho");
+
+    function atualizarContador() {
+      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+      contador.textContent = carrinho.length;
+    }
+
+    function carregarCarrinho() {
+      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+      let total = 0;
+      tbody.innerHTML = "";
+
+      if (carrinho.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5">Carrinho vazio!</td></tr>';
+        totalDisplay.textContent = "Total: R$ 0,00";
+        return;
+      }
+
+      carrinho.forEach((item, index) => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${item.nome}</td>
+            <td>${item.tamanho}</td>
+            <td>${item.cor}</td>
+            <td>R$ ${item.preco}</td>
+            <td><button class="remover-btn" onclick="removerItem(${index})">Remover</button></td>
+          </tr>
+        `;
+        total += parseFloat(item.preco);
+      });
+
+      totalDisplay.textContent = "Total: R$ " + total.toFixed(2).replace(".", ",");
+    }
+
+    function removerItem(index) {
+      let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+      carrinho.splice(index, 1);
+      localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
+      carregarCarrinho();
+      atualizarContador();
+    }
+
+    document.getElementById("limpar-carrinho").onclick = () => {
+      localStorage.removeItem("carrinhoItems");
+      carregarCarrinho();
+      atualizarContador();
+    };
+
+    carregarCarrinho();
+    atualizarContador();
+  </script>
+
 </body>
 </html>
-
-
 
 
 
