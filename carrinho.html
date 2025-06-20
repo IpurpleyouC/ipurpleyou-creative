@@ -157,27 +157,28 @@
     };
 
     document.getElementById("finalizar-pedido").onclick = function() {
-      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+  const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
 
-      if (carrinho.length === 0) {
-        alert("Seu carrinho está vazio!");
-        return;
-      }
+  if (carrinho.length === 0) {
+    alert("Seu carrinho está vazio!");
+    return;
+  }
 
-      let mensagem = "📦 Pedido I Purple You Creative:%0A%0A";
+  let mensagem = "📦 Pedido I Purple You Creative:%0A%0A";
 
-      carrinho.forEach(item => {
-        mensagem += `🛒 Produto: ${item.nome}%0A`;
-        mensagem += `📌 Tamanho: ${item.tamanho}%0A`;
-        mensagem += `🎨 Cor: ${item.cor}%0A`;
-        mensagem += `💰 Preço: R$ ${item.preco}%0A%0A`;
-      });
+  carrinho.forEach(item => {
+    mensagem += `🛒 Produto: ${item.nome}%0A`;
+    mensagem += `🔢 Referência: ${item.referencia}%0A`;
+    mensagem += `📌 Tamanho: ${item.tamanho}%0A`;
+    mensagem += `🎨 Cor: ${item.cor}%0A`;
+    mensagem += `💰 Preço: R$ ${item.preco}%0A%0A`;
+  });
 
-      let total = carrinho.reduce((soma, item) => soma + parseFloat(item.preco), 0);
-      mensagem += `🧾 Total: R$ ${total.toFixed(2).replace(".", ",")}%0A`;
+  let total = carrinho.reduce((soma, item) => soma + parseFloat(item.preco), 0);
+  mensagem += `🧾 Total: R$ ${total.toFixed(2).replace(".", ",")}%0A`;
 
-      const numero = "5541995081726";  
-      window.open(`https://wa.me/${numero}?text=${mensagem}`, "_blank");
+  const numero = "5541995081726";  
+  window.open(`https://wa.me/${numero}?text=${mensagem}`, "_blank");
     };
 
     carregarCarrinho();
