@@ -71,28 +71,29 @@ button {
 button:hover {
     background-color: #4a148c;
 }
+
 .produtos-destaque {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin: 2rem;
 }
 
 .produtos-destaque .produto {
-  background: rgba(255,255,255,0.9);
-  padding: 1rem;
-  border-radius: 12px;
-  width: 280px;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background: rgba(255,255,255,0.9);
+    padding: 1rem;
+    border-radius: 12px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .produtos-destaque .produto img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
 }
 
 /* Modal */
@@ -144,4 +145,33 @@ button:hover {
 .modal-content .close:focus {
     color: black;
     text-decoration: none;
+}
+
+/* Coleções - Banners Padronizados */
+.colecoes-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 640px;
+    margin: 40px auto;
+    padding: 0 10px;
+}
+
+.colecoes-container a img {
+    width: 100%;
+    max-width: 400px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+@media (min-width: 600px) {
+    .colecoes-container {
+        grid-template-columns: 1fr 1fr;
+    }
 }
