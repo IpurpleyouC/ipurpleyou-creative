@@ -38,24 +38,26 @@
         <p>Ref: DM008</p>
         <button onclick="abrirModal('Camiseta Hidden Love', 'DM008', 'Preta e Branca', 'P, M, G, GG', '59.90', 'assets/hidden-love-raposa.png')">Ver Produto</button>
     </div>
-<div class="produto">
-    <img src="assets/hidden-love-pier.png.png" alt="Camiseta Hidden Love">
-    <h3>Camiseta Hidden Love</h3>
-    <p>Ref: DM010</p>
-    <button onclick="abrirModal('Camiseta Hidden Love Pier', 'DM010', 'Preta e Branca', 'P, M, G, GG', '59.90', 'assets/hidden-love-pier.png')">Ver Produto</button>
-</div>
 
-<div class="produto">
-    <img src="assets/pousando-no-amor.png" alt="Camiseta Pousando no Amor">
-    <h3>Camiseta Pousando no Amor</h3>
-    <p>Ref: DM011</p>
-    <button onclick="abrirModal('Camiseta Pousando no Amor', 'DM011', 'Bege, Rosa Pastel, Preta e Branca', 'P, M, G, GG', '59.90', 'assets/pousando-no-amor.png')">Ver Produto</button>
-</div>
     <div class="produto">
         <img src="assets/camiseta-Bogum.png" alt="Camiseta Park Bo Gum">
         <h3>Camiseta Park Bo Gum</h3>
         <p>Ref: DM009</p>
         <button onclick="abrirModal('Camiseta Park Bo Gum', 'DM009', 'Preta e Branca', 'P, M, G, GG', '59.90', 'assets/camiseta-Bogum.png')">Ver Produto</button>
+    </div>
+
+    <div class="produto">
+        <img src="assets/hidden-love-pier.png" alt="Camiseta Hidden Love Pier">
+        <h3>Camiseta Hidden Love Pier</h3>
+        <p>Ref: DM010</p>
+        <button onclick="abrirModal('Camiseta Hidden Love Pier', 'DM010', 'Preta e Branca', 'P, M, G, GG', '59.90', 'assets/hidden-love-pier.png')">Ver Produto</button>
+    </div>
+
+    <div class="produto">
+        <img src="assets/pousando-no-amor.png" alt="Camiseta Pousando no Amor">
+        <h3>Camiseta Pousando no Amor</h3>
+        <p>Ref: DM011</p>
+        <button onclick="abrirModal('Camiseta Pousando no Amor', 'DM011', 'Bege, Rosa Pastel, Preta e Branca', 'P, M, G, GG', '59.90', 'assets/pousando-no-amor.png')">Ver Produto</button>
     </div>
 </div>
 
@@ -66,8 +68,13 @@
         <img id="modal-imagem" src="" alt="Imagem do Produto">
         <h2 id="modal-titulo"></h2>
         <p><strong>Referência:</strong> <span id="modal-referencia"></span></p>
-        <p><strong>Cores:</strong> <span id="modal-cores"></span></p>
-        <p><strong>Tamanhos:</strong> <span id="modal-tamanhos"></span></p>
+
+        <label for="selecao-cor"><strong>Cores:</strong></label>
+        <select id="selecao-cor"></select>
+
+        <label for="selecao-tamanho"><strong>Tamanhos:</strong></label>
+        <select id="selecao-tamanho"></select>
+
         <p><strong>Preço:</strong> R$ <span id="modal-preco"></span></p>
         <button onclick="adicionarProdutoAoCarrinho()">Adicionar ao Carrinho</button>
     </div>
