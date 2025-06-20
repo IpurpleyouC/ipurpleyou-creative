@@ -160,20 +160,26 @@ button:hover {
 .colecoes-container a img {
     width: 100%;
     max-width: 400px;
-    height: 220px;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     transition: transform 0.3s ease;
     display: block;
     margin: 0 auto;
     cursor: pointer;
+    background-color: white;
+}
+ background-color: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #6a1b9a;
+    margin-top: 4rem;
+    border-top: 2px solid #6a1b9a;
 }
 
-@media (min-width: 600px) {
-    .colecoes-container {
-        grid-template-columns: 1fr 1fr;
-    }
 nav {
   display: flex;
   align-items: center;
@@ -212,4 +218,15 @@ nav .dropdown:hover .dropdown-content {
   display: block;
 }
 
+/* Responsividade das coleções */
+@media (min-width: 600px) {
+    .colecoes-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1000px) {
+    .colecoes-container {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
 }
