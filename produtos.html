@@ -39,7 +39,6 @@
     .produto button:hover {
       background-color: #4a148c;
     }
-    /* Modal igual das outras páginas */
     .modal {
       display: none;
       position: fixed;
@@ -58,7 +57,6 @@
       width: 90%;
       position: relative;
       text-align: center;
-      overflow: hidden;
     }
     .modal-content img {
       max-width: 100%;
@@ -93,99 +91,16 @@
 <h1 style="text-align: center; color: #6a1b9a; margin-top: 2rem;">Todos os Produtos</h1>
 
 <section class="produtos-todos">
-  <!-- Exemplo de produto (repete pra cada um que você tem) -->
-  <div class="produto">
-    <img src="assets/camisa-BE-.png" alt="Camiseta BTS BE">
-    <h3>REF 001 - Camiseta BTS - BE</h3>
-    <p>R$ 59,90</p>
-    <button class="ver-produto-btn" data-img="assets/camisa-BE-.png" data-nome="REF 001 - Camiseta BTS - BE" data-preco="59.90">Ver Produto</button>
-  </div>
+  <!-- Produtos BTS -->
+  <div class="produto"><img src="assets/camisa-BE-.png" alt="Camiseta BTS BE"><h3>REF 001 - Camiseta BTS - BE</h3><p>R$ 59,90</p><button class="ver-produto-btn" data-img="assets/camisa-BE-.png" data-nome="REF 001 - Camiseta BTS - BE" data-preco="59.90">Ver Produto</button></div>
+  <div class="produto"><img src="assets/camisa-BTS-cor.png" alt="Camiseta BTS Colorida"><h3>REF 002 - Camiseta BTS - Colorida</h3><p>R$ 59,90</p><button class="ver-produto-btn" data-img="assets/camisa-BTS-cor.png" data-nome="REF 002 - Camiseta BTS - Colorida" data-preco="59.90">Ver Produto</button></div>
+  <div class="produto"><img src="assets/canisa-echo.jpg" alt="Camiseta Jin Echo"><h3>REF 003 - Camiseta Jin - Echo</h3><p>R$ 59,90</p><button class="ver-produto-btn" data-img="assets/canisa-echo.jpg" data-nome="REF 003 - Camiseta Jin - Echo" data-preco="59.90">Ver Produto</button></div>
+  <div class="produto"><img src="assets/camisa-jimin.jpg" alt="Camiseta Jimin"><h3>REF 004 - Camiseta Jimin</h3><p>R$ 59,90</p><button class="ver-produto-btn" data-img="assets/camisa-jimin.jpg" data-nome="REF 004 - Camiseta Jimin" data-preco="59.90">Ver Produto</button></div>
+  <div class="produto"><img src="assets/camisa-jk.jpg" alt="Camiseta JK"><h3>REF 005 - Camiseta JK - BTS</h3><p>R$ 59,90</p><button class="ver-produto-btn" data-img="assets/camisa-jk.jpg" data-nome="REF 005 - Camiseta JK - BTS" data-preco="59.90">Ver Produto</button></div>
+  <div class="produto"><img src="assets/camisa-v.jpg" alt="Camiseta V"><h3>REF 006 - Camiseta V - BTS</h3><p>R$ 59,90</p><button class="ver-produto-btn" data-img="assets/camisa-v.jpg" data-nome="REF 006 - Camiseta V - BTS" data-preco="59.90">Ver Produto</button></div>
+  <div class="produto"><img src="assets/camisa-suga.jpg" alt="Camiseta Suga"><h3>REF 007 - Camiseta Suga - BTS</h3><p>R$ 59,90</p><button class="ver-produto-btn" data-img="assets/camisa-suga.jpg" data-nome="REF 007 - Camiseta Suga - BTS" data-preco="59.90">Ver Produto</button></div>
+  <div class="produto"><img src="assets/camisa-jungkook.png" alt="Camiseta Jeon Jung-Kook"><h3>REF 008 - Camiseta Jeon Jung-Kook</h3><p>R$ 59,90</p><button class="ver-produto-btn" data-img="assets/camisa-jungkook.png" data-nome="REF 008 - Camiseta Jeon Jung-Kook" data-preco="59.90">Ver Produto</button></div>
 
-  <div class="produto">
-    <img src="assets/hidden-love-raposa.png" alt="Camiseta Hidden Love">
-    <h3>REF 009 - Camiseta Hidden Love</h3>
-    <p>R$ 59,90</p>
-    <button class="ver-produto-btn" data-img="assets/hidden-love-raposa.png" data-nome="REF 009 - Camiseta Hidden Love" data-preco="59.90">Ver Produto</button>
-  </div>
-
-  <!-- Aqui você pode seguir e adicionar todas as outras camisetas (V, Suga, Jimin, etc) -->
+  <!-- Produto Dorameira -->
+  <div class="produto"><img src="assets/hidden-love-raposa.png" alt="Camiseta Hidden Love"><h3>REF 009 - Camiseta Hidden Love</h3><p>R$ 59,90</p><button class="ver-produto-btn" data-img="assets/hidden-love-raposa.png" data-nome="REF 009 - Camiseta Hidden Love" data-preco="59.90">Ver Produto</button></div>
 </section>
-
-<!-- Modal Universal -->
-<div id="produto-modal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <img id="modal-img" src="" alt="">
-    <h2 id="modal-nome"></h2>
-    <p><strong>Preço:</strong> R$ <span id="modal-preco"></span></p>
-    <select id="modal-tamanho">
-      <option value="">Tamanho</option>
-      <option>P</option><option>M</option><option>G</option><option>GG</option>
-    </select>
-    <select id="modal-cor">
-      <option value="">Cor</option>
-      <option>Preta</option><option>Branca</option>
-    </select>
-    <button id="adicionar-carrinho">Adicionar ao Carrinho</button>
-    <p id="erro" style="color:red; display:none">Escolha tamanho e cor.</p>
-  </div>
-</div>
-
-<footer>© 2025 I Purple You Creative • Feito com amor por dorameiras 💜</footer>
-
-<script>
-  const modal = document.getElementById("produto-modal");
-  const span = modal.querySelector(".close");
-  const img = document.getElementById("modal-img");
-  const nome = document.getElementById("modal-nome");
-  const preco = document.getElementById("modal-preco");
-  const selT = document.getElementById("modal-tamanho");
-  const selC = document.getElementById("modal-cor");
-  const erro = document.getElementById("erro");
-  const addBtn = document.getElementById("adicionar-carrinho");
-  const contador = document.getElementById("contador-carrinho");
-
-  function atualizarContador() {
-    const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-    contador.textContent = carrinho.length;
-  }
-
-  document.querySelectorAll(".ver-produto-btn").forEach(btn => {
-    btn.onclick = () => {
-      img.src = btn.dataset.img;
-      nome.textContent = btn.dataset.nome;
-      preco.textContent = btn.dataset.preco;
-      selT.value = "";
-      selC.value = "";
-      erro.style.display = "none";
-      modal.style.display = "flex";
-    };
-  });
-
-  span.onclick = () => modal.style.display = "none";
-  window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
-
-  addBtn.onclick = () => {
-    if (!selT.value || !selC.value) {
-      erro.style.display = "block";
-      return;
-    }
-    const produto = {
-      nome: nome.textContent,
-      preco: preco.textContent,
-      tamanho: selT.value,
-      cor: selC.value
-    };
-    let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-    carrinho.push(produto);
-    localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
-    atualizarContador();
-    alert(`Adicionado: ${nome.textContent}\nTamanho: ${selT.value}\nCor: ${selC.value}`);
-    modal.style.display = "none";
-  };
-
-  atualizarContador();
-</script>
-
-</body>
-</html>
