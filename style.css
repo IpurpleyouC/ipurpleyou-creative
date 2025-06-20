@@ -214,6 +214,21 @@ button:hover {
     transform: scale(1.05);
 }
 
+/* Frase Promocional Banner-Frase */
+.banner-frase {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    font-style: italic;
+    color: #4a148c;
+    margin: 4rem auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem;
+    max-width: 800px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 /* Footer destacado */
 footer {
     background-color: rgba(255, 255, 255, 0.95);
