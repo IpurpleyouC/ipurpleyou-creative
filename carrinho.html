@@ -99,6 +99,9 @@
     <p id="total">Total: R$ 0,00</p>
 
     <button id="limpar-carrinho">Esvaziar Carrinho</button><br><br>
+
+    <button id="finalizar-pedido">Finalizar Pedido via WhatsApp</button><br><br>
+
     <a href="index.html">← Continuar Comprando</a>
   </main>
 
@@ -151,6 +154,30 @@
       localStorage.removeItem("carrinhoItems");
       carregarCarrinho();
       atualizarContador();
+    };
+
+    document.getElementById("finalizar-pedido").onclick = function() {
+      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+
+      if (carrinho.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
+      }
+
+      let mensagem = "📦 Pedido I Purple You Creative:%0A%0A";
+
+      carrinho.forEach(item => {
+        mensagem += `🛒 Produto: ${item.nome}%0A`;
+        mensagem += `📌 Tamanho: ${item.tamanho}%0A`;
+        mensagem += `🎨 Cor: ${item.cor}%0A`;
+        mensagem += `💰 Preço: R$ ${item.preco}%0A%0A`;
+      });
+
+      let total = carrinho.reduce((soma, item) => soma + parseFloat(item.preco), 0);
+      mensagem += `🧾 Total: R$ ${total.toFixed(2).replace(".", ",")}%0A`;
+
+      const numero = "SEU_NUMERO_AQUI";  // Exemplo: 5591999999999
+      window.open(`https://wa.me/${numero}?text=${mensagem}`, "_blank");
     };
 
     carregarCarrinho();
