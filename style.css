@@ -21,11 +21,50 @@ header img.logo {
     height: 60px;
 }
 
+nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 nav a {
-    margin: 0 1rem;
+    margin: 0 1.2rem;
     text-decoration: none;
     color: #6a1b9a;
     font-weight: bold;
+    font-size: 1.05rem;
+}
+
+nav .dropdown {
+    position: relative;
+}
+
+nav .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.95);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+}
+
+nav .dropdown-content a {
+    color: #6a1b9a;
+    padding: 10px 14px;
+    text-decoration: none;
+    display: block;
+    font-weight: bold;
+}
+
+nav .dropdown-content a:hover {
+    background-color: #f3e5f5;
+}
+
+nav .dropdown:hover .dropdown-content {
+    display: block;
 }
 
 .banner img {
@@ -147,14 +186,14 @@ button:hover {
     text-decoration: none;
 }
 
-/* Coleções - Banners Padronizados */
+/* Coleções - Grid Responsivo sem cortar imagens */
 .colecoes-container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
-    max-width: 640px;
+    max-width: 800px;
     margin: 40px auto;
-    padding: 0 10px;
+    padding: 0 20px;
 }
 
 .colecoes-container a img {
@@ -170,63 +209,26 @@ button:hover {
     cursor: pointer;
     background-color: white;
 }
- background-color: rgba(255, 255, 255, 0.95);
+
+.colecoes-container a img:hover {
+    transform: scale(1.05);
+}
+
+/* Footer destacado */
+footer {
+    background-color: rgba(255, 255, 255, 0.95);
     text-align: center;
-    padding: 1.5rem;
-    font-size: 1.1rem;
+    padding: 2rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: #6a1b9a;
     margin-top: 4rem;
-    border-top: 2px solid #6a1b9a;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-nav .dropdown {
-  position: relative;
-}
-
-nav .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.95);
-  min-width: 160px;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-  border-radius: 8px;
-  top: 100%;
-  left: 0;
-  z-index: 10;
-}
-
-nav .dropdown-content a {
-  color: #6a1b9a;
-  padding: 10px 14px;
-  text-decoration: none;
-  display: block;
-  font-weight: bold;
-}
-
-nav .dropdown-content a:hover {
-  background-color: #f3e5f5;
-}
-
-nav .dropdown:hover .dropdown-content {
-  display: block;
+    border-top: 3px solid #6a1b9a;
 }
 
 /* Responsividade das coleções */
 @media (min-width: 600px) {
     .colecoes-container {
         grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (min-width: 1000px) {
-    .colecoes-container {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
