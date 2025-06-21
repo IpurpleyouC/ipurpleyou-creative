@@ -14,6 +14,37 @@
       background-position: center;
       color: #333;
     }
+    header {
+      background-color: rgba(255,255,255,0.92);
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 0 0 18px 18px;
+      margin-bottom: 2.2rem;
+      gap: 2rem;
+    }
+    header img.logo {
+      height: 54px;
+    }
+    nav a {
+      margin: 0 1.1rem;
+      text-decoration: none;
+      color: #6c39b7;
+      font-size: 1.09rem;
+      transition: color .22s;
+    }
+    nav a:hover {
+      color: #A259E6;
+      text-decoration: underline;
+    }
+    nav a[style*="bold"] {
+      color: #A259E6;
+      font-weight: bold;
+      pointer-events: none;
+      cursor: default;
+    }
     .sobre-container {
       background: rgba(255,255,255,0.93);
       max-width: 900px;
@@ -105,6 +136,17 @@
   </style>
 </head>
 <body>
+  <header>
+    <img src="assets/logo-ipycc.png" alt="Logo I Purple You Creative" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="colecao-bts.html">Coleção BTS</a>
+      <a href="colecao-dorameira.html">Coleção Dorameira</a>
+      <a href="colecao-kpop.html">Coleção K-pop</a>
+      <a href="sobre.html" style="color:#A259E6;font-weight:bold;">Sobre</a>
+      <a href="carrinho.html">Carrinho</a>
+    </nav>
+  </header>
   <div class="sobre-container">
     <div class="sobre-img">
       <!-- Bonequinhas: coloque sua imagem aqui -->
