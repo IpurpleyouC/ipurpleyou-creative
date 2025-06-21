@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre | I Purple You Creative</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('assets/imagem-fundo.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      color: #333;
+    }
+    .sobre-container {
+      background: rgba(255,255,255,0.93);
+      max-width: 900px;
+      margin: 3rem auto 2rem auto;
+      border-radius: 24px;
+      box-shadow: 0 6px 32px rgba(112, 35, 149, 0.07);
+      padding: 2.5rem 2rem 2rem 2rem;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .sobre-img {
+      flex: 1 1 250px;
+      min-width: 220px;
+      max-width: 340px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .sobre-img img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 18px;
+      box-shadow: 0 3px 24px rgba(151, 71, 255, 0.12);
+    }
+    .sobre-texto {
+      flex: 2 1 340px;
+      min-width: 280px;
+    }
+    h1 {
+      color: #A259E6;
+      font-size: 2.1rem;
+      margin-bottom: 0.7rem;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    h2 {
+      color: #6c39b7;
+      font-size: 1.3rem;
+      margin-bottom: 0.4rem;
+      margin-top: 1.4rem;
+    }
+    .frase {
+      font-style: italic;
+      color: #B28AE6;
+      margin: 1.3rem 0;
+      font-size: 1.08rem;
+    }
+    .equipe-flex {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .equipe-foto {
+      min-width: 90px;
+      max-width: 110px;
+    }
+    .equipe-foto img {
+      width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px #b28ae652;
+      object-fit: cover;
+      aspect-ratio: 3/4;
+    }
+    ul {
+      margin-top: 0.4rem;
+      margin-bottom: 0.8rem;
+      padding-left: 1.1rem;
+    }
+    @media (max-width: 830px) {
+      .sobre-container {
+        flex-direction: column;
+        padding: 1.5rem 1rem;
+      }
+      .sobre-img, .sobre-texto {
+        min-width: unset;
+        max-width: 100%;
+      }
+      .equipe-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.7rem;
+      }
+      .equipe-foto {
+        max-width: 90px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sobre-container">
+    <div class="sobre-img">
+      <!-- Bonequinhas: coloque sua imagem aqui -->
+      <img src="assets/bonequinhas-su-vi.png" alt="Su e Vi - I Purple You Creative">
+    </div>
+    <div class="sobre-texto">
+      <h1>Sobre a I Purple You Creative</h1>
+      <p>
+        Seja bem-vindo(a) à <strong>I Purple You Creative</strong>! 🌸<br>
+        Aqui, cada detalhe foi pensado com muito carinho para os apaixonados por K-pop, doramas e tudo o que faz o coração bater mais forte!
+      </p>
+      <p>
+        Nossa loja nasceu de um sonho entre amigas, Su e Vi, que transformaram o amor por esse universo em criatividade, produtos fofos e momentos especiais. Desde a escolha dos tecidos das camisetas até as ilustrações das nossas coleções, tudo é feito pensando em você, que ama viver como nos melhores episódios de dorama!
+      </p>
+      <h2>Nossa Missão</h2>
+      <p>
+        Levar alegria, representatividade e criatividade para os fãs de K-pop e doramas no Brasil, criando produtos exclusivos que conectam pessoas, espalham cor e inspiram sonhos.
+      </p>
+      <h2>Nossa Visão</h2>
+      <p>
+        Ser referência em produtos criativos, autênticos e de qualidade, celebrando a cultura coreana com muito amor, fé e estilo.
+      </p>
+      <h2>Nossos Valores</h2>
+      <ul>
+        <li>Amor pelo que fazemos</li>
+        <li>Criatividade em cada detalhe</li>
+        <li>Atendimento com carinho</li>
+        <li>Produtos de qualidade</li>
+        <li>Fé em Deus em cada etapa</li>
+      </ul>
+      <h2>Quem faz a IPYC</h2>
+      <div class="equipe-flex">
+        <div>
+          <p>
+            Somos a <strong>Su</strong> e a <strong>Vi</strong>: amigas, fãs de K-pop (ARMY de coração!), dorameiras assumidas e cristãs que acreditam que alegria, criatividade e fé andam juntas.<br>
+            Transformamos nossas ideias em produtos exclusivos, com a vibe mais criativa do mundo. Estamos sempre por aqui, cuidando de cada etapa, desde o design até o envio do seu pedido.
+          </p>
+        </div>
+        <div class="equipe-foto">
+          <!-- Foto real: coloque aqui sua foto com a Vi -->
+          <img src="assets/su-vi.jpg" alt="Foto Su e Vi">
+        </div>
+      </div>
+      <div class="frase">
+        “Viver um dorama é transformar o comum em extraordinário, com muita cor, amizade e um toque de criatividade!”
+      </div>
+      <p>
+        Seja parte da nossa história!<br>
+        A I Purple You Creative é feita pra você, por quem também sonha, dança, ora e se emociona junto.<br>
+        Purple you! 💜
+      </p>
+    </div>
+  </div>
+</body>
+</html>
