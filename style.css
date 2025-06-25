@@ -247,3 +247,23 @@ footer {
         grid-template-columns: 1fr 1fr;
     }
 }
+
+.separador {
+  border: none;
+  border-top: 2px solid #e6d4f8;
+  margin: 40px auto 24px auto;
+  width: 60%;
+  opacity: 0.5;
+}
+
+.banner-novidade {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+.img-banner {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 6px 36px rgba(100, 0, 180, 0.13);
+}
