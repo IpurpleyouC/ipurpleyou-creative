@@ -267,3 +267,45 @@ footer {
   border-radius: 20px;
   box-shadow: 0 6px 36px rgba(100, 0, 180, 0.13);
 }
+.banner-novidade {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0 2.5rem 0;
+}
+.img-banner {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 6px 36px rgba(100, 0, 180, 0.13);
+}
+.novidades-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin: 3rem 0;
+}
+.card-produto {
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(180, 0, 200, 0.09);
+  padding: 1rem;
+  max-width: 270px;
+  transition: transform 0.2s;
+}
+.card-produto:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(180, 0, 200, 0.13);
+}
+.card-produto img {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+}
+.em-breve-txt {
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: #6a1b9a;
+  margin-top: 0.7rem;
+}
