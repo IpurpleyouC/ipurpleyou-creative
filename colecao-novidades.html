@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coleção Novidades | I Purple You Creative</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <img src="assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="produtos.html">Produtos</a>
+    <div class="dropdown">
+      <a href="#">Coleções ▾</a>
+      <div class="dropdown-content">
+        <a href="colecao-bts.html">BTS</a>
+        <a href="colecao-dorameira.html">Dorameiras</a>
+        <a href="colecao-kpop.html">K-pop</a>
+        <a href="colecao-novidades.html">Lançamentos</a>
+      </div>
+    </div>
+    <a href="sobre.html">Sobre</a>
+    <a href="#">Contato</a>
+    <a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
+  </nav>
+</header>
+
+<div class="banner-novidade">
+  <img src="assets/novidades/banner-caneca-embreve.png" alt="Banner Nova Coleção de Canecas" class="img-banner">
+</div>
+
+<section class="novidades-cards">
+  <div class="card-produto">
+    <img src="assets/novidades/caneca-btsamarela-embreve.png" alt="Caneca BTS Amarela Em Breve">
+    <div class="em-breve-txt">Em breve na loja!</div>
+  </div>
+  <div class="card-produto">
+    <img src="assets/novidades/caneca-bts-embreve.png" alt="Caneca BTS Em Breve">
+    <div class="em-breve-txt">Em breve na loja!</div>
+  </div>
+  <div class="card-produto">
+    <img src="assets/novidades/caneca-butter-embreve.png" alt="Caneca Butter Em Breve">
+    <div class="em-breve-txt">Em breve na loja!</div>
+  </div>
+  <div class="card-produto">
+    <img src="assets/novidades/caneca-jhope-embreve.png" alt="Caneca J-Hope Em Breve">
+    <div class="em-breve-txt">Em breve na loja!</div>
+  </div>
+  <div class="card-produto">
+    <img src="assets/novidades/caneca-jin-embreve.png" alt="Caneca Jin Em Breve">
+    <div class="em-breve-txt">Em breve na loja!</div>
+  </div>
+  <div class="card-produto">
+    <img src="assets/novidades/caneca-jk-embreve.png" alt="Caneca Jungkook Em Breve">
+    <div class="em-breve-txt">Em breve na loja!</div>
+  </div>
+  <div class="card-produto">
+    <img src="assets/novidades/caneca-suga-embreve.png" alt="Caneca Suga Em Breve">
+    <div class="em-breve-txt">Em breve na loja!</div>
+  </div>
+</section>
+
+<footer>
+    © 2025 I Purple You Creative • Feito com amor por dorameiras 💜<br><br>
+    <a href="https://www.instagram.com/ipurpleyoucreative/" target="_blank" style="color: #6a1b9a; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
+        📸 Siga a gente no Instagram: @ipurpleyoucreative 💜
+    </a>
+</footer>
+
+<script>
+  // Se quiser contar os itens do carrinho:
+  const contador = document.getElementById("contador-carrinho");
+  function atualizarContador() {
+    const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+    contador.textContent = carrinho.length;
+  }
+  atualizarContador();
+</script>
+
+</body>
+</html>
