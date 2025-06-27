@@ -19,6 +19,10 @@ header {
 
 header img.logo {
     height: 60px;
+    width: auto;
+    display: block;
+    margin-right: 20px;
+
 }
 
 nav {
