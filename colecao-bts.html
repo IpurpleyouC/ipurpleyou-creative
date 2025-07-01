@@ -77,7 +77,7 @@
       color: #6a1b9a;
       margin-top: 4rem;
     }
-    /* Modal */
+    /* Modal padrão */
     .modal {
       display: none;
       position: fixed;
@@ -115,6 +115,65 @@
       font-size: 24px;
       cursor: pointer;
     }
+
+    /* Modal Cerejeira Carrossel */
+    #modal-cerejeira-bg {
+      display: none;
+      position: fixed;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.55);
+      z-index: 1100;
+      align-items: center;
+      justify-content: center;
+    }
+    #modal-cerejeira-bg .modal-content-cerejeira {
+      background: #fff;
+      border-radius: 16px;
+      max-width: 410px;
+      width: 95vw;
+      margin: 32px auto;
+      padding: 32px 24px 24px;
+      position: relative;
+      text-align: center;
+    }
+    #modal-cerejeira-bg .close-cerejeira {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      background: transparent;
+      border: none;
+      font-size: 28px;
+      color: #444;
+      cursor: pointer;
+    }
+    #modal-cerejeira-bg img {
+      width: 220px;
+      height: 220px;
+      object-fit: contain;
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+    #modal-cerejeira-bg button.carousel-btn {
+      background: #fff7;
+      border: none;
+      font-size: 26px;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 3px 7px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    #modal-cerejeira-bg #btn-prev-img-cerejeira { left: 2px; }
+    #modal-cerejeira-bg #btn-next-img-cerejeira { right: 2px; }
+    #modal-cerejeira-bg select {
+      width: 100%;
+      padding: 6px;
+      border-radius: 7px;
+      border: 1px solid #bbb;
+      margin-bottom: 12px;
+    }
   </style>
 </head>
 <body>
@@ -134,61 +193,61 @@
 <h1 style="text-align: center; color: #6a1b9a; margin-top: 2rem;">Coleção BTS</h1>
 
 <section class="produtos-destaque">
-  <!-- Cada produto -->
+  <!-- Todos os produtos como antes -->
   <div class="produto">
     <img src="assets/camisa-BE-.png" alt="Camiseta BTS BE">
     <h3>REF 001 - Camiseta BTS - BE</h3>
     <p>R$ 59,90</p>
     <button class="ver-produto-btn" data-img="assets/camisa-BE-.png" data-nome="REF 001 - Camiseta BTS - BE" data-preco="59.90">Ver Produto</button>
   </div>
-
   <div class="produto">
     <img src="assets/camisa-BTS-cor.png" alt="Camiseta BTS Colorida">
     <h3>REF 002 - Camiseta BTS - Colorida</h3>
     <p>R$ 59,90</p>
     <button class="ver-produto-btn" data-img="assets/camisa-BTS-cor.png" data-nome="REF 002 - Camiseta BTS - Colorida" data-preco="59.90">Ver Produto</button>
   </div>
-
   <div class="produto">
     <img src="assets/canisa-echo.jpg" alt="Camiseta Jin Echo">
     <h3>REF 003 - Camiseta Jin - Echo</h3>
     <p>R$ 59,90</p>
     <button class="ver-produto-btn" data-img="assets/canisa-echo.jpg" data-nome="REF 003 - Camiseta Jin - Echo" data-preco="59.90">Ver Produto</button>
   </div>
-
   <div class="produto">
     <img src="assets/camisa-jimin.jpg" alt="Camiseta Jimin">
     <h3>REF 004 - Camiseta Jimin</h3>
     <p>R$ 59,90</p>
     <button class="ver-produto-btn" data-img="assets/camisa-jimin.jpg" data-nome="REF 004 - Camiseta Jimin" data-preco="59.90">Ver Produto</button>
   </div>
-
   <div class="produto">
     <img src="assets/camisa-jk.jpg" alt="Camiseta JK">
     <h3>REF 005 - Camiseta JK - BTS</h3>
     <p>R$ 59,90</p>
     <button class="ver-produto-btn" data-img="assets/camisa-jk.jpg" data-nome="REF 005 - Camiseta JK - BTS" data-preco="59.90">Ver Produto</button>
   </div>
-
   <div class="produto">
     <img src="assets/camisa-v.jpg" alt="Camiseta V">
     <h3>REF 006 - Camiseta V - BTS</h3>
     <p>R$ 59,90</p>
     <button class="ver-produto-btn" data-img="assets/camisa-v.jpg" data-nome="REF 006 - Camiseta V - BTS" data-preco="59.90">Ver Produto</button>
   </div>
-
   <div class="produto">
     <img src="assets/camisa-suga.jpg" alt="Camiseta Suga">
     <h3>REF 007 - Camiseta Suga - BTS</h3>
     <p>R$ 59,90</p>
     <button class="ver-produto-btn" data-img="assets/camisa-suga.jpg" data-nome="REF 007 - Camiseta Suga - BTS" data-preco="59.90">Ver Produto</button>
   </div>
-
   <div class="produto">
     <img src="assets/camisa-jungkook.png" alt="Camiseta Jungkook">
     <h3>REF 008 - Camiseta Jeon Jung-Kook</h3>
     <p>R$ 59,90</p>
     <button class="ver-produto-btn" data-img="assets/camisa-jungkook.png" data-nome="REF 008 - Camiseta Jeon Jung-Kook" data-preco="59.90">Ver Produto</button>
+  </div>
+  <!-- NOVA: Camiseta BTS Cerejeira -->
+  <div class="produto">
+    <img src="assets/bts-cerejeira-branca.png" alt="Camiseta BTS Cerejeira">
+    <h3>REF 009 - Camiseta BTS Cerejeira</h3>
+    <p>R$ 69,90</p>
+    <button onclick="abrirModalCerejeira()">Ver Produto</button>
   </div>
 </section>
 
@@ -199,7 +258,7 @@
     </a>
 </footer>
 
-<!-- MODAL ÚNICO PARA TODOS OS PRODUTOS -->
+<!-- Modal padrão (todas as camisetas comuns) -->
 <div id="produto-modal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
@@ -223,8 +282,41 @@
   </div>
 </div>
 
+<!-- MODAL EXCLUSIVO DA CAMISETA CEREJEIRA -->
+<div id="modal-cerejeira-bg">
+  <div class="modal-content-cerejeira">
+    <button class="close-cerejeira" onclick="fecharModalCerejeira()">&times;</button>
+    <div style="position:relative; display:inline-block;">
+      <img id="modal-cerejeira-img" src="assets/bts-cerejeira-branca.png" alt="Camiseta Cerejeira">
+      <button id="btn-prev-img-cerejeira" class="carousel-btn" style="left:2px;">&#8592;</button>
+      <button id="btn-next-img-cerejeira" class="carousel-btn" style="right:2px;">&#8594;</button>
+    </div>
+    <h2 style="margin-top:16px;" id="modal-cerejeira-titulo">Camiseta BTS Cerejeira</h2>
+    <p id="modal-cerejeira-ref" style="color:#aaa; font-size:0.93em;">REF 009</p>
+    <div style="display:flex; width:100%; gap:12px; margin:14px 0;">
+      <div style="flex:1;">
+        <label for="modal-cerejeira-cor" style="font-size:0.95em;">Cor:</label>
+        <select id="modal-cerejeira-cor"></select>
+      </div>
+      <div style="flex:1;">
+        <label for="modal-cerejeira-tamanho" style="font-size:0.95em;">Tamanho:</label>
+        <select id="modal-cerejeira-tamanho">
+          <option>P</option>
+          <option>M</option>
+          <option>G</option>
+          <option>GG</option>
+        </select>
+      </div>
+    </div>
+    <div style="margin:10px 0 18px 0; font-size:1.18em; color:#7529a7;">
+      <b id="modal-cerejeira-preco">R$ 69,90</b>
+    </div>
+    <button onclick="adicionarCarrinhoCerejeira()" style="background:#a259ef; color:#fff; border:none; border-radius:8px; padding:10px 30px; font-size:1.09em; font-weight:600; cursor:pointer; box-shadow:0 2px 8px #0001;">Adicionar ao carrinho</button>
+  </div>
+</div>
+
 <script>
-  // Carrinho
+  // Modal padrão (todas menos cerejeira)
   const modal = document.getElementById("produto-modal");
   const span = modal.querySelector(".close");
   const img = document.getElementById("modal-img");
@@ -276,9 +368,73 @@
   };
 
   atualizarContador();
+
+  // -------- MODAL ESPECIAL CAMISETA CEREJEIRA ---------
+  const imgsCerejeira = [
+    {src:"assets/bts-cerejeira-branca.png", cor: "Branca"},
+    {src:"assets/bts-cerejeira-preta.png", cor: "Preta"},
+    {src:"assets/bts-cerejeira-verde.png", cor: "Verde Militar"}
+  ];
+  let indexCerejeira = 0;
+
+  function abrirModalCerejeira() {
+    document.getElementById('modal-cerejeira-bg').style.display = 'flex';
+    atualizarCerejeira();
+    preencherCoresCerejeira();
+    document.getElementById("modal-cerejeira-tamanho").selectedIndex = 0;
+  }
+  function fecharModalCerejeira() {
+    document.getElementById('modal-cerejeira-bg').style.display = 'none';
+  }
+  function atualizarCerejeira() {
+    document.getElementById("modal-cerejeira-img").src = imgsCerejeira[indexCerejeira].src;
+    document.getElementById("modal-cerejeira-cor").selectedIndex = indexCerejeira;
+  }
+  function preencherCoresCerejeira() {
+    let sel = document.getElementById("modal-cerejeira-cor");
+    sel.innerHTML = "";
+    imgsCerejeira.forEach((img, i) => {
+      let op = document.createElement("option");
+      op.value = img.cor;
+      op.text = img.cor;
+      sel.appendChild(op);
+    });
+    sel.onchange = function() {
+      indexCerejeira = sel.selectedIndex;
+      atualizarCerejeira();
+    };
+    document.getElementById("btn-prev-img-cerejeira").onclick = function() {
+      indexCerejeira = (indexCerejeira - 1 + imgsCerejeira.length) % imgsCerejeira.length;
+      atualizarCerejeira();
+    };
+    document.getElementById("btn-next-img-cerejeira").onclick = function() {
+      indexCerejeira = (indexCerejeira + 1) % imgsCerejeira.length;
+      atualizarCerejeira();
+    };
+  }
+  function adicionarCarrinhoCerejeira() {
+    const tamanho = document.getElementById("modal-cerejeira-tamanho").value;
+    const cor = imgsCerejeira[indexCerejeira].cor;
+    if (!tamanho || !cor) {
+      alert("Selecione cor e tamanho!");
+      return;
+    }
+    let carrinho = JSON.parse(localStorage.getItem('carrinhoItems') || '[]');
+    carrinho.push({
+      nome: "Camiseta BTS Cerejeira",
+      preco: "69,90",
+      tamanho: tamanho,
+      cor: cor,
+      imagem: imgsCerejeira[indexCerejeira].src
+    });
+    localStorage.setItem('carrinhoItems', JSON.stringify(carrinho));
+    fecharModalCerejeira();
+    atualizarContador();
+  }
 </script>
 </body>
 </html>
+
 
 
 
