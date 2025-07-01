@@ -78,62 +78,42 @@
       margin-top: 4rem;
     }
     /* Modal */
-    #product-modal {
+    .modal {
       display: none;
       position: fixed;
-      left: 0; top: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(0,0,0,0.55);
-      z-index: 9999;
-      align-items: center;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
       justify-content: center;
+      align-items: center;
+      z-index: 1000;
     }
-    #product-modal .modal-content {
-      background: #fff;
-      border-radius: 16px;
-      max-width: 410px;
-      width: 95vw;
-      margin: 32px auto;
-      padding: 32px 24px 24px;
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 90%;
       position: relative;
       text-align: center;
+      overflow: hidden;
     }
-    #product-modal .close {
-      position: absolute;
-      right: 16px;
-      top: 16px;
-      background: transparent;
-      border: none;
-      font-size: 28px;
-      color: #444;
-      cursor: pointer;
-    }
-    #product-modal img {
-      width: 220px;
-      height: 220px;
-      object-fit: contain;
-      border-radius: 10px;
-      margin-bottom: 8px;
-    }
-    #product-modal button.carousel-btn {
-      background: #fff7;
-      border: none;
-      font-size: 26px;
-      cursor: pointer;
+    .modal-content img {
+      max-width: 100%;
       border-radius: 8px;
-      padding: 3px 7px;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      margin-bottom: 10px;
+      cursor: zoom-in;
+      transition: transform 0.3s ease;
     }
-    #btn-prev-img { left: 2px; }
-    #btn-next-img { right: 2px; }
-    #product-modal select {
-      width: 100%;
-      padding: 6px;
-      border-radius: 7px;
-      border: 1px solid #bbb;
-      margin-bottom: 12px;
+    .modal-content img:hover {
+      transform: scale(1.5);
+    }
+    .modal-content .close {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 24px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -154,165 +134,151 @@
 <h1 style="text-align: center; color: #6a1b9a; margin-top: 2rem;">Coleção BTS</h1>
 
 <section class="produtos-destaque">
-  <!-- Exemplo de produto padrão -->
+  <!-- Cada produto -->
   <div class="produto">
     <img src="assets/camisa-BE-.png" alt="Camiseta BTS BE">
     <h3>REF 001 - Camiseta BTS - BE</h3>
     <p>R$ 59,90</p>
-    <button onclick="abrirModal('Camiseta BTS - BE', 'REF 001', 'Branca,Preta', 'P,M,G,GG', '59,90', 'assets/camisa-BE-.png')">Ver Produto</button>
+    <button class="ver-produto-btn" data-img="assets/camisa-BE-.png" data-nome="REF 001 - Camiseta BTS - BE" data-preco="59.90">Ver Produto</button>
   </div>
 
-  <!-- Produto com carrossel de cores -->
   <div class="produto">
-    <img src="assets/bts-cerejeira-branca.png" alt="Camiseta BTS Cerejeira">
-    <h3>REF 009 - Camiseta BTS Cerejeira</h3>
-    <p>R$ 69,90</p>
-    <button onclick="abrirModal('Camiseta BTS Cerejeira', 'REF 009', 'Branca,Preta,Verde Militar', 'P,M,G,GG', '69,90', 'assets/bts-cerejeira-branca.png')">Ver Produto</button>
+    <img src="assets/camisa-BTS-cor.png" alt="Camiseta BTS Colorida">
+    <h3>REF 002 - Camiseta BTS - Colorida</h3>
+    <p>R$ 59,90</p>
+    <button class="ver-produto-btn" data-img="assets/camisa-BTS-cor.png" data-nome="REF 002 - Camiseta BTS - Colorida" data-preco="59.90">Ver Produto</button>
+  </div>
+
+  <div class="produto">
+    <img src="assets/canisa-echo.jpg" alt="Camiseta Jin Echo">
+    <h3>REF 003 - Camiseta Jin - Echo</h3>
+    <p>R$ 59,90</p>
+    <button class="ver-produto-btn" data-img="assets/canisa-echo.jpg" data-nome="REF 003 - Camiseta Jin - Echo" data-preco="59.90">Ver Produto</button>
+  </div>
+
+  <div class="produto">
+    <img src="assets/camisa-jimin.jpg" alt="Camiseta Jimin">
+    <h3>REF 004 - Camiseta Jimin</h3>
+    <p>R$ 59,90</p>
+    <button class="ver-produto-btn" data-img="assets/camisa-jimin.jpg" data-nome="REF 004 - Camiseta Jimin" data-preco="59.90">Ver Produto</button>
+  </div>
+
+  <div class="produto">
+    <img src="assets/camisa-jk.jpg" alt="Camiseta JK">
+    <h3>REF 005 - Camiseta JK - BTS</h3>
+    <p>R$ 59,90</p>
+    <button class="ver-produto-btn" data-img="assets/camisa-jk.jpg" data-nome="REF 005 - Camiseta JK - BTS" data-preco="59.90">Ver Produto</button>
+  </div>
+
+  <div class="produto">
+    <img src="assets/camisa-v.jpg" alt="Camiseta V">
+    <h3>REF 006 - Camiseta V - BTS</h3>
+    <p>R$ 59,90</p>
+    <button class="ver-produto-btn" data-img="assets/camisa-v.jpg" data-nome="REF 006 - Camiseta V - BTS" data-preco="59.90">Ver Produto</button>
+  </div>
+
+  <div class="produto">
+    <img src="assets/camisa-suga.jpg" alt="Camiseta Suga">
+    <h3>REF 007 - Camiseta Suga - BTS</h3>
+    <p>R$ 59,90</p>
+    <button class="ver-produto-btn" data-img="assets/camisa-suga.jpg" data-nome="REF 007 - Camiseta Suga - BTS" data-preco="59.90">Ver Produto</button>
+  </div>
+
+  <div class="produto">
+    <img src="assets/camisa-jungkook.png" alt="Camiseta Jungkook">
+    <h3>REF 008 - Camiseta Jeon Jung-Kook</h3>
+    <p>R$ 59,90</p>
+    <button class="ver-produto-btn" data-img="assets/camisa-jungkook.png" data-nome="REF 008 - Camiseta Jeon Jung-Kook" data-preco="59.90">Ver Produto</button>
   </div>
 </section>
 
-<!-- Modal do Produto (apenas um modal na página!) -->
-<div id="product-modal">
+<footer>
+    © 2025 I Purple You Creative • Feito com amor por dorameiras 💜<br><br>
+    <a href="https://www.instagram.com/ipurpleyoucreative/" target="_blank" style="color: #6a1b9a; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
+        📸 Siga a gente no Instagram: @ipurpleyoucreative 💜
+    </a>
+</footer>
+
+<!-- MODAL ÚNICO PARA TODOS OS PRODUTOS -->
+<div id="produto-modal" class="modal">
   <div class="modal-content">
-    <button class="close" onclick="fecharModal()">&times;</button>
-    <div style="position:relative; display:inline-block;">
-      <img id="modal-imagem" src="" alt="Camiseta">
-      <button id="btn-prev-img" class="carousel-btn" onclick="carrosselAnterior()" style="left:2px;">&#8592;</button>
-      <button id="btn-next-img" class="carousel-btn" onclick="carrosselProximo()" style="right:2px;">&#8594;</button>
-    </div>
-    <h2 id="modal-titulo" style="margin-top:16px;"></h2>
-    <p id="modal-referencia" style="color:#aaa; font-size:0.93em;"></p>
-    <div style="display:flex; width:100%; gap:12px; margin:14px 0;">
-      <div style="flex:1;">
-        <label for="selecao-cor" style="font-size:0.95em;">Cor:</label>
-        <select id="selecao-cor" onchange="trocarCorCarrossel()"></select>
-      </div>
-      <div style="flex:1;">
-        <label for="selecao-tamanho" style="font-size:0.95em;">Tamanho:</label>
-        <select id="selecao-tamanho"></select>
-      </div>
-    </div>
-    <div style="margin:10px 0 18px 0; font-size:1.18em; color:#7529a7;"><b id="modal-preco"></b></div>
-    <button onclick="adicionarProdutoAoCarrinho()" style="background:#a259ef; color:#fff; border:none; border-radius:8px; padding:10px 30px; font-size:1.09em; font-weight:600; cursor:pointer; box-shadow:0 2px 8px #0001;">Adicionar ao carrinho</button>
+    <span class="close">&times;</span>
+    <img id="modal-img" src="" alt="">
+    <h2 id="modal-nome"></h2>
+    <p><strong>Preço:</strong> R$ <span id="modal-preco"></span></p>
+    <select id="modal-tamanho">
+      <option value="">Tamanho</option>
+      <option>P</option>
+      <option>M</option>
+      <option>G</option>
+      <option>GG</option>
+    </select>
+    <select id="modal-cor">
+      <option value="">Cor</option>
+      <option>Preta</option>
+      <option>Branca</option>
+    </select>
+    <button id="adicionar-carrinho">Adicionar ao Carrinho</button>
+    <p id="erro" style="color:red; display:none">Escolha tamanho e cor.</p>
   </div>
 </div>
 
-<footer>
-  © 2025 I Purple You Creative • Feito com amor por dorameiras 💜<br><br>
-  <a href="https://www.instagram.com/ipurpleyoucreative/" target="_blank" style="color: #6a1b9a; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
-    📸 Siga a gente no Instagram: @ipurpleyoucreative 💜
-  </a>
-</footer>
-
 <script>
-const imagensPorCor = {
-  "Branca": ["assets/bts-cerejeira-branca.png"],
-  "Preta": ["assets/bts-cerejeira-preta.png"],
-  "Verde Militar": ["assets/bts-cerejeira-verde.png"]
-};
-let produtoSelecionado = {};
-let corAtual = "Branca";
-let indexImagem = 0;
+  // Carrinho
+  const modal = document.getElementById("produto-modal");
+  const span = modal.querySelector(".close");
+  const img = document.getElementById("modal-img");
+  const nome = document.getElementById("modal-nome");
+  const preco = document.getElementById("modal-preco");
+  const selT = document.getElementById("modal-tamanho");
+  const selC = document.getElementById("modal-cor");
+  const erro = document.getElementById("erro");
+  const addBtn = document.getElementById("adicionar-carrinho");
+  const contador = document.getElementById("contador-carrinho");
 
-function abrirModal(titulo, referencia, cores, tamanhos, preco, imagem) {
-  produtoSelecionado = {
-    nome: titulo,
-    referencia: referencia,
-    cores: cores.split(",").map(c => c.trim()),
-    tamanhos: tamanhos.split(",").map(t => t.trim()),
-    preco: preco
-  };
-  corAtual = produtoSelecionado.cores[0];
-  indexImagem = 0;
-
-  document.getElementById('modal-titulo').textContent = titulo;
-  document.getElementById('modal-referencia').textContent = referencia;
-  document.getElementById('modal-preco').textContent = 'R$ ' + preco;
-
-  preencherSelect('selecao-cor', produtoSelecionado.cores);
-  preencherSelect('selecao-tamanho', produtoSelecionado.tamanhos);
-
-  atualizarImagemCarrossel();
-  document.getElementById('product-modal').style.display = 'flex';
-}
-
-function preencherSelect(id, opcoes) {
-  const select = document.getElementById(id);
-  select.innerHTML = "";
-  opcoes.forEach(opcao => {
-    const option = document.createElement('option');
-    option.value = opcao;
-    option.textContent = opcao;
-    select.appendChild(option);
-  });
-}
-
-function fecharModal() {
-  document.getElementById('product-modal').style.display = 'none';
-}
-
-function trocarCorCarrossel() {
-  corAtual = document.getElementById('selecao-cor').value;
-  indexImagem = 0;
-  atualizarImagemCarrossel();
-}
-
-function atualizarImagemCarrossel() {
-  const imagens = imagensPorCor[corAtual] || [];
-  const img = document.getElementById('modal-imagem');
-  img.src = imagens[indexImagem] || '';
-  img.alt = produtoSelecionado.nome + " - " + corAtual;
-}
-
-function carrosselAnterior() {
-  const imagens = imagensPorCor[corAtual] || [];
-  indexImagem = (indexImagem - 1 + imagens.length) % imagens.length;
-  atualizarImagemCarrossel();
-}
-
-function carrosselProximo() {
-  const imagens = imagensPorCor[corAtual] || [];
-  indexImagem = (indexImagem + 1) % imagens.length;
-  atualizarImagemCarrossel();
-}
-
-function adicionarProdutoAoCarrinho() {
-  const corSelecionada = document.getElementById('selecao-cor').value;
-  const tamanhoSelecionado = document.getElementById('selecao-tamanho').value;
-  const imagens = imagensPorCor[corSelecionada] || [];
-  const imagemAtual = imagens[indexImagem] || '';
-
-  if (!corSelecionada || !tamanhoSelecionado) {
-    alert("Por favor, selecione cor e tamanho!");
-    return;
-  }
-
-  let carrinho = JSON.parse(localStorage.getItem('carrinhoItems') || '[]');
-  carrinho.push({
-    nome: produtoSelecionado.nome,
-    referencia: produtoSelecionado.referencia,
-    cor: corSelecionada,
-    tamanho: tamanhoSelecionado,
-    preco: produtoSelecionado.preco,
-    imagem: imagemAtual
-  });
-  localStorage.setItem('carrinhoItems', JSON.stringify(carrinho));
-  fecharModal();
-  atualizarContador();
-}
-
-function atualizarContador() {
-  const carrinho = JSON.parse(localStorage.getItem('carrinhoItems') || '[]');
-  const contador = document.getElementById('contador-carrinho');
-  if (contador) {
+  function atualizarContador() {
+    const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
     contador.textContent = carrinho.length;
   }
-}
-document.addEventListener('DOMContentLoaded', atualizarContador);
+
+  document.querySelectorAll(".ver-produto-btn").forEach(btn => {
+    btn.onclick = () => {
+      img.src = btn.dataset.img;
+      nome.textContent = btn.dataset.nome;
+      preco.textContent = btn.dataset.preco;
+      selT.value = "";
+      selC.value = "";
+      erro.style.display = "none";
+      modal.style.display = "flex";
+    };
+  });
+
+  span.onclick = () => modal.style.display = "none";
+  window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+
+  addBtn.onclick = () => {
+    if (!selT.value || !selC.value) {
+      erro.style.display = "block";
+      return;
+    }
+    const produto = {
+      nome: nome.textContent,
+      preco: preco.textContent,
+      tamanho: selT.value,
+      cor: selC.value
+    };
+    let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+    carrinho.push(produto);
+    localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
+    atualizarContador();
+    alert(`Adicionado: ${nome.textContent}\nTamanho: ${selT.value}\nCor: ${selC.value}`);
+    modal.style.display = "none";
+  };
+
+  atualizarContador();
 </script>
 </body>
 </html>
-
 
 
 
