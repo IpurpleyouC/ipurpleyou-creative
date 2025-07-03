@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coleção K-pop | I Purple You Creative</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="carrinho.js" defer></script>
+</head>
+<body>
+  <header>
+    <a href="index.html">
+      <img src="https://ipurpleyouc.github.io/ipurpleyou-creative/assets/logo-ipyc.png" alt="I Purple You Creative" class="logo">
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="colecao-bts.html">BTS</a>
+      <a href="colecao-kpop.html" class="ativo">K-pop</a>
+      <a href="colecao-dorameiras.html">Dorameiras</a>
+      <a href="colecao-lancamentos.html">Lançamentos</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </header>
+  
+  <img src="/mnt/data/banner-kpop.png" alt="Banner Coleção K-pop" class="banner-kpop">
+
+  <div class="titulo-colecao">Coleção K-pop</div>
+
+  <section class="produtos-kpop">
+    <!-- Produto 1: Blackpink -->
+    <div class="produto">
+      <img src="/mnt/data/blackpink-black.png" alt="Camiseta Blackpink" onclick="abrirModalProduto(0)">
+      <h3>Camiseta Blackpink Watercolor</h3>
+      <p>Estampa exclusiva Blackpink, estilo aquarela. Disponível em preto e branco!</p>
+      <div class="preco">R$ 59,90</div>
+      <button onclick="abrirModalProduto(0)">Ver Produto</button>
+    </div>
+    <!-- Produto 2: Stray Kids Style -->
+    <div class="produto">
+      <img src="/mnt/data/bp-skate-black.png" alt="Camiseta Stray Kids" onclick="abrirModalProduto(1)">
+      <h3>Camiseta Stray Kids Style</h3>
+      <p>Stray Kids para quem ama atitude e estilo! Preto ou branco.</p>
+      <div class="preco">R$ 59,90</div>
+      <button onclick="abrirModalProduto(1)">Ver Produto</button>
+    </div>
+    <!-- Produto 3: Stray Kids Group -->
+    <div class="produto">
+      <img src="/mnt/data/stray-black.png" alt="Camiseta Stray Kids Group" onclick="abrirModalProduto(2)">
+      <h3>Camiseta Stray Kids Group</h3>
+      <p>Clássico Stray Kids para os stays de verdade. Em duas cores!</p>
+      <div class="preco">R$ 59,90</div>
+      <button onclick="abrirModalProduto(2)">Ver Produto</button>
+    </div>
+  </section>
+
+  <!-- O modal e os estilos ficam nos arquivos separados! -->
+</body>
+</html>
