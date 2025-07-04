@@ -29,28 +29,72 @@
   <section class="produtos-kpop">
     <!-- Produto 1: Blackpink -->
     <div class="produto">
-      <img src="/mnt/data/blackpink-black.png" alt="Camiseta Blackpink" onclick="abrirModalProduto(0)">
-      <h3>Camiseta Blackpink Watercolor</h3>
-      <p>Estampa exclusiva Blackpink, estilo aquarela. Disponível em preto e branco!</p>
-      <div class="preco">R$ 59,90</div>
-      <button onclick="abrirModalProduto(0)">Ver Produto</button>
-    </div>
+  <img src="assets/blackpink-black.png" alt="Camiseta Blackpink"
+    onclick="abrirModal(
+      'Camiseta Blackpink Watercolor',
+      'REF123', 
+      'Preta,Branca', 
+      'P,M,G,GG', 
+      'R$ 59,90',
+      ['assets/blackpink-black.png', 'assets/blackpink-white.png']
+    )">
+  <h3>Camiseta Blackpink Watercolor</h3>
+  <p>Estampa exclusiva Blackpink, estilo aquarela. Disponível em preto e branco!</p>
+  <div class="preco">R$ 59,90</div>
+  <button onclick="abrirModal(
+      'Camiseta Blackpink Watercolor',
+      'REF123', 
+      'Preta,Branca', 
+      'P,M,G,GG', 
+      'R$ 59,90',
+      ['assets/blackpink-black.png', 'assets/blackpink-white.png']
+    )">Ver Produto</button>
+</div>
     <!-- Produto 2: Stray Kids Style -->
+   <div class="produto">
+  <img src="assets/bp-skate-black.png" alt="Camiseta Stray Kids"
+    onclick="abrirModal(
+      'Camiseta Stray Kids Style',
+      'REF124',
+      'Preta,Branca',
+      'P,M,G,GG',
+      'R$ 59,90',
+      ['assets/bp-skate-black.png', 'assets/bp-skate-white.png']
+    )">
+  <h3>Camiseta Stray Kids Style</h3>
+  <p>Stray Kids para quem ama atitude e estilo! Preto ou branco.</p>
+  <div class="preco">R$ 59,90</div>
+  <button onclick="abrirModal(
+      'Camiseta Stray Kids Style',
+      'REF124',
+      'Preta,Branca',
+      'P,M,G,GG',
+      'R$ 59,90',
+      ['assets/bp-skate-black.png', 'assets/bp-skate-white.png']
+    )">Ver Produto</button>
+</div>
     <div class="produto">
-      <img src="/mnt/data/bp-skate-black.png" alt="Camiseta Stray Kids" onclick="abrirModalProduto(1)">
-      <h3>Camiseta Stray Kids Style</h3>
-      <p>Stray Kids para quem ama atitude e estilo! Preto ou branco.</p>
-      <div class="preco">R$ 59,90</div>
-      <button onclick="abrirModalProduto(1)">Ver Produto</button>
-    </div>
-    <!-- Produto 3: Stray Kids Group -->
-    <div class="produto">
-      <img src="/mnt/data/stray-black.png" alt="Camiseta Stray Kids Group" onclick="abrirModalProduto(2)">
-      <h3>Camiseta Stray Kids Group</h3>
-      <p>Clássico Stray Kids para os stays de verdade. Em duas cores!</p>
-      <div class="preco">R$ 59,90</div>
-      <button onclick="abrirModalProduto(2)">Ver Produto</button>
-    </div>
+  <img src="assets/stray-black.png" alt="Camiseta Stray Kids Group"
+    onclick="abrirModal(
+      'Camiseta Stray Kids Group',
+      'REF125',
+      'Preta,Branca',
+      'P,M,G,GG',
+      'R$ 59,90',
+      ['assets/stray-black.png', 'assets/stray-white.png']
+    )">
+  <h3>Camiseta Stray Kids Group</h3>
+  <p>Clássico Stray Kids para os stays de verdade. Em duas cores!</p>
+  <div class="preco">R$ 59,90</div>
+  <button onclick="abrirModal(
+      'Camiseta Stray Kids Group',
+      'REF125',
+      'Preta,Branca',
+      'P,M,G,GG',
+      'R$ 59,90',
+      ['assets/stray-black.png', 'assets/stray-white.png']
+    )">Ver Produto</button>
+</div>
   </section>
 
   <div id="product-modal" class="modal" style="display:none;">
