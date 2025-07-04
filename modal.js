@@ -1,24 +1,40 @@
 let produtoSelecionado = {};
 
-function abrirModal(titulo, referencia, cores, tamanhos, preco, imagem) {
+function abrirModal(titulo, referencia, cores, tamanhos, preco, imagens) {
     produtoSelecionado = {
         nome: titulo,
         referencia: referencia,
         cores: cores.split(",").map(c => c.trim()),
         tamanhos: tamanhos.split(",").map(t => t.trim()),
         preco: preco,
-        imagem: imagem
+        imagens: imagens
     };
 
     document.getElementById('modal-titulo').textContent = titulo;
     document.getElementById('modal-referencia').textContent = referencia;
     document.getElementById('modal-preco').textContent = preco;
-    document.getElementById('modal-imagem').src = imagem;
 
     preencherSelect('selecao-cor', produtoSelecionado.cores);
     preencherSelect('selecao-tamanho', produtoSelecionado.tamanhos);
 
+    // Exibe a imagem da cor padrão (primeira cor)
+    let corSelecionada = produtoSelecionado.cores[0];
+    atualizarImagemPorCor(corSelecionada);
+
+    // Adiciona evento para trocar a imagem ao mudar a cor
+    document.getElementById('selecao-cor').onchange = function() {
+        atualizarImagemPorCor(this.value);
+    };
+
     document.getElementById('product-modal').style.display = 'block';
+}
+
+function atualizarImagemPorCor(cor) {
+    // Supondo que a ordem das imagens no array bate com a ordem das cores
+    let idx = produtoSelecionado.cores.findIndex(c => c.toLowerCase() === cor.toLowerCase());
+    if (idx === -1) idx = 0;
+    produtoSelecionado.imagemSelecionada = produtoSelecionado.imagens[idx];
+    document.getElementById('modal-imagem').src = produtoSelecionado.imagemSelecionada;
 }
 
 function preencherSelect(id, opcoes) {
@@ -48,7 +64,7 @@ function adicionarProdutoAoCarrinho() {
         cor: corSelecionada,
         tamanho: tamanhoSelecionado,
         preco: produtoSelecionado.preco,
-        imagem: produtoSelecionado.imagem
+        imagem: produtoSelecionado.imagemSelecionada
     });
 
     localStorage.setItem('carrinhoItems', JSON.stringify(carrinho));
