@@ -368,3 +368,137 @@ img, .banner-topo img, .colecoes-container img, .banner-novidade img {
     max-width: 100%;
   }
 }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-image: url('https://ipurpleyouc.github.io/ipurpleyou-creative/assets/imagem-fundo.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  color: #222;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px 14px 40px;
+  background: rgba(255,255,255,0.90);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 2px solid #eed8fa33;
+}
+header img.logo {
+  height: 54px;
+  border-radius: 16px;
+}
+nav {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+nav a {
+  text-decoration: none;
+  color: #722c8f;
+  font-weight: 600;
+  font-size: 1.07rem;
+  letter-spacing: 0.5px;
+  transition: color .2s;
+}
+nav a:hover, nav a.ativo {
+  color: #c46be3;
+}
+.banner-kpop {
+  width: 100vw;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto 28px auto;
+  border-radius: 18px;
+  box-shadow: 0 8px 40px #6d48881b;
+  object-fit: cover;
+}
+.titulo-colecao {
+  text-align: center;
+  font-size: 2.6rem;
+  margin: 18px 0 12px 0;
+  letter-spacing: 2px;
+  color: #a644e7;
+  font-weight: bold;
+  text-shadow: 0 2px 14px #ffffff5a;
+}
+.produtos-kpop {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 34px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 60px 16px;
+}
+.produto {
+  background: rgba(255,255,255,0.92);
+  border-radius: 22px;
+  box-shadow: 0 3px 18px #722c8f1b;
+  padding: 18px 18px 24px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.3s;
+}
+.produto:hover {
+  box-shadow: 0 8px 38px #bb76e533;
+}
+.produto img {
+  width: 100%;
+  max-width: 255px;
+  border-radius: 18px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 10px #cebbf03d;
+  cursor: pointer;
+  object-fit: cover;
+}
+.produto h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
+  color: #60177c;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.produto p {
+  margin: 0 0 6px 0;
+  text-align: center;
+  font-size: 1.02rem;
+  color: #573976;
+}
+.produto .preco {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin: 8px 0 12px 0;
+  color: #a644e7;
+}
+.produto button {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: #a644e7;
+  color: #fff;
+  border: none;
+  border-radius: 11px;
+  font-size: 1.03rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s;
+  box-shadow: 0 2px 6px #c46be341;
+}
+.produto button:hover {
+  background: #722c8f;
+}
+
+/* Responsivo */
+@media (max-width: 700px) {
+  .titulo-colecao { font-size: 1.3rem;}
+  header { flex-direction: column; gap: 8px; padding: 16px 8px;}
+  nav { gap: 18px;}
+  .banner-kpop { border-radius: 8px;}
+  .produtos-kpop { grid-template-columns: 1fr; padding: 14px 2vw 38px 2vw;}
+  .produto { padding: 12px 8px 22px 8px;}
+}
