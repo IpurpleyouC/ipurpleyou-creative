@@ -5,6 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coleção K-pop | I Purple You Creative</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ======= LUPA NA MODAL ======= */
+    .zoom-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
+    }
+    .zoom-img {
+      width: 240px;
+      height: auto;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px #0002;
+      cursor: zoom-in;
+      z-index: 1;
+    }
+    .img-zoom-result {
+      border: 2px solid #eee;
+      width: 170px;
+      height: 170px;
+      background-repeat: no-repeat;
+      background-size: 480px 480px;
+      display: none;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #0002;
+      z-index: 2;
+    }
+    /* Modal e overlay já estão no style.css, só complemente se precisar */
+  </style>
 </head>
 <body>
   <header>
@@ -24,91 +54,178 @@
   <section class="produtos-kpop">
     <!-- Produto 1: Blackpink -->
     <div class="produto">
-  <img src="assets/blackpink-black.png" alt="Camiseta Blackpink"
-    onclick="abrirModal(
-      'Camiseta Blackpink Watercolor',
-      'REF123', 
-      'Preta,Branca', 
-      'P,M,G,GG', 
-      'R$ 59,90',
-      ['assets/blackpink-black.png', 'assets/Blackpink-white.png']
-    )">
-  <h3>Camiseta Blackpink Watercolor</h3>
-  <p>Estampa exclusiva Blackpink, estilo aquarela. Disponível em preto e branco!</p>
-  <div class="preco">R$ 59,90</div>
-  <button onclick="abrirModal(
-      'Camiseta Blackpink Watercolor',
-      'REF123', 
-      'Preta,Branca', 
-      'P,M,G,GG', 
-      'R$ 59,90',
-      ['assets/blackpink-black.png', 'assets/Blackpink-white.png']
-    )">Ver Produto</button>
-</div>
+      <img src="assets/blackpink-black.png" alt="Camiseta Blackpink"
+        onclick="abrirModal(
+          'Camiseta Blackpink Watercolor',
+          'REF123', 
+          'Preta,Branca', 
+          'P,M,G,GG', 
+          'R$ 59,90',
+          ['assets/blackpink-black.png', 'assets/Blackpink-white.png']
+        )">
+      <h3>Camiseta Blackpink Watercolor</h3>
+      <p>Estampa exclusiva Blackpink, estilo aquarela. Disponível em preto e branco!</p>
+      <div class="preco">R$ 59,90</div>
+      <button onclick="abrirModal(
+          'Camiseta Blackpink Watercolor',
+          'REF123', 
+          'Preta,Branca', 
+          'P,M,G,GG', 
+          'R$ 59,90',
+          ['assets/blackpink-black.png', 'assets/Blackpink-white.png']
+        )">Ver Produto</button>
+    </div>
     <!-- Produto 2: Stray Kids Style -->
-   <div class="produto">
-  <img src="assets/bp-skate-black.png" alt="Camiseta Stray Kids"
-    onclick="abrirModal(
-      'Camiseta Stray Kids Style',
-      'REF124',
-      'Preta,Branca',
-      'P,M,G,GG',
-      'R$ 59,90',
-      ['assets/bp-skate-black.png', 'assets/bp-skate-white.png']
-    )">
-  <h3>Camiseta Stray Kids Style</h3>
-  <p>Stray Kids para quem ama atitude e estilo! Preto ou branco.</p>
-  <div class="preco">R$ 59,90</div>
-  <button onclick="abrirModal(
-      'Camiseta Stray Kids Style',
-      'REF124',
-      'Preta,Branca',
-      'P,M,G,GG',
-      'R$ 59,90',
-      ['assets/bp-skate-black.png', 'assets/bp-skate-white.png']
-    )">Ver Produto</button>
-</div>
     <div class="produto">
-  <img src="assets/stray-black.png" alt="Camiseta Stray Kids Group"
-    onclick="abrirModal(
-      'Camiseta Stray Kids Group',
-      'REF125',
-      'Preta,Branca',
-      'P,M,G,GG',
-      'R$ 59,90',
-      ['assets/stray-black.png', 'assets/stray-white.png']
-    )">
-  <h3>Camiseta Stray Kids Group</h3>
-  <p>Clássico Stray Kids para os stays de verdade. Em duas cores!</p>
-  <div class="preco">R$ 59,90</div>
-  <button onclick="abrirModal(
-      'Camiseta Stray Kids Group',
-      'REF125',
-      'Preta,Branca',
-      'P,M,G,GG',
-      'R$ 59,90',
-      ['assets/stray-black.png', 'assets/stray-white.png']
-    )">Ver Produto</button>
-</div>
+      <img src="assets/bp-skate-black.png" alt="Camiseta Stray Kids"
+        onclick="abrirModal(
+          'Camiseta Stray Kids Style',
+          'REF124',
+          'Preta,Branca',
+          'P,M,G,GG',
+          'R$ 59,90',
+          ['assets/bp-skate-black.png', 'assets/bp-skate-white.png']
+        )">
+      <h3>Camiseta Stray Kids Style</h3>
+      <p>Stray Kids para quem ama atitude e estilo! Preto ou branco.</p>
+      <div class="preco">R$ 59,90</div>
+      <button onclick="abrirModal(
+          'Camiseta Stray Kids Style',
+          'REF124',
+          'Preta,Branca',
+          'P,M,G,GG',
+          'R$ 59,90',
+          ['assets/bp-skate-black.png', 'assets/bp-skate-white.png']
+        )">Ver Produto</button>
+    </div>
+    <!-- Produto 3: Stray Kids Group -->
+    <div class="produto">
+      <img src="assets/stray-black.png" alt="Camiseta Stray Kids Group"
+        onclick="abrirModal(
+          'Camiseta Stray Kids Group',
+          'REF125',
+          'Preta,Branca',
+          'P,M,G,GG',
+          'R$ 59,90',
+          ['assets/stray-black.png', 'assets/stray-white.png']
+        )">
+      <h3>Camiseta Stray Kids Group</h3>
+      <p>Clássico Stray Kids para os stays de verdade. Em duas cores!</p>
+      <div class="preco">R$ 59,90</div>
+      <button onclick="abrirModal(
+          'Camiseta Stray Kids Group',
+          'REF125',
+          'Preta,Branca',
+          'P,M,G,GG',
+          'R$ 59,90',
+          ['assets/stray-black.png', 'assets/stray-white.png']
+        )">Ver Produto</button>
+    </div>
   </section>
 
+  <!-- ====== MODAL COM LUPA ====== -->
   <div id="product-modal" class="modal" style="display:none;">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModal()">&times;</span>
-    <h2 id="modal-titulo"></h2>
-    <p id="modal-referencia"></p>
-    <img id="modal-imagem" src="" style="width:240px; border-radius:14px; margin-bottom:12px;">
-    <p id="modal-preco" style="font-size:1.18rem; color:#a644e7; font-weight:bold;"></p>
-    <label for="selecao-cor">Cor:</label>
-    <select id="selecao-cor"></select>
-    <br>
-    <label for="selecao-tamanho">Tamanho:</label>
-    <select id="selecao-tamanho"></select>
-    <br><br>
-    <button onclick="adicionarProdutoAoCarrinho()">Adicionar ao Carrinho</button>
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal()">&times;</span>
+      <h2 id="modal-titulo"></h2>
+      <p id="modal-referencia"></p>
+      <div class="zoom-container">
+        <img id="modal-imagem" class="zoom-img" src="" alt="Imagem do Produto">
+        <div class="img-zoom-result" id="zoomResult"></div>
+      </div>
+      <p id="modal-preco" style="font-size:1.18rem; color:#a644e7; font-weight:bold;"></p>
+      <label for="selecao-cor">Cor:</label>
+      <select id="selecao-cor"></select>
+      <br>
+      <label for="selecao-tamanho">Tamanho:</label>
+      <select id="selecao-tamanho"></select>
+      <br><br>
+      <button onclick="adicionarProdutoAoCarrinho()">Adicionar ao Carrinho</button>
+    </div>
   </div>
-</div>
-<script src="modal.js"></script>
 
+  <script>
+    // ==== MODAL PADRÃO IPYC ====
+    let imagensModal = [];
+    let imagemAtual = 0;
+
+    function abrirModal(titulo, referencia, cores, tamanhos, preco, imagens) {
+      document.getElementById('modal-titulo').textContent = titulo;
+      document.getElementById('modal-referencia').textContent = 'Ref: ' + referencia;
+      document.getElementById('modal-preco').textContent = preco;
+
+      // Coloca cor/tamanho nas selects
+      let selecaoCor = document.getElementById('selecao-cor');
+      let selecaoTamanho = document.getElementById('selecao-tamanho');
+      selecaoCor.innerHTML = '';
+      selecaoTamanho.innerHTML = '';
+      cores.split(',').forEach(cor => {
+        let opt = document.createElement('option');
+        opt.value = cor;
+        opt.text = cor;
+        selecaoCor.add(opt);
+      });
+      tamanhos.split(',').forEach(tam => {
+        let opt = document.createElement('option');
+        opt.value = tam;
+        opt.text = tam;
+        selecaoTamanho.add(opt);
+      });
+
+      // Imagem e galeria
+      imagensModal = imagens;
+      imagemAtual = 0;
+      document.getElementById('modal-imagem').src = imagensModal[0];
+
+      // Abrir modal
+      document.getElementById('product-modal').style.display = 'block';
+
+      // Ativa lupa
+      imageZoom('modal-imagem', 'zoomResult');
+    }
+
+    function fecharModal() {
+      document.getElementById('product-modal').style.display = 'none';
+    }
+
+    // ===== LUPA NA IMAGEM =====
+    function imageZoom(imgID, resultID) {
+      var img = typeof imgID === "string" ? document.getElementById(imgID) : imgID;
+      var result = typeof resultID === "string" ? document.getElementById(resultID) : resultID;
+
+      // Remove eventos antigos
+      img.onmousemove = null;
+      img.onmouseleave = null;
+      img.onmouseenter = null;
+
+      img.onmousemove = moveLens;
+      img.onmouseleave = function() { result.style.display = 'none'; };
+      img.onmouseenter = function() {
+        result.style.display = 'block';
+        result.style.backgroundImage = "url('" + img.src + "')";
+      };
+
+      function moveLens(e) {
+        var pos = getCursorPos(e);
+        var x = pos.x, y = pos.y, zoom = 2;
+        result.style.backgroundPosition = `-${x * zoom - result.offsetWidth / 2}px -${y * zoom - result.offsetHeight / 2}px`;
+        result.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+      }
+
+      function getCursorPos(e) {
+        var a = img.getBoundingClientRect();
+        var x = e.clientX - a.left;
+        var y = e.clientY - a.top;
+        return {x: x, y: y};
+      }
+    }
+
+    // ========== Carrinho e outras funções ==========
+    function adicionarProdutoAoCarrinho() {
+      // Implemente aqui sua lógica do carrinho
+      alert('Produto adicionado ao carrinho! (Simulação)');
+      fecharModal();
+    }
+  </script>
 </body>
 </html>
