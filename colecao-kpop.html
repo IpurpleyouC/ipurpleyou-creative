@@ -6,7 +6,6 @@
   <title>Coleção K-pop | I Purple You Creative</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* ======= LUPA NA MODAL ======= */
     .zoom-container {
       position: relative;
       display: flex;
@@ -33,7 +32,6 @@
       box-shadow: 0 2px 8px #0002;
       z-index: 2;
     }
-    /* Modal e overlay já estão no style.css, só complemente se precisar */
   </style>
 </head>
 <body>
@@ -60,8 +58,8 @@
           'REF123', 
           'Preta,Branca', 
           'P,M,G,GG', 
-          'R$ 59,90',
-          ['assets/blackpink-black.png', 'assets/Blackpink-white.png']
+          '59.90',
+          'assets/blackpink-black.png'
         )">
       <h3>Camiseta Blackpink Watercolor</h3>
       <p>Estampa exclusiva Blackpink, estilo aquarela. Disponível em preto e branco!</p>
@@ -71,8 +69,8 @@
           'REF123', 
           'Preta,Branca', 
           'P,M,G,GG', 
-          'R$ 59,90',
-          ['assets/blackpink-black.png', 'assets/Blackpink-white.png']
+          '59.90',
+          'assets/blackpink-black.png'
         )">Ver Produto</button>
     </div>
     <!-- Produto 2: Stray Kids Style -->
@@ -83,8 +81,8 @@
           'REF124',
           'Preta,Branca',
           'P,M,G,GG',
-          'R$ 59,90',
-          ['assets/bp-skate-black.png', 'assets/bp-skate-white.png']
+          '59.90',
+          'assets/bp-skate-black.png'
         )">
       <h3>Camiseta Stray Kids Style</h3>
       <p>Stray Kids para quem ama atitude e estilo! Preto ou branco.</p>
@@ -94,8 +92,8 @@
           'REF124',
           'Preta,Branca',
           'P,M,G,GG',
-          'R$ 59,90',
-          ['assets/bp-skate-black.png', 'assets/bp-skate-white.png']
+          '59.90',
+          'assets/bp-skate-black.png'
         )">Ver Produto</button>
     </div>
     <!-- Produto 3: Stray Kids Group -->
@@ -106,8 +104,8 @@
           'REF125',
           'Preta,Branca',
           'P,M,G,GG',
-          'R$ 59,90',
-          ['assets/stray-black.png', 'assets/stray-white.png']
+          '59.90',
+          'assets/stray-black.png'
         )">
       <h3>Camiseta Stray Kids Group</h3>
       <p>Clássico Stray Kids para os stays de verdade. Em duas cores!</p>
@@ -117,8 +115,8 @@
           'REF125',
           'Preta,Branca',
           'P,M,G,GG',
-          'R$ 59,90',
-          ['assets/stray-black.png', 'assets/stray-white.png']
+          '59.90',
+          'assets/stray-black.png'
         )">Ver Produto</button>
     </div>
   </section>
@@ -146,12 +144,11 @@
 
   <script>
     // ==== MODAL PADRÃO IPYC ====
-    let imagensModal = [];
-    let imagemAtual = 0;
+    let imagemModal = "";
 
-    function abrirModal(titulo, referencia, cores, tamanhos, preco, imagens) {
+    function abrirModal(titulo, referencia, cores, tamanhos, preco, imagem) {
       document.getElementById('modal-titulo').textContent = titulo;
-      document.getElementById('modal-referencia').textContent = 'Ref: ' + referencia;
+      document.getElementById('modal-referencia').textContent = 'Referência: ' + referencia;
       document.getElementById('modal-preco').textContent = preco;
 
       // Coloca cor/tamanho nas selects
@@ -161,21 +158,20 @@
       selecaoTamanho.innerHTML = '';
       cores.split(',').forEach(cor => {
         let opt = document.createElement('option');
-        opt.value = cor;
-        opt.text = cor;
+        opt.value = cor.trim();
+        opt.text = cor.trim();
         selecaoCor.add(opt);
       });
       tamanhos.split(',').forEach(tam => {
         let opt = document.createElement('option');
-        opt.value = tam;
-        opt.text = tam;
+        opt.value = tam.trim();
+        opt.text = tam.trim();
         selecaoTamanho.add(opt);
       });
 
-      // Imagem e galeria
-      imagensModal = imagens;
-      imagemAtual = 0;
-      document.getElementById('modal-imagem').src = imagensModal[0];
+      // Imagem
+      imagemModal = imagem;
+      document.getElementById('modal-imagem').src = imagemModal;
 
       // Abrir modal
       document.getElementById('product-modal').style.display = 'block';
@@ -220,11 +216,66 @@
       }
     }
 
-    // ========== Carrinho e outras funções ==========
+    // ========== Função Carrinho e Contador ==========
     function adicionarProdutoAoCarrinho() {
-      // Implemente aqui sua lógica do carrinho
-      alert('Produto adicionado ao carrinho! (Simulação)');
+      // Coleta informações do produto no modal
+      const nome = document.getElementById('modal-titulo').textContent;
+      const referencia = document.getElementById('modal-referencia').textContent.replace('Referência:', '').replace('Ref:', '').trim();
+      let preco = document.getElementById('modal-preco').textContent.replace('R$', '').replace(',', '.').trim();
+      preco = parseFloat(preco);
+
+      const cor = document.getElementById('selecao-cor').value;
+      const tamanho = document.getElementById('selecao-tamanho').value;
+      const imagem = document.getElementById('modal-imagem').src;
+
+      // Monta objeto produto
+      const produto = {
+        nome,
+        referencia,
+        preco,
+        cor,
+        tamanho,
+        imagem,
+        quantidade: 1
+      };
+
+      // Recupera carrinho atual ou cria vazio
+      let carrinho = JSON.parse(localStorage.getItem('carrinhoIPYC')) || [];
+
+      // Verifica se produto já existe (mesma ref, cor e tamanho)
+      const existe = carrinho.findIndex(p =>
+        p.referencia === produto.referencia &&
+        p.cor === produto.cor &&
+        p.tamanho === produto.tamanho
+      );
+
+      if (existe > -1) {
+        carrinho[existe].quantidade += 1;
+      } else {
+        carrinho.push(produto);
+      }
+
+      localStorage.setItem('carrinhoIPYC', JSON.stringify(carrinho));
+
+      // Atualiza contador
+      atualizarContadorCarrinho();
+
+      // Feedback
+      alert('Produto adicionado ao carrinho!');
+
       fecharModal();
+    }
+
+    function atualizarContadorCarrinho() {
+      let carrinho = JSON.parse(localStorage.getItem('carrinhoIPYC')) || [];
+      let total = 0;
+      carrinho.forEach(p => total += p.quantidade);
+      document.getElementById('contador-carrinho').textContent = total;
+    }
+
+    // Atualiza contador ao carregar página
+    window.onload = function() {
+      atualizarContadorCarrinho();
     }
   </script>
 </body>
