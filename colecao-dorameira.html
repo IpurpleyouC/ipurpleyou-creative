@@ -7,6 +7,35 @@
     <link rel="stylesheet" href="style.css">
     <script src="carrinho.js" defer></script>
     <script src="modal.js" defer></script>
+    <style>
+      /* === ZOOM NA IMAGEM DA MODAL === */
+      .modal-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .zoom-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+
+      .zoom-img {
+        width: 260px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px #0003;
+        cursor: zoom-in;
+        transition: transform 0.3s ease;
+      }
+
+      .zoom-img.zoomed {
+        transform: scale(2);
+        cursor: zoom-out;
+      }
+    </style>
 </head>
 <body>
 
@@ -47,11 +76,12 @@
     </div>
 
     <div class="produto">
-    <img src="assets/hidden-love-pier.png" alt="Camiseta Hidden Love">
-    <h3>Camiseta Hidden Love Pier</h3>
-    <p>Ref: DM010</p>
-    <button onclick="abrirModal('Camiseta Hidden Love Pier', 'DM010', 'Bege, Rosa Pastel, Preta, Branca', 'P, M, G, GG', '59.90', 'assets/hidden-love-pier.png')">Ver Produto</button>
-</div>
+        <img src="assets/hidden-love-pier.png" alt="Camiseta Hidden Love">
+        <h3>Camiseta Hidden Love Pier</h3>
+        <p>Ref: DM010</p>
+        <button onclick="abrirModal('Camiseta Hidden Love Pier', 'DM010', 'Bege, Rosa Pastel, Preta, Branca', 'P, M, G, GG', '59.90', 'assets/hidden-love-pier.png')">Ver Produto</button>
+    </div>
+
     <div class="produto">
         <img src="assets/pousando-no-amor.png" alt="Camiseta Pousando no Amor">
         <h3>Camiseta Pousando no Amor</h3>
@@ -64,7 +94,11 @@
 <div id="product-modal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="fecharModal()">&times;</span>
-        <img id="modal-imagem" src="" alt="Imagem do Produto">
+
+        <div class="zoom-container">
+            <img id="modal-imagem" class="zoom-img" src="" alt="Imagem do Produto">
+        </div>
+
         <h2 id="modal-titulo"></h2>
         <p><strong>Referência:</strong> <span id="modal-referencia"></span></p>
 
@@ -78,7 +112,7 @@
         <button onclick="adicionarProdutoAoCarrinho()">Adicionar ao Carrinho</button>
     </div>
 </div>
-    
+
 <footer>
     © 2025 I Purple You Creative • Feito com amor por dorameiras 💜<br><br>
     <a href="https://www.instagram.com/ipurpleyoucreative/" target="_blank" style="color: #6a1b9a; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
@@ -86,10 +120,21 @@
     </a>
 </footer>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const zoomImg = document.getElementById("modal-imagem");
+
+    if (zoomImg) {
+      zoomImg.addEventListener("click", () => {
+        zoomImg.classList.toggle("zoomed");
+      });
+    }
+  });
+</script>
+
 </body>
 </html>
-</body>
-</html>
+
 
 
 
