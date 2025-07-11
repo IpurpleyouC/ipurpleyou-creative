@@ -29,7 +29,7 @@
       font-weight: bold;
     }
     main {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 2rem auto;
       background: white;
       padding: 2rem;
@@ -44,6 +44,10 @@
       border: 1px solid #ccc;
       padding: 10px;
       text-align: center;
+      vertical-align: middle;
+    }
+    th {
+      background-color: #eee;
     }
     #total {
       font-weight: bold;
@@ -67,6 +71,19 @@
     .remover-btn:hover {
       background-color: #b71c1c;
     }
+    .quantidade-btn {
+      background-color: #ccc;
+      color: #000;
+      padding: 2px 8px;
+      margin: 0 5px;
+    }
+    .quantidade-btn:hover {
+      background-color: #aaa;
+    }
+    .produto-img {
+      max-width: 60px;
+      border-radius: 6px;
+    }
   </style>
 </head>
 <body>
@@ -85,23 +102,21 @@
       <thead>
         <tr>
           <th>Produto</th>
+          <th>Imagem</th>
           <th>Tamanho</th>
           <th>Cor</th>
           <th>Preço</th>
+          <th>Qtd</th>
           <th>Ação</th>
         </tr>
       </thead>
-      <tbody id="carrinho-body">
-        <!-- Itens do carrinho vão aparecer aqui -->
-      </tbody>
+      <tbody id="carrinho-body"></tbody>
     </table>
 
     <p id="total">Total: R$ 0,00</p>
 
     <button id="limpar-carrinho">Esvaziar Carrinho</button><br><br>
-
     <button id="finalizar-pedido">Finalizar Pedido via WhatsApp</button><br><br>
-
     <a href="index.html">← Continuar Comprando</a>
   </main>
 
@@ -111,17 +126,19 @@
     const contador = document.getElementById("contador-carrinho");
 
     function atualizarContador() {
-      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-      contador.textContent = carrinho.length;
+      const carrinho = JSON.parse(localStorage.getItem("carrinhoIPYC") || "[]");
+      let total = 0;
+      carrinho.forEach(p => total += p.quantidade);
+      contador.textContent = total;
     }
 
     function carregarCarrinho() {
-      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+      const carrinho = JSON.parse(localStorage.getItem("carrinhoIPYC") || "[]");
       let total = 0;
       tbody.innerHTML = "";
 
       if (carrinho.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5">Carrinho vazio!</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7">Carrinho vazio!</td></tr>';
         totalDisplay.textContent = "Total: R$ 0,00";
         return;
       }
@@ -130,55 +147,71 @@
         tbody.innerHTML += `
           <tr>
             <td>${item.nome}</td>
+            <td><img src="${item.imagem}" class="produto-img"></td>
             <td>${item.tamanho}</td>
             <td>${item.cor}</td>
-            <td>R$ ${item.preco}</td>
+            <td>R$ ${item.preco.toFixed(2).replace(".", ",")}</td>
+            <td>
+              <button class="quantidade-btn" onclick="alterarQuantidade(${index}, -1)">-</button>
+              ${item.quantidade}
+              <button class="quantidade-btn" onclick="alterarQuantidade(${index}, 1)">+</button>
+            </td>
             <td><button class="remover-btn" onclick="removerItem(${index})">Remover</button></td>
           </tr>
         `;
-        total += parseFloat(item.preco);
+        total += item.preco * item.quantidade;
       });
 
       totalDisplay.textContent = "Total: R$ " + total.toFixed(2).replace(".", ",");
     }
 
+    function alterarQuantidade(index, delta) {
+      let carrinho = JSON.parse(localStorage.getItem("carrinhoIPYC") || "[]");
+      carrinho[index].quantidade += delta;
+      if (carrinho[index].quantidade < 1) carrinho[index].quantidade = 1;
+      localStorage.setItem("carrinhoIPYC", JSON.stringify(carrinho));
+      carregarCarrinho();
+      atualizarContador();
+    }
+
     function removerItem(index) {
-      let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+      let carrinho = JSON.parse(localStorage.getItem("carrinhoIPYC") || "[]");
       carrinho.splice(index, 1);
-      localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
+      localStorage.setItem("carrinhoIPYC", JSON.stringify(carrinho));
       carregarCarrinho();
       atualizarContador();
     }
 
     document.getElementById("limpar-carrinho").onclick = () => {
-      localStorage.removeItem("carrinhoItems");
+      localStorage.removeItem("carrinhoIPYC");
       carregarCarrinho();
       atualizarContador();
     };
 
     document.getElementById("finalizar-pedido").onclick = function() {
-  const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+      const carrinho = JSON.parse(localStorage.getItem("carrinhoIPYC") || "[]");
 
-  if (carrinho.length === 0) {
-    alert("Seu carrinho está vazio!");
-    return;
-  }
+      if (carrinho.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
+      }
 
-  let mensagem = "📦 Pedido I Purple You Creative:%0A%0A";
+      let mensagem = "📦 Pedido I Purple You Creative:%0A%0A";
 
-  carrinho.forEach(item => {
-    mensagem += `🛒 Produto: ${item.nome}%0A`;
-    mensagem += `🔢 Referência: ${item.referencia}%0A`;
-    mensagem += `📌 Tamanho: ${item.tamanho}%0A`;
-    mensagem += `🎨 Cor: ${item.cor}%0A`;
-    mensagem += `💰 Preço: R$ ${item.preco}%0A%0A`;
-  });
+      carrinho.forEach(item => {
+        mensagem += `🛒 Produto: ${item.nome}%0A`;
+        mensagem += `🔢 Referência: ${item.referencia}%0A`;
+        mensagem += `📌 Tamanho: ${item.tamanho}%0A`;
+        mensagem += `🎨 Cor: ${item.cor}%0A`;
+        mensagem += `🔢 Quantidade: ${item.quantidade}%0A`;
+        mensagem += `💰 Preço: R$ ${item.preco.toFixed(2).replace(".", ",")}%0A%0A`;
+      });
 
-  let total = carrinho.reduce((soma, item) => soma + parseFloat(item.preco), 0);
-  mensagem += `🧾 Total: R$ ${total.toFixed(2).replace(".", ",")}%0A`;
+      let total = carrinho.reduce((soma, item) => soma + (item.preco * item.quantidade), 0);
+      mensagem += `🧾 Total: R$ ${total.toFixed(2).replace(".", ",")}%0A`;
 
-  const numero = "5541995081726";  
-  window.open(`https://wa.me/${numero}?text=${mensagem}`, "_blank");
+      const numero = "5541995081726";
+      window.open(`https://wa.me/${numero}?text=${mensagem}`, "_blank");
     };
 
     carregarCarrinho();
