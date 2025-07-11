@@ -36,7 +36,7 @@
 </head>
 <body>
   <header>
-     <img src="assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
+    <img src="assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
     <nav>
         <a href="index.html">Home</a>
         <a href="colecao-bts.html">Coleção BTS</a>
@@ -44,80 +44,54 @@
         <a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
     </nav>
   </header>
-  
-  <img src="assets/banner-kpop.png" alt="Banner Coleção K-pop" class="banner-kpop">
 
+  <img src="assets/banner-kpop.png" alt="Banner Coleção K-pop" class="banner-kpop">
   <div class="titulo-colecao">Coleção K-pop</div>
 
   <section class="produtos-kpop">
-    <!-- Produto 1: Blackpink -->
     <div class="produto">
-      <img src="assets/blackpink-black.png" alt="Camiseta Blackpink"
-        onclick="abrirModal(
-          'Camiseta Blackpink Watercolor',
-          'REF123', 
-          'Preta,Branca', 
-          'P,M,G,GG', 
-          '59.90',
-          'assets/blackpink-black.png'
-        )">
+      <img src="assets/blackpink-black.png" alt="Camiseta Blackpink">
       <h3>Camiseta Blackpink Watercolor</h3>
       <p>Estampa exclusiva Blackpink, estilo aquarela. Disponível em preto e branco!</p>
       <div class="preco">R$ 59,90</div>
       <button onclick="abrirModal(
-          'Camiseta Blackpink Watercolor',
-          'REF123', 
-          'Preta,Branca', 
-          'P,M,G,GG', 
-          '59.90',
-          'assets/blackpink-black.png'
-        )">Ver Produto</button>
+        'Camiseta Blackpink Watercolor',
+        'REF123',
+        'Preta,Branca',
+        'P,M,G,GG',
+        '59.90',
+        ['assets/blackpink-black.png', 'assets/blackpink-white.png']
+      )">Ver Produto</button>
     </div>
-    <!-- Produto 2: Stray Kids Style -->
+
     <div class="produto">
-      <img src="assets/bp-skate-black.png" alt="Camiseta Stray Kids"
-        onclick="abrirModal(
-          'Camiseta Stray Kids Style',
-          'REF124',
-          'Preta,Branca',
-          'P,M,G,GG',
-          '59.90',
-          'assets/bp-skate-black.png'
-        )">
+      <img src="assets/bp-skate-black.png" alt="Camiseta Stray Kids">
       <h3>Camiseta Stray Kids Style</h3>
       <p>Stray Kids para quem ama atitude e estilo! Preto ou branco.</p>
       <div class="preco">R$ 59,90</div>
       <button onclick="abrirModal(
-          'Camiseta Stray Kids Style',
-          'REF124',
-          'Preta,Branca',
-          'P,M,G,GG',
-          '59.90',
-          'assets/bp-skate-black.png'
-        )">Ver Produto</button>
+        'Camiseta Stray Kids Style',
+        'REF124',
+        'Preta,Branca',
+        'P,M,G,GG',
+        '59.90',
+        ['assets/bp-skate-black.png', 'assets/bp-skate-white.png']
+      )">Ver Produto</button>
     </div>
-    <!-- Produto 3: Stray Kids Group -->
+
     <div class="produto">
-      <img src="assets/stray-black.png" alt="Camiseta Stray Kids Group"
-        onclick="abrirModal(
-          'Camiseta Stray Kids Group',
-          'REF125',
-          'Preta,Branca',
-          'P,M,G,GG',
-          '59.90',
-          'assets/stray-black.png'
-        )">
+      <img src="assets/stray-black.png" alt="Camiseta Stray Kids Group">
       <h3>Camiseta Stray Kids Group</h3>
       <p>Clássico Stray Kids para os stays de verdade. Em duas cores!</p>
       <div class="preco">R$ 59,90</div>
       <button onclick="abrirModal(
-          'Camiseta Stray Kids Group',
-          'REF125',
-          'Preta,Branca',
-          'P,M,G,GG',
-          '59.90',
-          'assets/stray-black.png'
-        )">Ver Produto</button>
+        'Camiseta Stray Kids Group',
+        'REF125',
+        'Preta,Branca',
+        'P,M,G,GG',
+        '59.90',
+        ['assets/stray-black.png', 'assets/stray-white.png']
+      )">Ver Produto</button>
     </div>
   </section>
 
@@ -133,50 +107,54 @@
       </div>
       <p id="modal-preco" style="font-size:1.18rem; color:#a644e7; font-weight:bold;"></p>
       <label for="selecao-cor">Cor:</label>
-      <select id="selecao-cor"></select>
-      <br>
+      <select id="selecao-cor"></select><br>
       <label for="selecao-tamanho">Tamanho:</label>
-      <select id="selecao-tamanho"></select>
-      <br><br>
+      <select id="selecao-tamanho"></select><br><br>
       <button onclick="adicionarProdutoAoCarrinho()">Adicionar ao Carrinho</button>
     </div>
   </div>
 
   <script>
-    // ==== MODAL PADRÃO IPYC ====
     let imagemModal = "";
+    let imagensArray = [];
 
-    function abrirModal(titulo, referencia, cores, tamanhos, preco, imagem) {
+    function abrirModal(titulo, referencia, cores, tamanhos, preco, imagens) {
+      const listaCores = cores.split(',').map(c => c.trim());
+      const listaTamanhos = tamanhos.split(',').map(t => t.trim());
+      imagensArray = Array.isArray(imagens) ? imagens : [imagens];
+      imagemModal = imagensArray[0];
+
       document.getElementById('modal-titulo').textContent = titulo;
       document.getElementById('modal-referencia').textContent = 'Referência: ' + referencia;
-      document.getElementById('modal-preco').textContent = preco;
+      document.getElementById('modal-preco').textContent = 'R$ ' + preco;
+      document.getElementById('modal-imagem').src = imagemModal;
 
-      // Coloca cor/tamanho nas selects
-      let selecaoCor = document.getElementById('selecao-cor');
-      let selecaoTamanho = document.getElementById('selecao-tamanho');
+      const selecaoCor = document.getElementById('selecao-cor');
+      const selecaoTamanho = document.getElementById('selecao-tamanho');
       selecaoCor.innerHTML = '';
       selecaoTamanho.innerHTML = '';
-      cores.split(',').forEach(cor => {
-        let opt = document.createElement('option');
-        opt.value = cor.trim();
-        opt.text = cor.trim();
+
+      listaCores.forEach((cor, i) => {
+        const opt = document.createElement('option');
+        opt.value = cor;
+        opt.text = cor;
         selecaoCor.add(opt);
       });
-      tamanhos.split(',').forEach(tam => {
-        let opt = document.createElement('option');
-        opt.value = tam.trim();
-        opt.text = tam.trim();
+
+      listaTamanhos.forEach(tam => {
+        const opt = document.createElement('option');
+        opt.value = tam;
+        opt.text = tam;
         selecaoTamanho.add(opt);
       });
 
-      // Imagem
-      imagemModal = imagem;
-      document.getElementById('modal-imagem').src = imagemModal;
+      selecaoCor.onchange = function () {
+        const idx = listaCores.findIndex(c => c.toLowerCase() === this.value.toLowerCase());
+        imagemModal = imagensArray[idx] || imagensArray[0];
+        document.getElementById('modal-imagem').src = imagemModal;
+      };
 
-      // Abrir modal
       document.getElementById('product-modal').style.display = 'block';
-
-      // Ativa lupa
       imageZoom('modal-imagem', 'zoomResult');
     }
 
@@ -184,12 +162,10 @@
       document.getElementById('product-modal').style.display = 'none';
     }
 
-    // ===== LUPA NA IMAGEM =====
     function imageZoom(imgID, resultID) {
       var img = typeof imgID === "string" ? document.getElementById(imgID) : imgID;
       var result = typeof resultID === "string" ? document.getElementById(resultID) : resultID;
 
-      // Remove eventos antigos
       img.onmousemove = null;
       img.onmouseleave = null;
       img.onmouseenter = null;
@@ -216,11 +192,9 @@
       }
     }
 
-    // ========== Função Carrinho e Contador ==========
     function adicionarProdutoAoCarrinho() {
-      // Coleta informações do produto no modal
       const nome = document.getElementById('modal-titulo').textContent;
-      const referencia = document.getElementById('modal-referencia').textContent.replace('Referência:', '').replace('Ref:', '').trim();
+      const referencia = document.getElementById('modal-referencia').textContent.replace('Referência:', '').trim();
       let preco = document.getElementById('modal-preco').textContent.replace('R$', '').replace(',', '.').trim();
       preco = parseFloat(preco);
 
@@ -228,7 +202,6 @@
       const tamanho = document.getElementById('selecao-tamanho').value;
       const imagem = document.getElementById('modal-imagem').src;
 
-      // Monta objeto produto
       const produto = {
         nome,
         referencia,
@@ -239,10 +212,7 @@
         quantidade: 1
       };
 
-      // Recupera carrinho atual ou cria vazio
       let carrinho = JSON.parse(localStorage.getItem('carrinhoIPYC')) || [];
-
-      // Verifica se produto já existe (mesma ref, cor e tamanho)
       const existe = carrinho.findIndex(p =>
         p.referencia === produto.referencia &&
         p.cor === produto.cor &&
@@ -256,13 +226,8 @@
       }
 
       localStorage.setItem('carrinhoIPYC', JSON.stringify(carrinho));
-
-      // Atualiza contador
       atualizarContadorCarrinho();
-
-      // Feedback
       alert('Produto adicionado ao carrinho!');
-
       fecharModal();
     }
 
@@ -273,10 +238,7 @@
       document.getElementById('contador-carrinho').textContent = total;
     }
 
-    // Atualiza contador ao carregar página
-    window.onload = function() {
-      atualizarContadorCarrinho();
-    }
+    window.onload = atualizarContadorCarrinho;
   </script>
 </body>
 </html>
