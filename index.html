@@ -7,8 +7,6 @@
   <link rel="stylesheet" href="style.css">
   <script src="carrinho.js" defer></script>
   <style>
-    /* (Mantive seus estilos anteriores) */
-
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -18,7 +16,7 @@
       background-position: center;
       color: #333;
     }
-    
+
     .produto button {
       margin-top: 0.5rem;
       padding: 0.4rem 1rem;
@@ -29,9 +27,11 @@
       cursor: pointer;
       font-weight: bold;
     }
+
     .produto button:hover {
       background-color: #4a148c;
     }
+
     .modal {
       display: none;
       position: fixed;
@@ -42,6 +42,7 @@
       align-items: center;
       z-index: 1000;
     }
+
     .modal-content {
       background: white;
       padding: 20px;
@@ -52,6 +53,7 @@
       text-align: center;
       overflow: hidden;
     }
+
     .modal-content img {
       max-width: 100%;
       border-radius: 8px;
@@ -59,9 +61,11 @@
       cursor: zoom-in;
       transition: transform 0.3s ease;
     }
+
     .modal-content img:hover {
       transform: scale(1.5);
     }
+
     .modal-content .close {
       position: absolute;
       top: 8px;
@@ -98,7 +102,7 @@
 </section>
 
 <section class="produtos-destaque">
-  
+
   <div class="produto">
     <img src="assets/camisa-jungkook.png" alt="Camiseta Jeon Jung‑Kook">
     <h3>Camiseta Jeon Jung‑Kook</h3>
@@ -110,7 +114,7 @@
 
   <div class="produto">
     <img src="assets/hidden-love-raposa.png" alt="Camiseta Hidden Love">
-    <h3>CamisetaHidden Love</h3>
+    <h3>Camiseta Hidden Love</h3>
     <p>R$ 59,90</p>
     <button class="ver-produto-btn" data-img="assets/hidden-love-raposa.png" data-nome="Camiseta Hidden Love" data-preco="59.90">
       Ver Produto
@@ -124,12 +128,12 @@
   <a href="colecao-kpop.html"><img src="assets/coleção-kpop-banner.png" alt="Coleção K-pop"></a>
   <a href="colecao-novidades.html"><img src="assets/coleção-novidade-banner.png" alt="Coleção Novidades"></a>
 </div>
-  
+
 <hr class="separador">
 <div class="banner-novidade">
   <img src="assets/banner-caneca-embreve.png" alt="Banner Nova Coleção de Canecas" class="img-banner">
 </div>
-  
+
 <div class="banner-frase">
   "Seu estilo fala coreano. A sua camiseta também."
 </div>
@@ -158,10 +162,10 @@
 </div>
 
 <footer>
-    © 2025 I Purple You Creative • Feito com amor por dorameiras 💜<br><br>
-    <a href="https://www.instagram.com/ipurpleyoucreative/" target="_blank" style="color: #6a1b9a; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
-        📸 Siga a gente no Instagram: @ipurpleyoucreative 💜
-    </a>
+  © 2025 I Purple You Creative • Feito com amor por dorameiras 💜<br><br>
+  <a href="https://www.instagram.com/ipurpleyoucreative/" target="_blank" style="color: #6a1b9a; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
+    📸 Siga a gente no Instagram: @ipurpleyoucreative 💜
+  </a>
 </footer>
 
 <script>
@@ -177,8 +181,16 @@
   const contador = document.getElementById("contador-carrinho");
 
   function atualizarContador() {
-    const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
-    contador.textContent = carrinho.length;
+    let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+    let total = 0;
+    carrinho.forEach(item => {
+      if (item && item.quantidade) {
+        total += item.quantidade;
+      } else {
+        total += 1; // fallback
+      }
+    });
+    contador.textContent = total > 0 ? total : "0";
   }
 
   document.querySelectorAll(".ver-produto-btn").forEach(btn => {
@@ -205,7 +217,8 @@
       nome: nome.textContent,
       preco: preco.textContent,
       tamanho: selT.value,
-      cor: selC.value
+      cor: selC.value,
+      quantidade: 1
     };
     let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
     carrinho.push(produto);
@@ -220,7 +233,6 @@
 
 </body>
 </html>
-
 
 
 
