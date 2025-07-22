@@ -1,26 +1,142 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Coleção K-pop | I Purple You Creative</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .zoom-container {
-      position: relative;
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('assets/imagem-fundo.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      color: #333;
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 1rem 2rem;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    header img.logo {
+      height: 60px;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #6a1b9a;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .banner-kpop {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+    }
+
+    .titulo-colecao {
+      text-align: center;
+      font-size: 2rem;
+      margin-top: 1rem;
+      color: #6a1b9a;
+    }
+
+    .produtos-kpop {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .produto {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      text-align: center;
+      max-width: 240px;
+      transition: transform 0.3s ease;
+    }
+
+    .produto:hover {
+      transform: translateY(-5px);
+    }
+
+    .produto img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .produto button {
+      background-color: #6a1b9a;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 5% auto;
+      padding: 2rem;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      color: #aaa;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .zoom-container {
+      display: flex;
+      align-items: center;
       gap: 20px;
+      justify-content: center;
+      margin-bottom: 1rem;
     }
+
     .zoom-img {
-      width: 240px;
+      width: 260px;
       height: auto;
-      border-radius: 14px;
-      box-shadow: 0 2px 8px #0002;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px #0003;
       cursor: zoom-in;
-      z-index: 1;
+      transition: transform 0.3s ease;
     }
+
     .img-zoom-result {
       border: 2px solid #eee;
       width: 170px;
@@ -30,215 +146,217 @@
       display: none;
       border-radius: 12px;
       box-shadow: 0 2px 8px #0002;
-      z-index: 2;
+    }
+
+    footer {
+      background-color: rgba(255, 255, 255, 0.9);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="colecao-bts.html">Coleção BTS</a>
-        <a href="colecao-dorameira.html">Coleção Dorameira</a>
-        <a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
-    </nav>
-  </header>
 
-  <img src="assets/banner-kpop.png" alt="Banner Coleção K-pop" class="banner-kpop">
-  <div class="titulo-colecao">Coleção K-pop</div>
+<header>
+  <img src="assets/logo-IPYC.png" alt="Logo IPYC" class="logo">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="colecao-bts.html">Coleção BTS</a>
+    <a href="colecao-dorameira.html">Coleção Dorameira</a>
+    <a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a>
+  </nav>
+</header>
 
-  <section class="produtos-kpop">
-    <div class="produto">
-      <img src="assets/blackpink-black.png" alt="Camiseta Blackpink">
-      <h3>Camiseta Blackpink Watercolor</h3>
-      <p>Estampa exclusiva Blackpink, estilo aquarela. Disponível em preto e branco!</p>
-      <div class="preco">R$ 59,90</div>
-      <button onclick="abrirModal(
-        'Camiseta Blackpink Watercolor',
-        'REF123',
-        'Preta,Branca',
-        'P,M,G,GG',
-        '59.90',
-        ['assets/blackpink-black.png', 'assets/Blackpink-white.png']
-      )">Ver Produto</button>
-    </div>
+<img src="assets/banner-kpop.png" alt="Banner Coleção K-pop" class="banner-kpop">
+<div class="titulo-colecao">Coleção K-pop</div>
 
-    <div class="produto">
-      <img src="assets/bp-skate-black.png" alt="Camiseta Stray Kids">
-      <h3>Camiseta Stray Kids Style</h3>
-      <p>Stray Kids para quem ama atitude e estilo! Preto ou branco.</p>
-      <div class="preco">R$ 59,90</div>
-      <button onclick="abrirModal(
-        'Camiseta Stray Kids Style',
-        'REF124',
-        'Preta,Branca',
-        'P,M,G,GG',
-        '59.90',
-        ['assets/bp-skate-black.png', 'assets/bp-skate-white.png']
-      )">Ver Produto</button>
-    </div>
-
-    <div class="produto">
-      <img src="assets/stray-black.png" alt="Camiseta Stray Kids Group">
-      <h3>Camiseta Stray Kids Group</h3>
-      <p>Clássico Stray Kids para os stays de verdade. Em duas cores!</p>
-      <div class="preco">R$ 59,90</div>
-      <button onclick="abrirModal(
-        'Camiseta Stray Kids Group',
-        'REF125',
-        'Preta,Branca',
-        'P,M,G,GG',
-        '59.90',
-        ['assets/stray-black.png', 'assets/stray-white.png']
-      )">Ver Produto</button>
-    </div>
-  </section>
-
-  <!-- ====== MODAL COM LUPA ====== -->
-  <div id="product-modal" class="modal" style="display:none;">
-    <div class="modal-content">
-      <span class="close" onclick="fecharModal()">&times;</span>
-      <h2 id="modal-titulo"></h2>
-      <p id="modal-referencia"></p>
-      <div class="zoom-container">
-        <img id="modal-imagem" class="zoom-img" src="" alt="Imagem do Produto">
-        <div class="img-zoom-result" id="zoomResult"></div>
-      </div>
-      <p id="modal-preco" style="font-size:1.18rem; color:#a644e7; font-weight:bold;"></p>
-      <label for="selecao-cor">Cor:</label>
-      <select id="selecao-cor"></select><br>
-      <label for="selecao-tamanho">Tamanho:</label>
-      <select id="selecao-tamanho"></select><br><br>
-      <button onclick="adicionarProdutoAoCarrinho()">Adicionar ao Carrinho</button>
-    </div>
+<section class="produtos-kpop">
+  <div class="produto">
+    <img src="assets/blackpink-black.png" alt="Camiseta Blackpink">
+    <h3>Camiseta Blackpink Watercolor</h3>
+    <p>Estampa exclusiva Blackpink, estilo aquarela. Disponível em preto e branco!</p>
+    <div class="preco">R$ 59,90</div>
+    <button onclick="abrirModal(
+      'Camiseta Blackpink Watercolor',
+      'REF123',
+      ['Preta', 'Branca'],
+      ['P', 'M', 'G', 'GG'],
+      '59.90',
+      ['assets/blackpink-black.png', 'assets/Blackpink-white.png']
+    )">Ver Produto</button>
   </div>
 
-  <script>
-    let imagemModal = "";
-    let imagensArray = [];
+  <div class="produto">
+    <img src="assets/bp-skate-black.png" alt="Camiseta Stray Kids">
+    <h3>Camiseta Stray Kids Style</h3>
+    <p>Stray Kids para quem ama atitude e estilo! Preto ou branco.</p>
+    <div class="preco">R$ 59,90</div>
+    <button onclick="abrirModal(
+      'Camiseta Stray Kids Style',
+      'REF124',
+      ['Preta', 'Branca'],
+      ['P', 'M', 'G', 'GG'],
+      '59.90',
+      ['assets/bp-skate-black.png', 'assets/bp-skate-white.png']
+    )">Ver Produto</button>
+  </div>
 
-    function abrirModal(titulo, referencia, cores, tamanhos, preco, imagens) {
-      const listaCores = cores.split(',').map(c => c.trim());
-      const listaTamanhos = tamanhos.split(',').map(t => t.trim());
-      imagensArray = Array.isArray(imagens) ? imagens : [imagens];
-      imagemModal = imagensArray[0];
+  <div class="produto">
+    <img src="assets/stray-black.png" alt="Camiseta Stray Kids Group">
+    <h3>Camiseta Stray Kids Group</h3>
+    <p>Clássico Stray Kids para os stays de verdade. Em duas cores!</p>
+    <div class="preco">R$ 59,90</div>
+    <button onclick="abrirModal(
+      'Camiseta Stray Kids Group',
+      'REF125',
+      ['Preta', 'Branca'],
+      ['P', 'M', 'G', 'GG'],
+      '59.90',
+      ['assets/stray-black.png', 'assets/stray-white.png']
+    )">Ver Produto</button>
+  </div>
+</section>
 
-      document.getElementById('modal-titulo').textContent = titulo;
-      document.getElementById('modal-referencia').textContent = 'Referência: ' + referencia;
-      document.getElementById('modal-preco').textContent = 'R$ ' + preco;
-      document.getElementById('modal-imagem').src = imagemModal;
+<!-- MODAL -->
+<div id="product-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModal()">&times;</span>
+    <h2 id="modal-titulo"></h2>
+    <p><strong>Referência:</strong> <span id="modal-referencia"></span></p>
+    <div class="zoom-container">
+      <img id="modal-imagem" class="zoom-img" src="" alt="Imagem do Produto">
+      <div class="img-zoom-result" id="zoomResult"></div>
+    </div>
+    <p><strong>Preço:</strong> R$ <span id="modal-preco"></span></p>
+    <label for="selecao-cor">Cor:</label>
+    <select id="selecao-cor"></select><br><br>
+    <label for="selecao-tamanho">Tamanho:</label>
+    <select id="selecao-tamanho"></select><br><br>
+    <button onclick="adicionarProdutoAoCarrinho()">Adicionar ao Carrinho</button>
+    <p id="erro-modal" style="color:red; display:none;">Selecione a cor e o tamanho.</p>
+  </div>
+</div>
 
-      const selecaoCor = document.getElementById('selecao-cor');
-      const selecaoTamanho = document.getElementById('selecao-tamanho');
-      selecaoCor.innerHTML = '';
-      selecaoTamanho.innerHTML = '';
+<footer>
+  © 2025 I Purple You Creative • Feito com amor por dorameiras 💜<br><br>
+  <a href="https://www.instagram.com/ipurpleyoucreative/" target="_blank" style="color: #6a1b9a; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
+    📸 Siga a gente no Instagram: @ipurpleyoucreative 💜
+  </a>
+</footer>
 
-      listaCores.forEach((cor, i) => {
-        const opt = document.createElement('option');
-        opt.value = cor;
-        opt.text = cor;
-        selecaoCor.add(opt);
-      });
+<script>
+  let imagensArray = [];
 
-      listaTamanhos.forEach(tam => {
-        const opt = document.createElement('option');
-        opt.value = tam;
-        opt.text = tam;
-        selecaoTamanho.add(opt);
-      });
+  function abrirModal(titulo, referencia, cores, tamanhos, preco, imagens) {
+    imagensArray = imagens;
+    document.getElementById("modal-titulo").textContent = titulo;
+    document.getElementById("modal-referencia").textContent = referencia;
+    document.getElementById("modal-preco").textContent = preco;
+    document.getElementById("modal-imagem").src = imagens[0];
 
-      selecaoCor.onchange = function () {
-        const idx = listaCores.findIndex(c => c.toLowerCase() === this.value.toLowerCase());
-        imagemModal = imagensArray[idx] || imagensArray[0];
-        document.getElementById('modal-imagem').src = imagemModal;
-      };
+    const selecaoCor = document.getElementById("selecao-cor");
+    const selecaoTamanho = document.getElementById("selecao-tamanho");
+    selecaoCor.innerHTML = '<option value="">Selecione</option>';
+    selecaoTamanho.innerHTML = '<option value="">Selecione</option>';
 
-      document.getElementById('product-modal').style.display = 'block';
-      imageZoom('modal-imagem', 'zoomResult');
+    cores.forEach((cor, i) => {
+      const opt = document.createElement("option");
+      opt.value = cor;
+      opt.textContent = cor;
+      selecaoCor.appendChild(opt);
+    });
+
+    tamanhos.forEach(tam => {
+      const opt = document.createElement("option");
+      opt.value = tam;
+      opt.textContent = tam;
+      selecaoTamanho.appendChild(opt);
+    });
+
+    selecaoCor.onchange = () => {
+      const idx = cores.indexOf(selecaoCor.value);
+      document.getElementById("modal-imagem").src = imagensArray[idx] || imagensArray[0];
+    };
+
+    document.getElementById("erro-modal").style.display = "none";
+    document.getElementById("product-modal").style.display = "block";
+    imageZoom('modal-imagem', 'zoomResult');
+  }
+
+  function fecharModal() {
+    document.getElementById("product-modal").style.display = "none";
+  }
+
+  function adicionarProdutoAoCarrinho() {
+    const nome = document.getElementById('modal-titulo').textContent;
+    const referencia = document.getElementById('modal-referencia').textContent;
+    const preco = parseFloat(document.getElementById('modal-preco').textContent);
+    const cor = document.getElementById('selecao-cor').value;
+    const tamanho = document.getElementById('selecao-tamanho').value;
+    const imagem = document.getElementById('modal-imagem').src;
+
+    if (!cor || !tamanho) {
+      document.getElementById("erro-modal").style.display = "block";
+      return;
     }
 
-    function fecharModal() {
-      document.getElementById('product-modal').style.display = 'none';
+    const produto = {
+      nome,
+      referencia,
+      preco,
+      cor,
+      tamanho,
+      imagem,
+      quantidade: 1
+    };
+
+    let carrinho = JSON.parse(localStorage.getItem('carrinhoItems')) || [];
+    carrinho.push(produto);
+    localStorage.setItem('carrinhoItems', JSON.stringify(carrinho));
+    atualizarContadorCarrinho();
+    alert("Produto adicionado ao carrinho!");
+    fecharModal();
+  }
+
+  function atualizarContadorCarrinho() {
+    const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+    const total = carrinho.reduce((sum, item) => sum + (item.quantidade || 1), 0);
+    document.getElementById("contador-carrinho").textContent = total;
+  }
+
+  function imageZoom(imgID, resultID) {
+    var img = typeof imgID === "string" ? document.getElementById(imgID) : imgID;
+    var result = typeof resultID === "string" ? document.getElementById(resultID) : resultID;
+
+    img.onmousemove = null;
+    img.onmouseleave = null;
+    img.onmouseenter = null;
+
+    img.onmousemove = moveLens;
+    img.onmouseleave = () => { result.style.display = 'none'; };
+    img.onmouseenter = () => {
+      result.style.display = 'block';
+      result.style.backgroundImage = "url('" + img.src + "')";
+    };
+
+    function moveLens(e) {
+      var pos = getCursorPos(e);
+      var x = pos.x, y = pos.y, zoom = 2;
+      result.style.backgroundPosition = `-${x * zoom - result.offsetWidth / 2}px -${y * zoom - result.offsetHeight / 2}px`;
+      result.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
     }
 
-    function imageZoom(imgID, resultID) {
-      var img = typeof imgID === "string" ? document.getElementById(imgID) : imgID;
-      var result = typeof resultID === "string" ? document.getElementById(resultID) : resultID;
-
-      img.onmousemove = null;
-      img.onmouseleave = null;
-      img.onmouseenter = null;
-
-      img.onmousemove = moveLens;
-      img.onmouseleave = function() { result.style.display = 'none'; };
-      img.onmouseenter = function() {
-        result.style.display = 'block';
-        result.style.backgroundImage = "url('" + img.src + "')";
-      };
-
-      function moveLens(e) {
-        var pos = getCursorPos(e);
-        var x = pos.x, y = pos.y, zoom = 2;
-        result.style.backgroundPosition = `-${x * zoom - result.offsetWidth / 2}px -${y * zoom - result.offsetHeight / 2}px`;
-        result.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
-      }
-
-      function getCursorPos(e) {
-        var a = img.getBoundingClientRect();
-        var x = e.clientX - a.left;
-        var y = e.clientY - a.top;
-        return {x: x, y: y};
-      }
+    function getCursorPos(e) {
+      var a = img.getBoundingClientRect();
+      var x = e.clientX - a.left;
+      var y = e.clientY - a.top;
+      return {x: x, y: y};
     }
+  }
 
-    function adicionarProdutoAoCarrinho() {
-      const nome = document.getElementById('modal-titulo').textContent;
-      const referencia = document.getElementById('modal-referencia').textContent.replace('Referência:', '').trim();
-      let preco = document.getElementById('modal-preco').textContent.replace('R$', '').replace(',', '.').trim();
-      preco = parseFloat(preco);
+  atualizarContadorCarrinho();
+</script>
 
-      const cor = document.getElementById('selecao-cor').value;
-      const tamanho = document.getElementById('selecao-tamanho').value;
-      const imagem = document.getElementById('modal-imagem').src;
-
-      const produto = {
-        nome,
-        referencia,
-        preco,
-        cor,
-        tamanho,
-        imagem,
-        quantidade: 1
-      };
-
-      let carrinho = JSON.parse(localStorage.getItem('carrinhoIPYC')) || [];
-      const existe = carrinho.findIndex(p =>
-        p.referencia === produto.referencia &&
-        p.cor === produto.cor &&
-        p.tamanho === produto.tamanho
-      );
-
-      if (existe > -1) {
-        carrinho[existe].quantidade += 1;
-      } else {
-        carrinho.push(produto);
-      }
-
-      localStorage.setItem('carrinhoIPYC', JSON.stringify(carrinho));
-      atualizarContadorCarrinho();
-      alert('Produto adicionado ao carrinho!');
-      fecharModal();
-    }
-
-    function atualizarContadorCarrinho() {
-      let carrinho = JSON.parse(localStorage.getItem('carrinhoIPYC')) || [];
-      let total = 0;
-      carrinho.forEach(p => total += p.quantidade);
-      document.getElementById('contador-carrinho').textContent = total;
-    }
-
-    window.onload = atualizarContadorCarrinho;
-  </script>
 </body>
 </html>
