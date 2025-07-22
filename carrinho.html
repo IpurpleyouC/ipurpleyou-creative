@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Carrinho de Compras | I Purple You Creative</title>
   <style>
     body {
@@ -126,14 +126,14 @@
     const contador = document.getElementById("contador-carrinho");
 
     function atualizarContador() {
-      const carrinho = JSON.parse(localStorage.getItem("carrinhoIPYC") || "[]");
+      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
       let total = 0;
-      carrinho.forEach(p => total += p.quantidade);
-      contador.textContent = total;
+      carrinho.forEach(p => total += p.quantidade || 1);
+      contador.textContent = total > 0 ? total : "0";
     }
 
     function carregarCarrinho() {
-      const carrinho = JSON.parse(localStorage.getItem("carrinhoIPYC") || "[]");
+      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
       let total = 0;
       tbody.innerHTML = "";
 
@@ -144,52 +144,59 @@
       }
 
       carrinho.forEach((item, index) => {
+        const nome = item.nome || "Produto sem nome";
+        const preco = parseFloat(item.preco) || 0;
+        const imagem = item.imagem ? `<img src="${item.imagem}" class="produto-img">` : "—";
+        const tamanho = item.tamanho || "—";
+        const cor = item.cor || "—";
+        const quantidade = item.quantidade || 1;
+
         tbody.innerHTML += `
           <tr>
-            <td>${item.nome}</td>
-            <td><img src="${item.imagem}" class="produto-img"></td>
-            <td>${item.tamanho}</td>
-            <td>${item.cor}</td>
-            <td>R$ ${item.preco.toFixed(2).replace(".", ",")}</td>
+            <td>${nome}</td>
+            <td>${imagem}</td>
+            <td>${tamanho}</td>
+            <td>${cor}</td>
+            <td>R$ ${preco.toFixed(2).replace(".", ",")}</td>
             <td>
               <button class="quantidade-btn" onclick="alterarQuantidade(${index}, -1)">-</button>
-              ${item.quantidade}
+              ${quantidade}
               <button class="quantidade-btn" onclick="alterarQuantidade(${index}, 1)">+</button>
             </td>
             <td><button class="remover-btn" onclick="removerItem(${index})">Remover</button></td>
           </tr>
         `;
-        total += item.preco * item.quantidade;
+        total += preco * quantidade;
       });
 
       totalDisplay.textContent = "Total: R$ " + total.toFixed(2).replace(".", ",");
     }
 
     function alterarQuantidade(index, delta) {
-      let carrinho = JSON.parse(localStorage.getItem("carrinhoIPYC") || "[]");
-      carrinho[index].quantidade += delta;
+      let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
+      carrinho[index].quantidade = (carrinho[index].quantidade || 1) + delta;
       if (carrinho[index].quantidade < 1) carrinho[index].quantidade = 1;
-      localStorage.setItem("carrinhoIPYC", JSON.stringify(carrinho));
+      localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
       carregarCarrinho();
       atualizarContador();
     }
 
     function removerItem(index) {
-      let carrinho = JSON.parse(localStorage.getItem("carrinhoIPYC") || "[]");
+      let carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
       carrinho.splice(index, 1);
-      localStorage.setItem("carrinhoIPYC", JSON.stringify(carrinho));
+      localStorage.setItem("carrinhoItems", JSON.stringify(carrinho));
       carregarCarrinho();
       atualizarContador();
     }
 
     document.getElementById("limpar-carrinho").onclick = () => {
-      localStorage.removeItem("carrinhoIPYC");
+      localStorage.removeItem("carrinhoItems");
       carregarCarrinho();
       atualizarContador();
     };
 
     document.getElementById("finalizar-pedido").onclick = function() {
-      const carrinho = JSON.parse(localStorage.getItem("carrinhoIPYC") || "[]");
+      const carrinho = JSON.parse(localStorage.getItem("carrinhoItems") || "[]");
 
       if (carrinho.length === 0) {
         alert("Seu carrinho está vazio!");
@@ -199,15 +206,21 @@
       let mensagem = "📦 Pedido I Purple You Creative:%0A%0A";
 
       carrinho.forEach(item => {
-        mensagem += `🛒 Produto: ${item.nome}%0A`;
-        mensagem += `🔢 Referência: ${item.referencia}%0A`;
-        mensagem += `📌 Tamanho: ${item.tamanho}%0A`;
-        mensagem += `🎨 Cor: ${item.cor}%0A`;
-        mensagem += `🔢 Quantidade: ${item.quantidade}%0A`;
-        mensagem += `💰 Preço: R$ ${item.preco.toFixed(2).replace(".", ",")}%0A%0A`;
+        mensagem += `🛒 Produto: ${item.nome || "Sem nome"}%0A`;
+        if (item.referencia) {
+          mensagem += `🔢 Referência: ${item.referencia}%0A`;
+        }
+        if (item.tamanho) {
+          mensagem += `📌 Tamanho: ${item.tamanho}%0A`;
+        }
+        if (item.cor) {
+          mensagem += `🎨 Cor: ${item.cor}%0A`;
+        }
+        mensagem += `🔢 Quantidade: ${item.quantidade || 1}%0A`;
+        mensagem += `💰 Preço: R$ ${parseFloat(item.preco).toFixed(2).replace(".", ",")}%0A%0A`;
       });
 
-      let total = carrinho.reduce((soma, item) => soma + (item.preco * item.quantidade), 0);
+      let total = carrinho.reduce((soma, item) => soma + ((parseFloat(item.preco) || 0) * (item.quantidade || 1)), 0);
       mensagem += `🧾 Total: R$ ${total.toFixed(2).replace(".", ",")}%0A`;
 
       const numero = "5541995081726";
